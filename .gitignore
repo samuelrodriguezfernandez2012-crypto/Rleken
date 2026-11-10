@@ -1,0 +1,5 @@
+node_modules/
+.DS_Store
+assets/mezcla_pre.wav
+assets/voz_48k.wav
+out/*.log

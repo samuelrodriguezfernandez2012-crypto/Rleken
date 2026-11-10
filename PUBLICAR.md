@@ -66,3 +66,42 @@ Yo diría "mañana no hay clase" 😂🤥 ¿Y TÚ? Escribe tu mentira y la más 
 - Reflejo: la luz tarda unos 3 nanosegundos en ir y volver de un espejo a medio metro.
 - Mentes: un estudio de la Queen's University (2020) estimó unos 6.200 pensamientos al día.
 - Tierra: en España la superficie gira a unos 1.280 km/h (en el ecuador, 1.670 km/h), más que la velocidad del sonido (~1.235 km/h). Si se parase, un día duraría un año (medio de luz, medio de noche) y los océanos se irían hacia los polos.
+
+---
+
+# Video largo: "Sobreviví 100 días con un superpoder que me iba matando"
+
+**Archivo:** `out/largo1/chiki_100_dias.mp4` (1920x1080, 30 fps, 12:47) · **Miniatura:** `out/largo1/miniatura.png` (1280x720)
+**Publicación:** miércoles 11 nov 2026, 16:00 (Metricool, YouTube, vídeo normal)
+**Personaje:** el nuevo (StickmanV2, chaqueta azul).
+
+**Título:** `Sobreviví 100 DÍAS con un SUPERPODER que me iba MATANDO ⏳💀`
+
+**Descripción:**
+```
+¿Y si pudieras PARAR EL TIEMPO… pero cada segundo te costara una hora de vida? ⏳
+Día 1 podía parar el mundo 1 segundo. El día 100 tenía 60 años… y 3 minutos para salvarme 😱
+Ve hasta el final: el giro no te lo esperas 🤯
+
+👇 ¿Para qué usarías TÚ 100 días de poder? Te leo en comentarios.
+🔔 Suscríbete para la parte 2: ¿quién se queda el reloj?
+
+0:00 El día 100
+0:32 Día 1: el vaso de leche
+1:34 Días 2-9: el mejor poder del mundo
+2:42 Día 10: el gato y el camión
+3:43 Día 15: el precio
+4:41 Días 20-40: famoso
+5:47 Día 45: intento parar
+6:47 Días 50-60: la Relojera
+7:49 Las reglas
+8:57 Días 70-95: la hucha
+10:09 Día 100: tres minutos
+11:23 Día 0
+
+#quepasariasi #100dias #superpoderes #animacion #stickman #historias
+```
+
+**Etiquetas:** sobreviví 100 días, 100 días, qué pasaría si, que pasaria si, parar el tiempo, superpoderes, poder de parar el tiempo, historias animadas, animación, animacion stickman, stickman, historia completa, giro final, misterio, la relojera, animación en español, chiki, chiki2225, 100 dias con un superpoder, historias de impacto
+
+**Comentario para fijar:** `Yo pararía el tiempo para dormir 5 minutos más cada mañana 😴⏳ ¿Y TÚ? 👇 Si llegamos a 100 comentarios, hago la PARTE 2: ¿quién se queda el reloj?`

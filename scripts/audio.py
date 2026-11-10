@@ -546,7 +546,84 @@ def cfg_tierra(m):
     ]
 
 
-CFG = {'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
+
+def cfg_largo1(m):
+    import unicodedata, re
+    words = json.load(open('src/videos/largo1/words.json'))
+    chs = json.load(open('src/videos/largo1/chapters.json'))
+    S = [c['start'] for c in chs]
+    E = [c['start'] + c['dur'] for c in chs]
+    def norm(x):
+        x = unicodedata.normalize('NFD', x.lower())
+        return re.sub(r'[^a-z0-9ñ]', '', ''.join(ch for ch in x if unicodedata.category(ch) != 'Mn'))
+    def chap(ms):
+        c = 0
+        for i, st in enumerate(S):
+            if ms / 1000 >= st - 0.05: c = i
+        return c
+    def W(c, w, n=1):
+        k = 0
+        for x in words:
+            if chap(x['start_ms']) == c and norm(x['text']) == norm(w):
+                k += 1
+                if k == n: return x['start_ms'] / 1000
+        raise KeyError((c, w, n))
+    # musica por capitulos
+    m.creepy(0, E[0], root=45)
+    m.musicbox(S[1], W(1, 'golpe') + 0.3)
+    m.creepy(W(1, 'golpe') + 0.3, W(1, 'volvio'), root=50, ticks=False)
+    m.calm(W(1, 'volvio'), E[1], notes=(57, 60, 64))
+    m.happy(S[2], W(2, 'porque'), prog=(60, 57, 53, 55))
+    m.creepy(W(2, 'porque'), E[2], root=47, ticks=False)
+    m.tense(S[3], W(3, 'la', 5))
+    m.happy(W(3, 'la', 5), W(3, 'pero'), prog=(60, 55, 57, 53))
+    m.creepy(W(3, 'pero'), E[3], root=45, ticks=False)
+    m.creepy(S[4], E[4], root=44)
+    m.happy(S[5], W(5, 'pero'), prog=(60, 57, 53, 55))
+    m.creepy(W(5, 'pero'), E[5], root=46, ticks=False)
+    m.calm(S[6], W(6, 'pero'), notes=(52, 55, 59))
+    m.tense(W(6, 'pero'), E[6], roots=(44, 44, 45, 43))
+    m.creepy(S[7], E[7], root=45)
+    m.musicbox(S[8], E[8], seq=(64, 67, 71, 69, 67, 66, 67, 64), step=m.beat * 1.5)
+    m.tense(S[9], E[9], roots=(45, 46, 45, 44))
+    m.creepy(S[10], E[10], root=45)
+    m.epic(S[11], W(11, '10'), roots=(45, 41, 48, 43))
+    m.silence(W(11, 'blanco'), S[12])
+    m.calm(S[12], W(12, 'eso'), notes=(60, 64, 67))
+    m.creepy(W(12, 'eso'), W(13, 'dime'), root=47, ticks=False)
+    m.outro(W(13, 'dime'), E[13] + 4)
+    ev = []
+    for i in range(1, 14):
+        if i in (11, 13): continue
+        ev += [('whoosh', S[i] - 2.35, 0.5), ('tick', S[i] - 1.9, 0.5), ('tick', S[i] - 1.4, 0.5), ('tick', S[i] - 0.9, 0.5), ('impact', S[i] - 2.1, 0.5)]
+    fr = lambda t: [('freeze', t, 0.6), ('swell', t - 0.5, 0.4)]
+    ev += [('impact', 0.0, 0.7), ('freeze', 0.1, 0.5), ('heartbeat', W(0, 'tengo'), 0.8), ('heartbeat', W(0, 'tengo') + 0.9, 0.7),
+           ('boom', W(0, 'culpa'), 0.7), ('whoosh', W(0, 'hace'), 0.5), ('pop', W(0, 'hace') + 0.9, 0.4), ('pop', W(0, 'hace') + 1.8, 0.4),
+           ('pop', W(0, 'hace') + 2.7, 0.4), ('rise', W(0, 'cada'), 0.5), ('boom', W(0, 'matando'), 0.8), ('chime', W(0, 'esta', 2), 0.5)]
+    ev += fr(W(1, 'golpe') + 0.3) + [('glass', W(1, 'estrello'), 0.8), ('zap', W(1, 'parado', 2), 0.5), ('tick', W(1, 'cuenta'), 0.6), ('tick', W(1, 'cuenta') + 0.5, 0.6)]
+    ev += fr(W(2, 'ate')) + [('thud', W(2, 'cayo'), 0.9), ('ding', W(2, 'saque'), 0.6), ('freeze', W(2, 'pare'), 0.4), ('sparkle', W(2, 'flipaba'), 0.5),
+           ('freeze', W(2, 'ocho') + 1.5, 0.3), ('scratch', W(2, 'o'), 0.5), ('heartbeat', W(2, 'pelo'), 0.8)]
+    ev += [('screech', W(3, 'camion'), 0.5)] + fr(W(3, 'pare') + 0.3) + [('whoosh', W(3, 'cogi'), 0.4), ('whoosh', W(3, 'aparte'), 0.4),
+           ('impact', W(3, 'tiempo', 2), 0.7), ('whoosh', W(3, 'tiempo', 2) + 0.2, 0.9), ('coin', W(3, 'millon'), 0.6), ('sparkle', W(3, 'superheroe'), 0.5),
+           ('heartbeat', W(3, 'pecho'), 0.9), ('heartbeat', W(3, 'pecho') + 0.9, 0.8)]
+    ev += [('boom', W(4, 'alguien'), 0.6), ('tick', W(4, 'cada'), 0.5), ('boom', W(4, 'cada'), 0.6), ('impact', W(4, 'horas'), 0.5), ('heartbeat', W(4, 'tentacion'), 0.8)]
+    ev += [('zap', W(5, 'apareci'), 0.6), ('sparkle', W(5, 'publico'), 0.6), ('coin', W(5, '30'), 0.6), ('coin', W(5, '30') + 0.4, 0.5),
+           ('freeze', W(5, 'salve'), 0.4), ('freeze', W(5, 'apague'), 0.4), ('sparkle', W(5, 'imparable'), 0.5), ('boom', W(5, 'tenia'), 0.6)]
+    ev += [('heartbeat', W(6, 'corazon'), 0.9), ('heartbeat', W(6, 'corazon') + 0.9, 0.8), ('glass', W(6, 'caia'), 0.5), ('screech', W(6, 'freno'), 0.6),
+           ('impact', W(6, 'freno') + 0.3, 0.6)] + fr(W(6, 'mundo')) + [('boom', W(6, '50', 4), 0.7)]
+    ev += [('thud', W(7, 'portazo'), 1.0), ('freeze', W(7, 'portazo'), 0.3), ('screech', W(7, 'claxon'), 0.4), ('rumble', W(7, 'trueno'), 0.8),
+           ('thud', W(7, 'pasos'), 0.6), ('thud', W(7, 'pasos') + 0.5, 0.6), ('thud', W(7, 'pasos') + 1.0, 0.6), ('chime', W(7, 'gire'), 0.5), ('heartbeat', W(7, 'recorde'), 0.7), ('glass', W(7, 'siguiente') + 1.0, 0.4)]
+    ev += [('ding', W(8, 'poder'), 0.4), ('ding', W(8, 'dura'), 0.4), ('ding', W(8, '100', 2), 0.4), ('boom', W(8, 'siempre'), 0.7), ('sparkle', W(8, 'entonces') + 1.0, 0.7)]
+    ev += [('freeze', W(9, 'acabe'), 0.4), ('chime', W(9, 'guarda'), 0.5), ('freeze', W(9, '85'), 0.5), ('sparkle', W(9, 'hucha'), 0.6), ('boom', W(9, '60'), 0.7)]
+    ev += [('freeze', S[10], 0.6), ('heartbeat', W(10, '3'), 0.9), ('heartbeat', W(10, '3') + 0.9, 0.9), ('chime', W(10, 'luz'), 0.6), ('heartbeat', W(10, 'latia'), 0.7)]
+    ev += [('tick', S[11], 0.6), ('tick', W(11, '1'), 0.6), ('rise', W(11, 'cogi'), 0.5), ('glass', W(11, 'estampe') + 0.4, 1.0), ('impact', W(11, 'estampe') + 0.4, 0.9),
+           ('boom', W(11, 'cristal'), 0.9), ('swell', W(11, 'cristal'), 0.7), ('tick', W(11, '30'), 0.6), ('tick', W(11, '10'), 0.6), ('rise', W(11, 'envolvio'), 0.7)]
+    ev += [('chime', S[12], 0.6), ('sparkle', W(12, 'nino'), 0.6), ('ding', W(12, 'recuperado'), 0.6), ('scratch', W(12, 'eso'), 0.5)]
+    ev += [('freeze', W(13, 'y'), 0.6), ('chime', W(13, 'reflejo'), 0.6), ('boom', W(13, 'podrias'), 0.7), ('pop', W(13, 'dime'), 0.5), ('ding', W(13, 'quieres'), 0.5)]
+    return round(E[13] + 4, 2), ev
+
+
+CFG = {'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
 
 
 def read_wav(p):
@@ -563,7 +640,7 @@ def main(name):
     subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', raw, '-ar', str(SR), '-ac', '1', '-af',
                     'highpass=f=70,acompressor=threshold=-18dB:ratio=3:attack=5:release=80', tmp], check=True)
     # duracion primero (la configuracion la devuelve)
-    m = Music(int(SR * 90))
+    m = Music(int(SR * 900))
     dur, events = CFG[name](m)
     N = int(SR * dur)
     music = m.b[:N]

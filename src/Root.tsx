@@ -6,6 +6,8 @@ import {ReflejoShort, ReflejoThumb, DURATION_S as D_REFLEJO} from './videos/refl
 import {MentesShort, MentesThumb, DURATION_S as D_MENTES} from './videos/mentes/Main';
 import {TierraShort, TierraThumb, DURATION_S as D_TIERRA} from './videos/tierra/Main';
 import {CharacterTest} from './tests/CharacterTest';
+import {Largo1, DURATION_S as D_LARGO1} from './videos/largo1/Main';
+import {Largo1Thumb} from './videos/largo1/Thumb';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -18,6 +20,8 @@ export const RemotionRoot: React.FC = () => (
     <Still id="MentesThumb" component={MentesThumb} width={W} height={H} />
     <Composition id="TierraShort" component={TierraShort} durationInFrames={Math.round(D_TIERRA * FPS)} fps={FPS} width={W} height={H} />
     <Still id="TierraThumb" component={TierraThumb} width={W} height={H} />
+    <Composition id="Largo1" component={Largo1} durationInFrames={D_LARGO1 * FPS} fps={FPS} width={1920} height={1080} />
+    <Still id="Largo1Thumb" component={Largo1Thumb} width={1280} height={720} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
   </>
 );

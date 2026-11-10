@@ -45,3 +45,24 @@ Yo diría "mañana no hay clase" 😂🤥 ¿Y TÚ? Escribe tu mentira y la más 
 - Dato del gancho: en un estudio de la Universidad de Massachusetts (Feldman, 2002), el 60 % de las personas mintió al menos una vez en una conversación de 10 minutos.
 - La música y los efectos están sintetizados por código (`scripts/audio.py`), así que no tienen copyright.
 - La voz es "Adrian" de Speko (soniox, español).
+
+---
+
+# Shorts 2, 3 y 4 (programados en Metricool)
+
+| Video | Archivo | Publicación |
+|---|---|---|
+| Mi reflejo dejó de imitarme | `out/reflejo/` | martes 10 nov, 20:35 |
+| Puedo leer mentes | `out/mentes/` | miércoles 11 nov, 15:00 |
+| ¿Y si la Tierra se para? | `out/tierra/` | jueves 12 nov, 16:00 |
+
+## Comentarios para fijar
+
+- **Reflejo:** `Yo hoy no me he mirado al espejo… por si acaso 😬🪞 ¿Y TÚ? Dime qué harías si tu reflejo te sonriera 👇`
+- **Mentes:** `Mi perro seguro que piensa en comida 24/7 😂🐶 ¿Qué pensamiento tuyo esconderías? 👇 Los mejores salen en el próximo video`
+- **Tierra:** `Yo dormiría los 6 meses enteros 😴🌙 ¿Y TÚ qué harías? 👇 Responde y elijo la más loca para el próximo video`
+
+## Datos usados
+- Reflejo: la luz tarda unos 3 nanosegundos en ir y volver de un espejo a medio metro.
+- Mentes: un estudio de la Queen's University (2020) estimó unos 6.200 pensamientos al día.
+- Tierra: en España la superficie gira a unos 1.280 km/h (en el ecuador, 1.670 km/h), más que la velocidad del sonido (~1.235 km/h). Si se parase, un día duraría un año (medio de luz, medio de noche) y los océanos se irían hacia los polos.

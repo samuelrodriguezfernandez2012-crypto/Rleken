@@ -11,7 +11,7 @@ export type Pose = {
   head?: number; // inclinacion de la cabeza
 };
 
-export type Eyes = 'normal' | 'wide' | 'angry' | 'closed' | 'scared' | 'happy' | 'glow' | 'side';
+export type Eyes = 'normal' | 'wide' | 'angry' | 'closed' | 'scared' | 'happy' | 'glow' | 'side' | 'evil' | 'psychic';
 export type Mouth = 'none' | 'smile' | 'open' | 'frown' | 'o' | 'grin' | 'teeth';
 
 export const POSES: Record<string, Pose> = {
@@ -29,6 +29,18 @@ export const POSES: Record<string, Pose> = {
   land: {armL: [-110, -20], armR: [110, 20], legL: [-35, 60], legR: [35, -60]},
   shrug: {armL: [-70, 110], armR: [70, -110], legL: [-8, 4], legR: [8, -4]},
   laugh: {armL: [-30, 130], armR: [30, -130], legL: [-10, 4], legR: [10, -4], lean: -8},
+  brush: {armL: [-12, 10], armR: [30, -150], legL: [-8, 4], legR: [8, -4]},
+  wave: {armL: [-12, 10], armR: [140, 20], legL: [-8, 4], legR: [8, -4]},
+  headHold: {armL: [-60, 150], armR: [60, -150], legL: [-14, 6], legR: [14, -6]},
+  kneel: {armL: [-60, 150], armR: [60, -150], legL: [-70, -100], legR: [30, -30], lean: 0},
+  reach: {armL: [-15, 10], armR: [80, 10], legL: [-10, 4], legR: [10, -4], lean: -6},
+  tug: {armL: [70, 10], armR: [80, 10], legL: [-30, 30], legR: [25, -10], lean: -28},
+  bang: {armL: [-150, 40], armR: [150, -40], legL: [-10, 4], legR: [10, -4]},
+  hands: {armL: [-110, 60], armR: [110, -60], legL: [-10, 4], legR: [10, -4]},
+  push: {armL: [10, 0], armR: [20, 0], legL: [-80, 110], legR: [-60, 100], lean: 60},
+  hang: {armL: [100, 0], armR: [95, 0], legL: [-80, 10], legR: [-95, 20], lean: 80},
+  shh: {armL: [-12, 10], armR: [25, -160], legL: [-8, 4], legR: [8, -4]},
+  phone: {armL: [-12, 10], armR: [40, -120], legL: [-8, 4], legR: [8, -4]},
 };
 
 export const lerpPose = (a: Pose, b: Pose, k: number): Pose => {
@@ -83,6 +95,30 @@ const EyesG: React.FC<{type: Eyes; look: number; blink: boolean}> = ({type, look
       <g stroke="#fff" strokeWidth={5} fill="none" strokeLinecap="round">
         <path d="M -21 0 Q -13 -10 -5 0" />
         <path d="M 5 0 Q 13 -10 21 0" />
+      </g>
+    );
+  }
+  if (type === 'evil') {
+    return (
+      <g>
+        <ellipse cx={-13} cy={-4} rx={10} ry={12} fill="#fff" />
+        <ellipse cx={13} cy={-4} rx={10} ry={12} fill="#fff" />
+        <circle cx={-13 + px} cy={-1} r={4} fill="#E0002A" />
+        <circle cx={13 + px} cy={-1} r={4} fill="#E0002A" />
+        <g fill={INK}>
+          <polygon points="-27,-22 -1,-4 -1,-24" />
+          <polygon points="27,-22 1,-4 1,-24" />
+        </g>
+      </g>
+    );
+  }
+  if (type === 'psychic') {
+    return (
+      <g>
+        <ellipse cx={-13} cy={-4} rx={20} ry={22} fill="#C77DFF" opacity={0.6} filter="url(#blurGlow)" />
+        <ellipse cx={13} cy={-4} rx={20} ry={22} fill="#C77DFF" opacity={0.6} filter="url(#blurGlow)" />
+        <ellipse cx={-13} cy={-4} rx={10} ry={13} fill="#E9C8FF" />
+        <ellipse cx={13} cy={-4} rx={10} ry={13} fill="#E9C8FF" />
       </g>
     );
   }
@@ -156,11 +192,16 @@ export type StickProps = {
   sweat?: boolean;
   red?: number; // 0..1 cara roja de enfado (tinte en la sudadera)
   opacity?: number;
+  mustache?: boolean;
+  glasses?: boolean;
+  item?: 'toothbrush' | 'phone' | null;
+  foam?: boolean;
+  hood?: boolean; // capucha puesta (true) o bajada
 };
 
 export const Stickman: React.FC<StickProps> = ({
   x, y, scale = 1, color, pose, eyes = 'normal', mouth = 'none', look = 0, flip = false, blink = false,
-  rotate = 0, sweat = false, red = 0, opacity = 1,
+  rotate = 0, sweat = false, red = 0, opacity = 1, mustache = false, glasses = false, item = null, foam = false, hood = true,
 }) => {
   const lean = pose.lean ?? 0;
   const hip: [number, number] = [0, -150];
@@ -194,6 +235,24 @@ export const Stickman: React.FC<StickProps> = ({
       <circle cx={a.e[0]} cy={a.e[1]} r={10} fill={dark} stroke={INK} strokeWidth={4} />
     </g>
   );
+
+  const Item: React.FC<{a: ReturnType<typeof arm>}> = ({a}) => {
+    if (!item) return null;
+    const ang = (Math.atan2(a.h[1] - a.e[1], a.h[0] - a.e[0]) * 180) / Math.PI;
+    if (item === 'toothbrush')
+      return (
+        <g transform={`translate(${a.h[0]} ${a.h[1]}) rotate(${ang - 90})`}>
+          <rect x={-5} y={-4} width={10} height={58} rx={4} fill="#4CC9F0" stroke={INK} strokeWidth={3} />
+          <rect x={-8} y={46} width={16} height={14} rx={3} fill="#fff" stroke={INK} strokeWidth={3} />
+        </g>
+      );
+    return (
+      <g transform={`translate(${a.h[0]} ${a.h[1]}) rotate(${ang - 90})`}>
+        <rect x={-20} y={-6} width={40} height={68} rx={8} fill="#222" stroke={INK} strokeWidth={4} />
+        <rect x={-15} y={1} width={30} height={52} rx={4} fill="#7BDFF2" />
+      </g>
+    );
+  };
 
   const Leg: React.FC<{l: ReturnType<typeof leg>}> = ({l}) => (
     <g strokeLinecap="round" strokeLinejoin="round" fill="none">
@@ -233,13 +292,34 @@ export const Stickman: React.FC<StickProps> = ({
         <circle cx={-22} cy={-44} r={3.5} fill="#fff" opacity={0.5} />
         {/* cabeza con capucha */}
         <g transform={`translate(0 -160) rotate(${pose.head ?? 0})`}>
-          <path d="M -50 22 Q -56 -44 0 -52 Q 56 -44 50 22 Q 30 44 0 44 Q -30 44 -50 22 Z" fill={dark} stroke={INK} strokeWidth={6} strokeLinejoin="round" />
-          <path d="M -38 -30 Q -20 -48 6 -46" stroke="#fff" strokeOpacity={0.45} strokeWidth={5} fill="none" strokeLinecap="round" />
+          {hood ? (
+            <>
+              <path d="M -50 22 Q -56 -44 0 -52 Q 56 -44 50 22 Q 30 44 0 44 Q -30 44 -50 22 Z" fill={dark} stroke={INK} strokeWidth={6} strokeLinejoin="round" />
+              <path d="M -38 -30 Q -20 -48 6 -46" stroke="#fff" strokeOpacity={0.45} strokeWidth={5} fill="none" strokeLinecap="round" />
+            </>
+          ) : (
+            <path d="M -46 40 Q -30 52 0 54 Q 30 52 46 40 L 40 30 Q 0 46 -40 30 Z" fill={dark} stroke={INK} strokeWidth={6} strokeLinejoin="round" />
+          )}
           <circle cx={0} cy={2} r={36} fill={INK} />
           {red > 0 && <circle cx={0} cy={2} r={36} fill="#c00" opacity={red * 0.5} />}
           <g transform={`translate(${look * 5} 0)`}>
             <EyesG type={eyes} look={look} blink={blink} />
             <MouthG type={mouth} />
+            {glasses && (
+              <g fill="none" stroke="#fff" strokeWidth={3.5}>
+                <circle cx={-13} cy={-4} r={14} />
+                <circle cx={13} cy={-4} r={14} />
+                <line x1={-1} y1={-5} x2={1} y2={-5} />
+              </g>
+            )}
+            {mustache && <path d="M -20 14 Q -10 6 0 12 Q 10 6 20 14 Q 12 22 0 16 Q -12 22 -20 14 Z" fill="#EDEDED" stroke={INK} strokeWidth={2} />}
+            {foam && (
+              <g fill="#fff" stroke="#9ad" strokeWidth={1.5}>
+                <circle cx={-8} cy={20} r={7} />
+                <circle cx={4} cy={22} r={8} />
+                <circle cx={14} cy={18} r={5} />
+              </g>
+            )}
           </g>
           {sweat && (
             <path d="M 40 -20 Q 50 -2 44 6 Q 36 10 34 0 Q 34 -8 40 -20 Z" fill="#6EC8FF" stroke={INK} strokeWidth={3} />
@@ -247,6 +327,7 @@ export const Stickman: React.FC<StickProps> = ({
         </g>
         {/* brazo de delante */}
         <Sleeve a={aR} />
+        <Item a={aR} />
       </g>
     </g>
   );

@@ -1,10 +1,10 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
-import {Stickman, POSES, lerpPose, SvgDefs, Pose} from './Stickman';
+import {Stickman, POSES, lerpPose, SvgDefs, Pose} from '../../Stickman';
 import {
   W, H, FONT, BigText, Bubble, Burst, SpeedLines, Sparkles, Flash, Dust,
   pop, ramp, easeOut, easeInOut, sumShake, rnd, clamp,
-} from './fx';
+} from '../../fx';
 
 export const HERO = '#FF7A1A';
 const GROUND = 1300;

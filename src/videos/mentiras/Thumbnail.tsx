@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {SceneMeteor} from './Scenes';
-import {FONT} from './fx';
+import {FONT} from '../../fx';
 import './Main';
 
 // Miniatura vertical: el momento del meteorito con texto grande

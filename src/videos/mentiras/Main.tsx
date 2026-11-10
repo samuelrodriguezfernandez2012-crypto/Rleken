@@ -1,28 +1,14 @@
 import React from 'react';
-import {AbsoluteFill, Audio, staticFile, useCurrentFrame, continueRender, delayRender} from 'remotion';
-import {FPS, Wipe} from './fx';
-import {Captions} from './Captions';
+import {AbsoluteFill, Audio, staticFile, useCurrentFrame} from 'remotion';
+import {loadFonts} from '../../fonts';
+import words from './words.json';
+import {FPS, Wipe} from '../../fx';
+import {Captions} from '../../Captions';
 import {SceneHook, SceneMom, SceneFly, SceneMoney, SceneAngry, SceneMeteor, SceneCrowd, SceneTwist, SceneEnd} from './Scenes';
 
 export const DURATION_S = 52.5;
 
-// carga de fuentes locales antes de renderizar
-const fontHandle = typeof window !== 'undefined' ? delayRender('fuentes') : 0;
-if (typeof window !== 'undefined') {
-  const faces = [
-    new FontFace('Luckiest', `url(${staticFile('luckiest.woff2')})`),
-    new FontFace('Baloo', `url(${staticFile('baloo800.woff2')})`, {weight: '800'}),
-  ];
-  Promise.all(faces.map((f) => f.load()))
-    .then((loaded) => {
-      loaded.forEach((f) => document.fonts.add(f));
-      continueRender(fontHandle);
-    })
-    .catch((e) => {
-      console.error(e);
-      continueRender(fontHandle);
-    });
-}
+loadFonts();
 
 // [inicio, fin) de cada escena en segundos
 const SCENES: [number, number, React.FC<{t: number}>][] = [
@@ -42,12 +28,12 @@ export const MentirasShort: React.FC = () => {
   const t = useCurrentFrame() / FPS;
   return (
     <AbsoluteFill style={{background: '#111', overflow: 'hidden'}}>
-      <Audio src={staticFile('mezcla.wav')} />
+      <Audio src={staticFile('mentiras/mezcla.wav')} />
       {SCENES.map(([a, b, S], i) => (t >= a && t < b ? <S key={i} t={t} /> : null))}
       {CUTS.map((c) => (
         <Wipe key={c} t={t} at={c} color={c === 46.9 ? '#BDF2FF' : '#111'} />
       ))}
-      <Captions t={t} />
+      <Captions t={t} words={words} />
     </AbsoluteFill>
   );
 };

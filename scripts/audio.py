@@ -787,7 +787,59 @@ def cfg_nivel0(m):
         ('sparkle', 57.4, 0.5), ('whoosh', 58.6, 0.5), ('pop', 58.8, 0.6), ('ding', 60.2, 0.4)]
 
 
-CFG = {'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
+def cfg_fuerte(m):
+    import json as _j, unicodedata, re
+    st = [c['start'] for c in _j.load(open('assets/fuerte/starts.json'))]
+    ws = _j.load(open('src/videos/fuerte/words.json'))
+    nm = lambda x: re.sub(r'[^a-z0-9ñ]', '', ''.join(ch for ch in unicodedata.normalize('NFD', x.lower()) if unicodedata.category(ch) != 'Mn'))
+    def at(c, word, n=1):
+        end = st[c + 1] - 0.3 if c + 1 < len(st) else 1e9
+        k = 0
+        for w in ws:
+            s0 = w['start_ms'] / 1000
+            if st[c] - 0.3 <= s0 < end and nm(w['text']) == nm(word):
+                k += 1
+                if k == n:
+                    return s0
+        raise KeyError(word)
+    dur = round(ws[-1]['end_ms'] / 1000 + 3, 2)
+    E = st + [dur]
+    m.epic(0, at(0, 'hace'))
+    m.calm(at(0, 'hace'), E[1])
+    m.happy(E[1], at(1, 'pero'), prog=(60, 57, 53, 55))
+    m.creepy(at(1, 'pero'), E[2], root=45, ticks=False)
+    m.tense(E[2], at(2, 'director'), roots=(44, 45, 46, 47))
+    m.creepy(at(2, 'director'), E[3], root=44)
+    m.epic(E[3], E[4])
+    m.calm(E[4], at(4, 'pero'))
+    m.creepy(at(4, 'pero'), E[5], root=45, ticks=False)
+    m.tense(E[5], at(5, 'esa'), roots=(42, 43, 44, 42))
+    m.calm(at(5, 'esa'), E[6])
+    m.happy(E[6], E[7], prog=(62, 59, 55, 57))
+    m.calm(E[7], at(7, '3'))
+    m.tense(at(7, '3'), E[9], roots=(43, 44, 45, 46))
+    m.epic(E[9], at(9, 'desmaye'))
+    m.silence(at(9, 'desmaye'), E[10])
+    m.epic(E[10], E[11])
+    m.calm(E[11], at(11, 'aunque'))
+    m.creepy(at(11, 'aunque'), at(11, 'que', 2), root=44)
+    m.outro(at(11, 'que', 2), dur)
+    ev = [('boom', 0.0, 1.0), ('rumble', 0.0, 0.7), ('crack', 0.3, 0.6), ('impact', at(0, 'debajo'), 0.6), ('crack', at(0, 'si', 2), 0.6), ('whoosh', at(0, 'hace'), 0.5), ('swell', at(0, '100'), 0.6),
+          ('impact', at(1, 'golpecito') + 0.5, 0.9), ('glass', at(1, 'golpecito') + 0.6, 0.5), ('crack', at(1, 'pomo'), 0.5), ('crack', at(1, 'luego'), 0.6), ('scratch', at(1, 'cuchara'), 0.4), ('glass', at(1, 'vaso') + 0.6, 0.8),
+          ('thud', at(2, 'empujo'), 0.6), ('impact', at(2, 'reboto'), 0.8), ('crack', at(2, 'apreté') if False else at(2, 'oi'), 0.7), ('heartbeat', at(2, 'pasillo', 2), 0.8), ('boom', at(2, 'monstruo'), 0.7),
+          ('rise', at(3, 'coche'), 0.5), ('whoosh', at(3, 'salte'), 0.6), ('impact', at(3, 'salte') + 1.4, 0.6), ('sonicboom', at(3, 'corri'), 0.7), ('pop', at(3, 'compre'), 0.5),
+          ('crack', at(4, 'dia'), 0.5), ('crack', at(4, 'dia', 2), 0.4), ('chime', at(4, 'dia', 3) + 0.5, 0.6), ('swell', at(4, 'dia', 4), 0.5), ('coin', at(4, 'millon'), 0.4), ('static', at(4, 'titulo'), 0.4),
+          ('static', at(5, 'empece'), 0.4), ('boom', at(5, 'noche'), 0.5), ('heartbeat', at(5, 'madre', 2), 0.8), ('whoosh', at(5, 'fueron'), 0.4),
+          ('swell', at(6, 'asi'), 0.5), ('pop', at(6, 'empujar'), 0.4), ('pop', at(6, 'subir'), 0.4), ('bark', at(6, 'sacar') + 0.5, 0.5), ('ding', at(6, 'nina'), 0.5), ('sparkle', at(6, 'pegue'), 0.5),
+          ('chime', at(7, 'duele'), 0.4), ('swell', at(7, 'perdon'), 0.5), ('rumble', at(7, '3'), 0.8), ('boom', at(7, 'temblo'), 0.9),
+          ('rumble', at(8, 'terremoto'), 0.9), ('crack', at(8, 'farolas'), 0.6), ('glass', at(8, 'ventanas'), 0.7), ('crack', at(8, 'puente'), 0.9), ('boom', at(8, 'puente') + 1.2, 0.7), ('sonicboom', at(8, 'corri'), 0.8), ('wave_', at(8, 'salte'), 0.6), ('impact', at(8, 'ahi'), 0.8),
+          ('heartbeat', at(9, 'sentia'), 0.9), ('crack', at(9, 'hormigon'), 0.6), ('heartbeat', at(9, 'respire'), 0.8), ('ding', at(9, '32'), 0.6), ('wave_', at(9, 'desmaye'), 0.7),
+          ('chime', at(10, 'desperte'), 0.5), ('swell', at(10, 'fuera'), 0.6), ('sparkle', at(10, 'nuestro'), 0.7),
+          ('crack', at(11, 'esta') + 1.4, 0.6), ('rise', at(11, 'apretar'), 0.6), ('boom', at(11, '1000'), 0.8), ('pop', at(11, 'que', 2), 0.6)]
+    return dur, ev
+
+
+CFG = {'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
 
 
 def read_wav(p):

@@ -155,3 +155,9 @@ Ve hasta el final: el giro no te lo esperas 🤯
 - **Etiquetas:** nivel de poder, nivel 0, qué pasaría si, superpoderes, el más débil, historias animadas, animación, stickman, shorts
 - **Comentario para fijar:** ¿Qué número tendrías tú encima de la cabeza? 🔢 El vídeo largo de esta historia sale pronto 👀
 - (Cancelados a borrador: parpadeo, agujero y Tierra, estilo antiguo)
+
+## Vídeo largo: 100 veces más fuerte (estilo cine, 8:05)
+- **Título:** Me desperté 100 VECES más FUERTE… y me llamaron MONSTRUO 💪😨
+- **Miniatura (en inglés):** 100x STRONGER / THEY CALLED ME A MONSTER.
+- **Etiquetas:** 100 veces más fuerte, qué pasaría si, superfuerza, superpoderes, héroe, historias animadas, animación, stickman, historia completa, chiki, chiki2225, what if
+- **Comentario para fijar:** ¿Tú qué habrías hecho: esconderte o ayudar? 💪 Y ahora que soy x1000... ¿hacemos la parte 2? 👇

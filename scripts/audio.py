@@ -645,7 +645,60 @@ def cfg_duplicar(m):
     return 48.6, ev
 
 
-CFG = {'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
+
+def cfg_sol(m):
+    m.creepy(0.0, 7.6, root=45)
+    m.happy(7.6, 14.5, prog=(60, 57, 53, 55))
+    m.silence(14.5, 15.2)
+    m.creepy(15.2, 28.0, root=44, ticks=False)
+    m.tense(28.0, 34.6, roots=(44, 44, 45, 43))
+    m.creepy(34.6, 41.0, root=43)
+    m.outro(41.0, 46.5)
+    return 46.5, [('boom', 0.0, 0.8), ('freeze', 0.1, 0.5), ('whoosh', 0.7, 0.4), ('rise', 1.4, 0.5), ('tick', 3.6, 0.5), ('tick', 4.4, 0.5),
+        ('chime', 5.8, 0.4), ('whoosh', 7.7, 0.4), ('wave_', 8.0, 0.5), ('tick', 11.4, 0.5), ('tick', 12.4, 0.5), ('tick', 13.4, 0.5),
+        ('boom', 14.6, 1.0), ('impact', 14.6, 0.7), ('swell', 16.3, 0.4), ('sparkle', 18.9, 0.4), ('wind', 21.0, 0.6), ('freeze', 22.8, 0.6),
+        ('freeze', 26.6, 0.6), ('rumble', 28.1, 0.6), ('whoosh', 32.0, 0.4), ('heartbeat', 34.7, 0.9), ('heartbeat', 35.5, 0.9),
+        ('boom', 36.8, 0.8), ('heartbeat', 38.1, 1.0), ('impact', 40.0, 0.9), ('glitch', 40.0, 0.4), ('whoosh', 41.0, 0.5), ('pop', 41.2, 0.6), ('ding', 42.7, 0.4)]
+
+
+def cfg_parpadeo(m):
+    m.tense(0.0, 3.0, roots=(45, 45, 46, 44))
+    m.musicbox(3.0, 15.4)
+    m.tense(15.4, 22.8, roots=(44, 45, 46, 47))
+    m.creepy(22.8, 32.7, root=44)
+    m.silence(32.7, 33.2)
+    m.creepy(33.2, 41.4, root=42, ticks=False)
+    m.epic(41.4, 44.0)
+    m.outro(44.0, 50.6)
+    return 50.6, [('boom', 0.0, 0.9), ('impact', 0.0, 0.7), ('whoosh', 0.45, 0.4), ('glitch', 0.6, 0.4), ('whoosh', 1.05, 0.4), ('glitch', 1.2, 0.4),
+        ('whoosh', 1.65, 0.4), ('glitch', 1.8, 0.4), ('whoosh', 2.25, 0.4), ('zap', 2.4, 0.4), ('tick', 3.1, 0.4), ('rise', 4.4, 0.4), ('impact', 5.0, 0.7),
+        ('whoosh', 6.4, 0.3), ('glitch', 8.0, 0.5), ('swell', 8.1, 0.5), ('ding', 10.1, 0.4), ('glitch', 11.2, 0.5), ('swell', 11.3, 0.5), ('pop', 13.2, 0.4),
+        ('heartbeat', 15.6, 0.8), ('tick', 17.3, 0.6), ('heartbeat', 18.0, 0.8), ('tick', 18.8, 0.6), ('heartbeat', 19.4, 0.9), ('screech', 20.5, 0.3),
+        ('tick', 21.6, 0.7), ('glitch', 23.0, 0.6), ('glitch', 23.35, 0.6), ('glitch', 23.7, 0.6), ('impact', 25.1, 0.8), ('bark', 26.7, 0.5),
+        ('impact', 31.0, 0.7), ('rumble', 33.0, 0.6), ('rise', 33.2, 0.5), ('wind', 36.3, 0.6), ('boom', 36.3, 0.8), ('whoosh', 38.4, 0.4),
+        ('impact', 41.5, 1.0), ('boom', 41.5, 0.9), ('whoosh', 44.0, 0.5), ('pop', 44.2, 0.6), ('ding', 45.6, 0.4)]
+
+
+def cfg_agujero(m):
+    m.epic(0.0, 6.5)
+    m.calm(6.5, 12.2)
+    m.silence(12.2, 12.6)
+    m.tense(12.6, 22.7, roots=(45, 46, 47, 48))
+    m.calm(22.7, 28.8)
+    m.tense(28.8, 37.6, roots=(43, 44, 45, 46))
+    m.silence(37.6, 38.3)
+    m.creepy(38.3, 45.5, root=44)
+    m.outro(45.5, 50.0)
+    return 50.0, [('boom', 0.0, 0.9), ('impact', 0.0, 0.7), ('wind', 0.0, 0.6), ('whoosh', 1.0, 0.5), ('whoosh', 1.6, 0.4), ('impact', 2.2, 0.5),
+        ('whoosh', 2.8, 0.4), ('whoosh', 3.4, 0.5), ('tick', 3.4, 0.6), ('whoosh', 4.0, 0.4), ('impact', 4.6, 0.5), ('whoosh', 5.2, 0.4), ('whoosh', 5.8, 0.4),
+        ('scratch', 7.5, 0.4), ('pop', 9.0, 0.4), ('swell', 11.1, 0.4), ('screech', 12.3, 0.4), ('whoosh', 12.4, 0.6), ('wind', 13.3, 0.5),
+        ('rise', 16.9, 0.5), ('sonicboom', 18.8, 0.8), ('rumble', 19.8, 0.7), ('impact', 21.7, 0.6), ('boom', 22.8, 0.8), ('sparkle', 23.3, 0.5),
+        ('impact', 24.6, 0.7), ('chime', 26.6, 0.4), ('sparkle', 27.7, 0.4), ('rise', 28.9, 0.4), ('swell', 32.1, 0.5), ('chime', 33.6, 0.5),
+        ('rise', 35.1, 0.5), ('heartbeat', 36.6, 0.9), ('glass', 38.4, 0.4), ('impact', 38.4, 0.7), ('whoosh', 39.7, 0.6), ('screech', 40.0, 0.3),
+        ('wind', 41.0, 0.5), ('impact', 42.2, 0.6), ('pop', 44.4, 0.5), ('whoosh', 45.6, 0.5), ('pop', 45.8, 0.6), ('ding', 47.4, 0.4)]
+
+
+CFG = {'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
 
 
 def read_wav(p):

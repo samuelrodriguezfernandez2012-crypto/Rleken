@@ -113,3 +113,23 @@ Ve hasta el final: el giro no te lo esperas 🤯
 **Título:** `DUPLICO todo lo que toco… y me toqué a mí 😱 #shorts`
 **Comentario para fijar:** `Yo duplicaría el finde para tener 4 días 😂 ¿Y TÚ qué duplicarías? 👇`
 **Dato:** 2^80 ≈ 1,2·10²⁴, del orden del número estimado de estrellas del universo observable.
+
+---
+
+## Short: Si el Sol desapareciera — programado mié 11 nov 17:35
+- **Título:** El SOL desapareció… y vi ESTO en el cielo 😱 #shorts
+- **Etiquetas:** que pasaria si, sol, si el sol desapareciera, espacio, animacion, stickman, shorts, curiosidades
+- **Comentario para fijar:** ¿Sabías que la luz del Sol tarda 8 min y 20 s en llegar? 🌞 ¿Qué era lo que había en el cielo? 👀👇
+
+## Short: Cada parpadeo = 1 año — programado mié 11 nov 20:30
+- **Título:** Cada vez que PARPADEO pasa 1 AÑO… 😱 #shorts
+- **Etiquetas:** que pasaria si, parpadeo, superpoderes, viaje en el tiempo, animacion, stickman, shorts, curiosidades
+- **Comentario para fijar:** Parpadeamos unas 15 veces por minuto… ¿cuántos años pasarían mientras ves este Short? 😳👇
+
+## Short: Agujero que atraviesa la Tierra — programado jue 12 nov 13:30
+- **Título:** Me CAÍ por un AGUJERO que atraviesa la TIERRA 😱 #shorts
+- **Etiquetas:** que pasaria si, agujero en la tierra, centro de la tierra, ciencia, animacion, stickman, shorts, curiosidades
+- **Comentario para fijar:** Dato real: tardarías unos 42 minutos en cruzar la Tierra 🌍 Si lo ves pasar… ¡agárralo! 🕳️👇
+
+## Vídeo largo: portada nueva
+- Archivo: `out/largo1/portada_nueva_100_dias.jpg` (cambiar en YouTube Studio → Contenido → vídeo → Miniatura → Subir).

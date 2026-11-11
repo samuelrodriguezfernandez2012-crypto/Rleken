@@ -6,9 +6,12 @@ import {ReflejoShort, ReflejoThumb, DURATION_S as D_REFLEJO} from './videos/refl
 import {MentesShort, MentesThumb, DURATION_S as D_MENTES} from './videos/mentes/Main';
 import {TierraShort, TierraThumb, DURATION_S as D_TIERRA} from './videos/tierra/Main';
 import {CharacterTest} from './tests/CharacterTest';
+import {SolShort, SolThumb, DURATION_S as D_SOL} from './videos/sol/Main';
 import {DuplicarShort, DuplicarThumb, DURATION_S as D_DUP} from './videos/duplicar/Main';
 import {Largo1, DURATION_S as D_LARGO1} from './videos/largo1/Main';
-import {Largo1Thumb} from './videos/largo1/Thumb';
+import {Largo1Thumb, Largo1ThumbV2} from './videos/largo1/Thumb';
+import {ParpadeoShort, ParpadeoThumb, DURATION_S as D_PARP} from './videos/parpadeo/Main';
+import {AgujeroShort, AgujeroThumb, DURATION_S as D_AGU} from './videos/agujero/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -23,8 +26,15 @@ export const RemotionRoot: React.FC = () => (
     <Still id="TierraThumb" component={TierraThumb} width={W} height={H} />
     <Composition id="Largo1" component={Largo1} durationInFrames={D_LARGO1 * FPS} fps={FPS} width={1920} height={1080} />
     <Still id="Largo1Thumb" component={Largo1Thumb} width={1280} height={720} />
+    <Still id="Largo1ThumbV2" component={Largo1ThumbV2} width={1280} height={720} />
     <Composition id="DuplicarShort" component={DuplicarShort} durationInFrames={Math.round(D_DUP * FPS)} fps={FPS} width={W} height={H} />
     <Still id="DuplicarThumb" component={DuplicarThumb} width={W} height={H} />
+    <Composition id="SolShort" component={SolShort} durationInFrames={Math.round(D_SOL * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="SolThumb" component={SolThumb} width={W} height={H} />
+    <Composition id="ParpadeoShort" component={ParpadeoShort} durationInFrames={Math.round(D_PARP * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="ParpadeoThumb" component={ParpadeoThumb} width={W} height={H} />
+    <Composition id="AgujeroShort" component={AgujeroShort} durationInFrames={Math.round(D_AGU * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="AgujeroThumb" component={AgujeroThumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
   </>
 );

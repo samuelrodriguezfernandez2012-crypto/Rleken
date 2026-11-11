@@ -133,3 +133,9 @@ Ve hasta el final: el giro no te lo esperas 🤯
 
 ## Vídeo largo: portada nueva
 - Archivo: `out/largo1/portada_nueva_100_dias.jpg` (cambiar en YouTube Studio → Contenido → vídeo → Miniatura → Subir).
+
+## Short: GTA 6, faltan 8 días — programado mié 11 nov 18:45
+- **Título:** GTA 6: FALTAN 8 DÍAS… y esto casi NADIE lo sabe 🤫 #shorts
+- **Etiquetas:** gta 6, gta vi, gta 6 fecha, cuanto falta para gta 6, gta 6 curiosidades, vice city, leonida, gta 6 ps5, gta 6 pc, shorts
+- **Comentario para fijar:** 19 de noviembre 🔥 ¿Lucía o Jason? ¿Con quién vas a jugar primero? 👇
+- Datos comprobados el 11/11/2026: salida 19 nov 2026 (Take-Two lo mantuvo el 9 nov), PS5 y Xbox Series, sin fecha para PC.

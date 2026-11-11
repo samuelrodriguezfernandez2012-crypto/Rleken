@@ -12,6 +12,7 @@ import {Largo1, DURATION_S as D_LARGO1} from './videos/largo1/Main';
 import {Largo1Thumb, Largo1ThumbV2} from './videos/largo1/Thumb';
 import {ParpadeoShort, ParpadeoThumb, DURATION_S as D_PARP} from './videos/parpadeo/Main';
 import {AgujeroShort, AgujeroThumb, DURATION_S as D_AGU} from './videos/agujero/Main';
+import {Gta6Short, Gta6Thumb, DURATION_S as D_GTA} from './videos/gta6/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -35,6 +36,8 @@ export const RemotionRoot: React.FC = () => (
     <Still id="ParpadeoThumb" component={ParpadeoThumb} width={W} height={H} />
     <Composition id="AgujeroShort" component={AgujeroShort} durationInFrames={Math.round(D_AGU * FPS)} fps={FPS} width={W} height={H} />
     <Still id="AgujeroThumb" component={AgujeroThumb} width={W} height={H} />
+    <Composition id="Gta6Short" component={Gta6Short} durationInFrames={Math.round(D_GTA * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="Gta6Thumb" component={Gta6Thumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
   </>
 );

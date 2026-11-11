@@ -698,7 +698,25 @@ def cfg_agujero(m):
         ('wind', 41.0, 0.5), ('impact', 42.2, 0.6), ('pop', 44.4, 0.5), ('whoosh', 45.6, 0.5), ('pop', 45.8, 0.6), ('ding', 47.4, 0.4)]
 
 
-CFG = {'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
+def cfg_gta6(m):
+    m.epic(0.0, 5.4)
+    m.tense(5.4, 16.4, roots=(45, 45, 43, 44))
+    m.happy(16.4, 26.4, prog=(60, 57, 53, 55))
+    m.epic(26.4, 39.6)
+    m.calm(39.6, 47.9)
+    m.epic(47.9, 52.4)
+    m.outro(52.4, 57.5)
+    return 57.5, [('boom', 0.0, 0.9), ('screech', 0.0, 0.5), ('whoosh', 0.6, 0.4), ('impact', 1.2, 0.5), ('whoosh', 1.8, 0.4), ('boom', 1.5, 0.8),
+        ('whoosh', 2.4, 0.4), ('impact', 3.0, 0.5), ('whoosh', 3.7, 0.4), ('whoosh', 4.4, 0.4), ('pop', 5.5, 0.5), ('impact', 9.0, 0.6),
+        ('crack', 11.0, 0.6), ('crack', 13.2, 0.6), ('ding', 15.2, 0.5), ('sparkle', 15.3, 0.5), ('whoosh', 16.5, 0.4), ('glitch', 17.9, 0.5),
+        ('rise', 19.0, 0.5), ('coin', 20.0, 0.3), ('coin', 21.0, 0.3), ('coin', 22.0, 0.3), ('impact', 23.0, 0.8), ('whoosh', 26.5, 0.4),
+        ('pop', 27.4, 0.5), ('zap', 30.6, 0.5), ('sparkle', 30.8, 0.5), ('swell', 32.1, 0.4), ('impact', 35.3, 0.6), ('impact', 36.7, 0.6),
+        ('coin', 38.6, 0.4), ('whoosh', 39.7, 0.4), ('pop', 40.3, 0.5), ('pop', 41.5, 0.5), ('tick', 43.2, 0.5), ('glass', 45.4, 0.5),
+        ('scratch', 45.5, 0.4), ('whoosh', 48.0, 0.4), ('coin', 49.5, 0.4), ('coin', 50.2, 0.4), ('boom', 51.0, 0.7), ('whoosh', 52.5, 0.5),
+        ('pop', 52.7, 0.6), ('ding', 53.9, 0.4)]
+
+
+CFG = {'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
 
 
 def read_wav(p):

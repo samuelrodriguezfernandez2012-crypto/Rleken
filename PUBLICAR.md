@@ -149,3 +149,9 @@ Ve hasta el final: el giro no te lo esperas 🤯
 - **Comentario para fijar:** Si pudieras ver 10 segundos del futuro… ¿qué harías primero? 👁️ Los 3 mejores comentarios salen en el próximo vídeo 👇
 - **Capítulos:**
   0:00 El tejado · 0:41 Día 1: la taza · 1:31 Invencible · 2:14 La ruleta · 3:04 El chico que llega antes · 3:54 El precio · 4:41 Los hombres de gris · 5:25 Vera · 6:20 La visión · 7:05 La gorra · 7:51 Suelta · 8:43 Tú
+
+## Short: Mi nivel es 0 (estilo cine) — mié 11 nov 20:30
+- **Título:** Todos tienen un NIVEL de poder. El mío es 0… 😶 #shorts
+- **Etiquetas:** nivel de poder, nivel 0, qué pasaría si, superpoderes, el más débil, historias animadas, animación, stickman, shorts
+- **Comentario para fijar:** ¿Qué número tendrías tú encima de la cabeza? 🔢 El vídeo largo de esta historia sale pronto 👀
+- (Cancelados a borrador: parpadeo, agujero y Tierra, estilo antiguo)

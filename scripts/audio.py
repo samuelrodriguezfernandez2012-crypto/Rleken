@@ -768,7 +768,26 @@ def cfg_futuro(m):
     return dur, ev
 
 
-CFG = {'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
+def cfg_nivel0(m):
+    m.tense(0.0, 2.9, roots=(44, 45, 46, 47))
+    m.calm(2.9, 13.0)
+    m.creepy(13.0, 20.8, root=45, ticks=False)
+    m.silence(20.8, 21.6)
+    m.tense(21.6, 36.9, roots=(43, 44, 45, 46))
+    m.epic(36.9, 43.0)
+    m.creepy(43.0, 50.9, root=44)
+    m.epic(50.9, 58.6)
+    m.outro(58.6, 63.5)
+    return 63.5, [('boom', 0.0, 0.9), ('impact', 0.6, 0.8), ('glitch', 1.2, 0.5), ('impact', 1.2, 0.6), ('freeze', 1.8, 0.6), ('whoosh', 2.9, 0.4),
+        ('pop', 5.6, 0.4), ('pop', 8.1, 0.4), ('chime', 11.4, 0.5), ('static', 13.9, 0.5), ('heartbeat', 15.0, 0.6), ('heartbeat', 17.0, 0.6),
+        ('wind', 18.6, 0.5), ('boom', 20.8, 0.9), ('rumble', 22.2, 0.7), ('impact', 23.0, 0.8), ('whoosh', 25.4, 0.6), ('crack', 26.9, 0.6),
+        ('whoosh', 28.0, 0.5), ('impact', 29.3, 0.5), ('whoosh', 29.9, 0.5), ('heartbeat', 31.8, 0.8), ('screech', 33.9, 0.4), ('wind', 36.9, 0.6),
+        ('scratch', 39.3, 0.4), ('sonicboom', 40.6, 0.9), ('boom', 40.6, 1.0), ('freeze', 43.0, 0.5), ('glitch', 44.3, 0.5),
+        ('tick', 46.2, 0.7), ('tick', 47.4, 0.7), ('tick', 48.8, 0.7), ('impact', 49.8, 0.9), ('swell', 50.9, 0.6), ('zap', 55.8, 0.6),
+        ('sparkle', 57.4, 0.5), ('whoosh', 58.6, 0.5), ('pop', 58.8, 0.6), ('ding', 60.2, 0.4)]
+
+
+CFG = {'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
 
 
 def read_wav(p):

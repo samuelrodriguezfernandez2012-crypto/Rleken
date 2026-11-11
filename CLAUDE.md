@@ -32,3 +32,12 @@ El espectador tiene que quedar enganchado desde el primer fotograma:
 - Subir a Cloudinary (`sign-upload` + `scripts/upload.sh`) y programar en Metricool (blogId 7977063, Europe/Madrid, YouTube Short, categoría FILM_ANIMATION, `madeForKids: false`).
 - La mejor hora suele ser el miércoles a las 16:00 (consultar `getBestTimeToPostByNetwork`).
 - Entregar: MP4, miniatura, título, descripción, etiquetas y comentario para fijar (en `PUBLICAR.md`).
+
+## Estilo nuevo (desde el 11 nov 2026): CINE
+- Referencia: canal Ifverse ("What If Your Reaction Time Was 10x Faster?").
+- Todo (Shorts y largos) con el kit de cine `src/videos/futuro/kit.tsx`: fondo desenfocado, luz suave, partículas, viñeta, letra Montserrat, subtítulos limpios.
+- Los Shorts verticales reutilizan las escenas apaisadas dentro de un marco vertical (marco `V` en `src/videos/nivel0/Main.tsx`).
+- Ideas con gancho fuerte: número que escala ("Día 1… Día 30"), protagonista débil que resulta ser el más peligroso, dilemas imposibles, un rival que siempre va un paso por delante.
+- Cada idea: Short (50-60 s) + vídeo largo (8-10 min).
+- Miniaturas de los vídeos largos: en INGLÉS.
+- Nada de temas de "dato curioso" sin historia (el usuario los ha borrado por aburridos).

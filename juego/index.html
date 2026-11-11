@@ -1948,7 +1948,7 @@ function updNetUI(){
 }
 // ---- party ----
 async function joinParty(code,leader){
-  if(!NET.room){note('El juego online solo funciona dentro de Claude');return}
+  if(!NET.room){note(FB.on?'Inicia sesión para jugar online':'Sin conexión: juegas contra bots');return}
   code=String(code).toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,8);if(code.length<4){note('Código no válido');return}
   await leaveParty();NET.code=code;NET.leader=!!leader;NET.hadLeader=false;NET.partyJoinT=Date.now();
   try{const r=await NET.room.join('party-'+code);NET.partyRoom=r;r.onPeers(ch=>{NET.partyPeers=ch.peers;onParty()},()=>{});
@@ -2070,7 +2070,7 @@ function netTick(w){
   if(w.t>4)for(const sh of w.ships){if(sh.isHuman&&sh.alive&&!here.has(sh.peer)){sh.left=true;kill(w,sh,null)}}
   if(!M.isHost&&M.hostPeer&&!here.has(M.hostPeer)){const order=M.L.map(x=>x[0]).filter(pp=>here.has(pp));M.hostPeer=order[0]||null;
     if(M.hostPeer===M.me){M.isHost=true;for(const sh of w.ships)if(sh.botIdx!=null){sh.auth=true;sh.remote=false;sh.bot={t:0,target:null,strafe:1,wx:sh.x,wy:sh.y,style:Math.random(),brave:Math.random(),err:0}}}}
-  const now=performance.now();if(now-(M.ls||0)<(FB.on?100:66))return;M.ls=now;
+  const now=performance.now();if(now-(M.ls||0)<(FB.on?120:66))return;M.ls=now;
   const st={s:w.player?pack(w.player):null};
   if(M.isHost)st.b=w.ships.filter(x=>x.botIdx!=null).sort((a,b)=>a.botIdx-b.botIdx).map(pack);
   M.room.presence(st).catch(()=>{});
@@ -2106,54 +2106,77 @@ $('btnFrBack').onclick=()=>{sfx('click');state='menu';show('menu');renderMenu()}
 $('btnCopyLink').onclick=()=>{const t=inviteUrl();const ok=()=>note('Enlace copiado');try{navigator.clipboard.writeText(t).then(ok,()=>{selectLink()})}catch(e){selectLink()}};
 function selectLink(){const r=document.createRange();r.selectNodeContents($('inviteLink'));const sel=getSelection();sel.removeAllRanges();sel.addRange(r);note('Mantén pulsado para copiar')}
 // ---- cloud save ----
-const cloudPath=()=>FB.on?'users/'+NET.uid:'data/users/'+NET.uid+'/save';
+const cloudPath=()=>FB.on?'saves/'+NET.uid:'data/users/'+NET.uid+'/save';
 async function cloudLoad(){NET.cloudHad=false;try{const snap=await NET.db.doc(cloudPath()).get();if(snap.exists){NET.cloudHad=true;const d=snap.data();const force=FB.forceLoad;FB.forceLoad=false;if(d&&typeof d.v==='string'&&(force||(+d.updated||0)>(save.updated||0))){const cs=JSON.parse(d.v);if(cs&&Array.isArray(cs.owned)){const keepSet=save.set;save=Object.assign(save,cs);save.set=Object.assign({},keepSet,cs.set||{});persistLocal();if(state==='menu')renderMenu();note('Progreso cargado de tu cuenta');if(save.name)$('nameScr').hidden=true}}}NET.cloud=true}catch(e){NET.cloud=false}}
 let cloudT=0;function cloudSoon(){if(!NET.db||!NET.uid)return;clearTimeout(cloudT);cloudT=setTimeout(()=>cloudSave(false),3000)}
 function cloudSave(manual){if(!NET.db||!NET.uid)return Promise.resolve();return NET.db.doc(cloudPath()).set({v:JSON.stringify(save),updated:save.updated||Date.now()}).then(()=>{NET.cloud=true;if(manual)note('Guardado en la nube')}).catch(()=>{NET.cloud=false;if(manual)note('No se pudo guardar en la nube');if(state==='settings')renderSettings()})}
 
 
-/* ================= FIREBASE (cuentas y multijugador fuera de Claude) ================= */
-// Pega aquí la configuración de tu proyecto de Firebase (Configuración del proyecto → Tus apps → Web).
-const FB_CONFIG=null;
-const FB_VER='10.12.2';
-const FB={on:false,ready:false,user:null,auth:null,fs:null,rt:null,peer:'k'+Math.random().toString(36).slice(2,12),mode:'login',forceLoad:false};
+/* ================= SERVIDOR (Supabase: cuentas, guardado y multijugador fuera de Claude) ================= */
+const FB_CONFIG={url:'https://qdqywttnmvalyusugidb.supabase.co',key:'sb_publishable_rA7BkkrL2mhn0TCPOMlg3g_wvWCaPtC'};
+const SB_LIB='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js';
+const FB={on:false,ready:false,user:null,sb:null,peer:'k'+Math.random().toString(36).slice(2,12),mode:'login',forceLoad:false,lastUid:null};
 const inClaude=()=>!!(window.claude&&typeof window.claude.use==='function');
 function loadScript(src){return new Promise((ok,ko)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=ko;document.head.appendChild(s)})}
+// guardado en la nube: misma forma que antes (doc(path).get/set) sobre la tabla "saves"
+const sbDB={doc:()=>({
+  get:async()=>{const{data,error}=await FB.sb.from('saves').select('v,updated').eq('user_id',NET.uid).maybeSingle();if(error)throw error;return{exists:!!data,data:()=>data}},
+  set:async o=>{const{error}=await FB.sb.from('saves').upsert({user_id:NET.uid,v:o.v,updated:+o.updated||Date.now(),updated_at:new Date().toISOString()});if(error)throw error}})};
+const sbUser=su=>su?{uid:su.id,isAnonymous:!!su.is_anonymous,email:su.email||'',displayName:(su.user_metadata&&su.user_metadata.name)||''}:null;
+function onSbUser(u){FB.ready=true;FB.user=u;
+  if(u){const same=FB.lastUid===u.uid;FB.lastUid=u.uid;NET.uid=u.uid;NET.acct=u.isAnonymous?'Invitado':(u.email||'');NET.db=sbDB;$('authScr').hidden=true;$('nameScr').hidden=true;
+    if(u.displayName&&!u.isAnonymous){save.name=u.displayName;save.email=u.email;save.guest=false;save.auth=1;persistLocal()}
+    if(!same)cloudLoad().then(()=>{if(!NET.cloudHad)cloudSave(false)});
+    if(!NET.room){NET.room=fbRoom('lobby');NET.room.onPeers(ch=>{NET.lobby=ch.peers;onLobby()},()=>{});lobbyPresence()}
+    if(state==='menu')renderMenu();if(state==='settings')renderSettings();updNetUI()}
+  else{FB.lastUid=null;NET.uid=null;NET.db=null;if(NET.room){NET.room.leave().catch(()=>{});NET.room=null}NET.lobby=[];updNetUI();openAuth('login')}}
 async function initFirebase(){
   if(!FB_CONFIG||inClaude())return false;
-  try{const base='https://cdn.jsdelivr.net/npm/firebase@'+FB_VER+'/';
-    for(const f of['firebase-app-compat.js','firebase-auth-compat.js','firebase-firestore-compat.js','firebase-database-compat.js'])await loadScript(base+f);
-    firebase.initializeApp(FB_CONFIG);FB.auth=firebase.auth();FB.fs=firebase.firestore();FB.rt=firebase.database();FB.on=true;
-  }catch(e){FB.on=false;note('No se pudo conectar con el servidor. Juegas sin conexión.');return false}
-  FB.auth.onAuthStateChanged(u=>{FB.ready=true;FB.user=u;
-    if(u){NET.uid=u.uid;NET.acct=u.isAnonymous?'Invitado':(u.email||'');NET.db=FB.fs;$('authScr').hidden=true;$('nameScr').hidden=true;
-      if(u.displayName&&!u.isAnonymous){save.name=u.displayName;save.email=u.email;save.guest=false;save.auth=1;persistLocal()}
-      cloudLoad().then(()=>{if(!NET.cloudHad)cloudSave(false)});
-      if(!NET.room){NET.room=fbRoom('lobby');NET.room.onPeers(ch=>{NET.lobby=ch.peers;onLobby()},()=>{});lobbyPresence()}
-      if(state==='menu')renderMenu();if(state==='settings')renderSettings();updNetUI()}
-    else{NET.uid=null;NET.db=null;if(NET.room){NET.room.leave().catch(()=>{});NET.room=null}NET.lobby=[];updNetUI();openAuth('login')}});
+  try{if(!window.supabase)await loadScript(SB_LIB);FB.sb=supabase.createClient(FB_CONFIG.url,FB_CONFIG.key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});FB.on=true}
+  catch(e){FB.on=false;note('No se pudo conectar con el servidor. Juegas sin conexión.');if(!save.auth)openName();return false}
+  // la sesión se queda guardada en el móvil: al volver a abrir el juego entras directamente
+  FB.sb.auth.onAuthStateChange((ev,ses)=>{const u=sbUser(ses&&ses.user);setTimeout(()=>onSbUser(u),0)});
   return true;
 }
-/* sala multijugador sobre Realtime Database, con la misma forma que la sala de Claude */
+/* sala multijugador sobre Supabase Realtime, con la misma forma que la sala de Claude.
+   Lo que cambia mucho (posiciones "s" y bots "b") va por broadcast; el resto por presence. */
+const FAST_KEYS=new Set(['s','b']);
 function fbRoom(name){
-  const ref=FB.rt.ref('rooms/'+name+'/peers'),me=ref.child(FB.peer);let mine={u:FB.user.uid},arr=Object.freeze([]),alive=true;const subs=new Set();
-  me.onDisconnect().remove();me.set(mine).catch(()=>{});
-  const mk=(k,v)=>{const pr=Object.assign({},v);delete pr.u;return Object.freeze({peer:k,by:null,isMe:k===FB.peer,sameTab:k===FB.peer,kind:'viewer',guest:false,presence:Object.freeze(pr),updatedAt:Date.now()})};
-  const onVal=snap=>{const v=snap.val()||{};const out=[];for(const k in v)out.push(mk(k,v[k]));if(!v[FB.peer])out.push(mk(FB.peer,mine));arr=Object.freeze(out);for(const f of subs)f({peers:arr,joined:[],left:[],updated:[]})};
-  ref.on('value',onVal);
+  const ch=FB.sb.channel('r:'+name,{config:{presence:{key:FB.peer},broadcast:{self:false}}});
+  let mine={},fast={},arr=Object.freeze([]),alive=true,tT=0,tLast=0;const subs=new Set(),fastBy={};
+  const mk=(k,v)=>Object.freeze({peer:k,by:null,isMe:k===FB.peer,sameTab:k===FB.peer,kind:'viewer',guest:false,presence:Object.freeze(v),updatedAt:Date.now()});
+  const rebuild=()=>{if(!alive)return;const st=ch.presenceState();const out=[];
+    for(const k in st){const list=st[k]||[];const meta=Object.assign({},list[list.length-1]||{});delete meta.presence_ref;
+      out.push(mk(k,Object.assign(meta,k===FB.peer?Object.assign({},mine,fast):(fastBy[k]||{}))))}
+    if(!st[FB.peer])out.push(mk(FB.peer,Object.assign({},mine,fast)));
+    for(const k in fastBy)if(!st[k])delete fastBy[k];
+    arr=Object.freeze(out);for(const f of subs)f({peers:arr,joined:[],left:[],updated:[]})};
+  ch.on('presence',{event:'sync'},rebuild);
+  ch.on('broadcast',{event:'f'},({payload})=>{if(!payload||typeof payload.k!=='string'||!payload.d)return;fastBy[payload.k]=Object.assign(fastBy[payload.k]||{},payload.d);rebuild()});
+  const ready=new Promise(ok=>ch.subscribe(s=>{if(s==='SUBSCRIBED'){ok();ch.track(mine).catch(()=>{})}}));
+  const track=()=>{clearTimeout(tT);tT=setTimeout(()=>{if(!alive)return;tLast=Date.now();ch.track(mine).catch(()=>{})},Math.max(0,350-(Date.now()-tLast)))};
   return{name,
-    presence:async p=>{if(!alive)return;for(const k in p){if(p[k]===null)delete mine[k];else mine[k]=p[k]}return me.update(p)},
+    presence:async p=>{if(!alive)return;let slow=false;const f={};
+      for(const k in p){if(FAST_KEYS.has(k)){f[k]=p[k];fast[k]=p[k]}else{slow=true;if(p[k]===null)delete mine[k];else mine[k]=p[k]}}
+      await ready;if(!alive)return;
+      if(Object.keys(f).length)ch.send({type:'broadcast',event:'f',payload:{k:FB.peer,d:f}}).catch(()=>{});
+      if(slow)track();rebuild()},
     peers:()=>arr,
     onPeers:(f,err)=>{subs.add(f);setTimeout(()=>f({peers:arr,joined:arr,left:[],updated:[]}),0);return()=>subs.delete(f)},
     join:async n=>fbRoom(n),
-    leave:async()=>{if(!alive)return;alive=false;ref.off('value',onVal);subs.clear();try{me.onDisconnect().cancel()}catch(e){}await me.remove()},
+    leave:async()=>{if(!alive)return;alive=false;clearTimeout(tT);subs.clear();try{await ch.untrack()}catch(e){}try{await FB.sb.removeChannel(ch)}catch(e){}},
     connected:()=>true}
 }
-const FB_ERR={'auth/invalid-email':'Ese correo no es válido.','auth/user-not-found':'No hay ninguna cuenta con ese correo. Pulsa "Crear cuenta".','auth/wrong-password':'Contraseña incorrecta.',
-  'auth/invalid-credential':'Correo o contraseña incorrectos.','auth/invalid-login-credentials':'Correo o contraseña incorrectos.','auth/email-already-in-use':'Ya hay una cuenta con ese correo. Pulsa "Iniciar sesión".',
-  'auth/weak-password':'La contraseña necesita al menos 6 caracteres.','auth/too-many-requests':'Demasiados intentos. Espera unos minutos.','auth/network-request-failed':'Sin conexión a internet.',
-  'auth/admin-restricted-operation':'Jugar sin cuenta no está activado en el servidor.','auth/operation-not-allowed':'Ese tipo de acceso no está activado en el servidor.','auth/credential-already-in-use':'Ese correo ya tiene otra cuenta. Pulsa "Iniciar sesión".'};
-const fbErr=e=>FB_ERR[e&&e.code]||'No se pudo completar. Inténtalo de nuevo.';
+function fbErr(e){const m=String(e&&(e.message||e.msg||e.error_description)||'').toLowerCase();
+  if(m.includes('invalid login'))return'Correo o contraseña incorrectos.';
+  if(m.includes('already registered')||m.includes('already been registered'))return'Ya hay una cuenta con ese correo. Pulsa "Iniciar sesión".';
+  if(m.includes('email not confirmed'))return'Confirma tu cuenta con el enlace que te enviamos al correo.';
+  if(m.includes('password')&&m.includes('6'))return'La contraseña necesita al menos 6 caracteres.';
+  if(m.includes('invalid')&&m.includes('email'))return'Ese correo no es válido.';
+  if(m.includes('anonymous'))return'Jugar sin cuenta no está activado en el servidor.';
+  if(m.includes('rate limit')||m.includes('too many'))return'Demasiados intentos. Espera unos minutos.';
+  if(m.includes('fetch')||m.includes('network'))return'Sin conexión a internet.';
+  return'No se pudo completar. Inténtalo de nuevo.'}
 function openAuth(mode){FB.mode=mode||'login';$('authScr').hidden=false;$('auErr').textContent='';$('auErr').style.color='';
   for(const b of $('authTabs').children)b.classList.toggle('on',b.dataset.t===FB.mode);
   const su=FB.mode==='signup';$('auNameRow').hidden=!su;$('auGo').textContent=su?'Crear cuenta':'Iniciar sesión';$('auForgot').hidden=su;$('auPass').autocomplete=su?'new-password':'current-password';
@@ -2162,33 +2185,47 @@ function openAuth(mode){FB.mode=mode||'login';$('authScr').hidden=false;$('auErr
   if(FB.user&&FB.user.isAnonymous){$('auGuest').hidden=false;$('auGuest').textContent='Volver al juego'}}
 for(const b of $('authTabs').children)b.onclick=()=>{sfx('click');openAuth(b.dataset.t)};
 $('auGo').onclick=async()=>{const m=String($('auMail').value||'').trim(),pw=String($('auPass').value||''),er=$('auErr');er.style.color='';
+  if(!FB.sb){er.textContent='Sin conexión con el servidor.';return}
   if(!MAIL_RE.test(m)){er.textContent='Escribe un correo válido.';return}if(pw.length<6){er.textContent='La contraseña necesita al menos 6 caracteres.';return}
   const go=$('auGo');go.disabled=true;er.textContent='Conectando…';er.style.color='var(--mist)';
   try{
     if(FB.mode==='signup'){const v=cleanName($('auName').value);if(v.length<3){er.style.color='';er.textContent='El nombre necesita entre 3 y 14 letras o números.';go.disabled=false;return}
-      let cred;const cur=FB.auth.currentUser;
-      if(cur&&cur.isAnonymous){cred=await cur.linkWithCredential(firebase.auth.EmailAuthProvider.credential(m,pw))}else{cred=await FB.auth.createUserWithEmailAndPassword(m,pw)}
-      await cred.user.updateProfile({displayName:v});save.name=v;save.email=m;save.guest=false;save.auth=1;persist();cloudSave(false);
-      FB.user=cred.user;NET.acct=m;$('authScr').hidden=true;sfx('fanfare');note('¡Cuenta creada! Bienvenido, '+v);renderMenu();lobbyPresence();if(state==='settings')renderSettings()}
-    else{FB.forceLoad=true;const cur=FB.auth.currentUser;if(cur&&cur.isAnonymous){try{await cur.delete()}catch(e){}}await FB.auth.signInWithEmailAndPassword(m,pw);sfx('pickup');note('Sesión iniciada')}
+      const cur=FB.user;let r;
+      if(cur&&cur.isAnonymous)r=await FB.sb.auth.updateUser({email:m,password:pw,data:{name:v}});
+      else r=await FB.sb.auth.signUp({email:m,password:pw,options:{data:{name:v}}});
+      if(r.error)throw r.error;
+      save.name=v;save.email=m;save.guest=false;save.auth=1;persist();
+      if(!(cur&&cur.isAnonymous)&&!r.data.session){er.style.color='var(--teal)';er.textContent='¡Casi! Te hemos enviado un correo para confirmar la cuenta. Ábrelo y luego inicia sesión aquí.';openAuth('login');$('auMail').value=m;$('auErr').style.color='var(--teal)';$('auErr').textContent='Revisa tu correo para confirmar la cuenta y luego inicia sesión.';go.disabled=false;return}
+      cloudSave(false);NET.acct=m;$('authScr').hidden=true;sfx('fanfare');note('¡Cuenta creada! Bienvenido, '+v);renderMenu();lobbyPresence();if(state==='settings')renderSettings()}
+    else{FB.forceLoad=true;const cur=FB.user;if(cur&&cur.isAnonymous){try{await FB.sb.auth.signOut()}catch(e){}}
+      const r=await FB.sb.auth.signInWithPassword({email:m,password:pw});if(r.error)throw r.error;sfx('pickup');note('Sesión iniciada')}
     $('auPass').value=''}
   catch(e){er.style.color='';er.textContent=fbErr(e)}
   go.disabled=false};
 $('auPass').addEventListener('keydown',e=>{if(e.key==='Enter')$('auGo').click()});
 $('auGuest').onclick=async()=>{if(FB.user){$('authScr').hidden=true;return}const er=$('auErr');er.style.color='var(--mist)';er.textContent='Entrando…';
-  try{await FB.auth.signInAnonymously();if(!save.name)save.name='Invitado'+Math.floor(1000+Math.random()*9000);save.guest=true;save.auth=1;persist()}
-  catch(e){er.style.color='';er.textContent=fbErr(e)+' Juegas sin conexión.';save.guest=true;save.auth=1;if(!save.name)save.name='Invitado'+Math.floor(1000+Math.random()*9000);persistLocal();setTimeout(()=>{$('authScr').hidden=true;renderMenu()},1400)}};
+  const offline=msg=>{er.style.color='';er.textContent=msg+' Juegas sin conexión.';save.guest=true;save.auth=1;if(!save.name)save.name='Invitado'+Math.floor(1000+Math.random()*9000);persistLocal();setTimeout(()=>{$('authScr').hidden=true;renderMenu()},1400)};
+  try{if(!FB.sb)throw new Error('network');const r=await FB.sb.auth.signInAnonymously();if(r.error)throw r.error;if(!save.name)save.name='Invitado'+Math.floor(1000+Math.random()*9000);save.guest=true;save.auth=1;persist()}
+  catch(e){offline(fbErr(e))}};
 $('auForgot').onclick=async()=>{const m=String($('auMail').value||'').trim(),er=$('auErr');if(!MAIL_RE.test(m)){er.style.color='';er.textContent='Escribe arriba tu correo y vuelve a pulsar.';return}
-  try{await FB.auth.sendPasswordResetEmail(m);er.style.color='var(--teal)';er.textContent='Te hemos enviado un correo para cambiar la contraseña.'}catch(e){er.style.color='';er.textContent=fbErr(e)}};
+  try{const r=await FB.sb.auth.resetPasswordForEmail(m,{redirectTo:/^https?:$/.test(location.protocol)?location.origin+location.pathname:undefined});if(r.error)throw r.error;er.style.color='var(--teal)';er.textContent='Te hemos enviado un correo para cambiar la contraseña.'}catch(e){er.style.color='';er.textContent=fbErr(e)}};
+async function deleteAccount(){
+  if(!confirm('¿Seguro que quieres BORRAR tu cuenta? Se perderán tus barcos, monedas y progreso para siempre.'))return;
+  try{const r=await FB.sb.functions.invoke('delete-account',{method:'POST'});if(r.error)throw r.error;
+    try{await FB.sb.auth.signOut()}catch(e){}
+    try{localStorage.removeItem('mdc_save_v2')}catch(e){}
+    note('Cuenta borrada');setTimeout(()=>location.reload(),900)}
+  catch(e){note('No se pudo borrar la cuenta. Inténtalo de nuevo.')}}
 function renderFbAcct(ab){
   const u=FB.user;const row=document.createElement('div');row.className='srow';const l=document.createElement('span');const sm=document.createElement('small');
   if(!u){l.textContent='Sin conexión al servidor';sm.textContent='Revisa tu internet';l.append(sm);row.append(l);ab.append(row);return}
   if(u.isAnonymous){l.textContent='Jugando sin cuenta';sm.textContent='Crea una cuenta para no perder tu progreso';l.append(sm);const b=document.createElement('button');b.className='btn small primary';b.textContent='Crear cuenta';b.onclick=()=>openAuth('signup');row.append(l,b);ab.append(row);
     const b2=document.createElement('button');b2.className='btn small';b2.textContent='Ya tengo cuenta: iniciar sesión';b2.onclick=()=>openAuth('login');ab.append(b2);return}
   l.textContent='Sesión iniciada · '+(save.name||u.displayName||'Capitán');sm.textContent=u.email||'';l.append(sm);const b=document.createElement('button');b.className='btn small';b.textContent='Cerrar sesión';
-  b.onclick=async()=>{await cloudSave(false);try{await FB.auth.signOut()}catch(e){}note('Sesión cerrada')};row.append(l,b);ab.append(row);
+  b.onclick=async()=>{await cloudSave(false);try{await FB.sb.auth.signOut()}catch(e){}note('Sesión cerrada')};row.append(l,b);ab.append(row);
   const p=document.createElement('p');p.className='note';p.textContent=NET.cloud===false?'No se pudo guardar en la nube ahora mismo.':'Tu progreso se guarda en la nube. Inicia sesión con este correo en otro dispositivo para recuperarlo.';ab.append(p);
   const bt=document.createElement('button');bt.className='btn small primary';bt.textContent='Guardar ahora';bt.onclick=()=>cloudSave(true);ab.append(bt);
+  const bd=document.createElement('button');bd.className='btn small';bd.style.cssText='background:#5a1a1a;margin-top:6px';bd.textContent='Borrar mi cuenta';bd.onclick=deleteAccount;ab.append(bd);
 }
 
 /* ================= INPUT ================= */

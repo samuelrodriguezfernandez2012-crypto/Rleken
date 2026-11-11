@@ -14,6 +14,7 @@ import {Largo1Thumb, Largo1ThumbV2} from './videos/largo1/Thumb';
 import {ParpadeoShort, ParpadeoThumb, DURATION_S as D_PARP} from './videos/parpadeo/Main';
 import {AgujeroShort, AgujeroThumb, DURATION_S as D_AGU} from './videos/agujero/Main';
 import {Gta6Short, Gta6Thumb, DURATION_S as D_GTA} from './videos/gta6/Main';
+import {FuturoLargo, FuturoThumb, DURATION_S as D_FUT} from './videos/futuro/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -39,6 +40,8 @@ export const RemotionRoot: React.FC = () => (
     <Still id="AgujeroThumb" component={AgujeroThumb} width={W} height={H} />
     <Composition id="Gta6Short" component={Gta6Short} durationInFrames={Math.round(D_GTA * FPS)} fps={FPS} width={W} height={H} />
     <Still id="Gta6Thumb" component={Gta6Thumb} width={W} height={H} />
+    <Composition id="FuturoLargo" component={FuturoLargo} durationInFrames={D_FUT * FPS} fps={FPS} width={1920} height={1080} />
+    <Still id="FuturoThumb" component={FuturoThumb} width={1280} height={720} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>

@@ -139,3 +139,13 @@ Ve hasta el final: el giro no te lo esperas 🤯
 - **Etiquetas:** gta 6, gta vi, gta 6 fecha, cuanto falta para gta 6, gta 6 curiosidades, vice city, leonida, gta 6 ps5, gta 6 pc, shorts
 - **Comentario para fijar:** 19 de noviembre 🔥 ¿Lucía o Jason? ¿Con quién vas a jugar primero? 👇
 - Datos comprobados el 11/11/2026: salida 19 nov 2026 (Take-Two lo mantuvo el 9 nov), PS5 y Xbox Series, sin fecha para PC.
+
+---
+
+## Vídeo largo: Veo 10 segundos del futuro — estilo cine (9:29)
+- **Título:** Veo 10 SEGUNDOS del FUTURO… pero ELLA ve 11 ⏳👁️
+- **Miniatura (en inglés):** I SEE 10 SECONDS INTO THE FUTURE. / SHE SEES 11.
+- **Etiquetas:** ver el futuro, qué pasaría si, que pasaria si, superpoderes, 10 segundos del futuro, historias animadas, animación, stickman, historia completa, giro final, chiki, chiki2225
+- **Comentario para fijar:** Si pudieras ver 10 segundos del futuro… ¿qué harías primero? 👁️ Los 3 mejores comentarios salen en el próximo vídeo 👇
+- **Capítulos:**
+  0:00 El tejado · 0:41 Día 1: la taza · 1:31 Invencible · 2:14 La ruleta · 3:04 El chico que llega antes · 3:54 El precio · 4:41 Los hombres de gris · 5:25 Vera · 6:20 La visión · 7:05 La gorra · 7:51 Suelta · 8:43 Tú

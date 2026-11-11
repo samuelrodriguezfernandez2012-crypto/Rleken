@@ -632,7 +632,7 @@ input[type=range]{width:140px;accent-color:var(--gold)}
       <div class="fcol"><label class="lbl" for="auPass">Contraseña</label><input id="auPass" class="inp" type="password" autocomplete="current-password" maxlength="64" placeholder="Mínimo 6 caracteres"></div>
     </div>
     <div class="err" id="auErr"></div>
-    <div class="namebtns"><button class="btn" id="auGuest">Jugar sin cuenta</button><button class="btn primary" id="auGo" style="font-size:19px">Iniciar sesión</button></div>
+    <div class="namebtns"><button class="btn" id="auGuest">Continuar sin iniciar sesión</button><button class="btn primary" id="auGo" style="font-size:19px">Iniciar sesión</button></div>
     <button class="btn small" id="auForgot" style="background:none;box-shadow:none;text-decoration:underline">¿Has olvidado tu contraseña?</button>
     <p class="note" style="text-align:center">Con una cuenta tu progreso se guarda en la nube y lo recuperas en cualquier móvil o tablet iniciando sesión.</p>
   </div>
@@ -2129,7 +2129,8 @@ function onSbUser(u){FB.ready=true;FB.user=u;
     if(!same)cloudLoad().then(()=>{if(!NET.cloudHad)cloudSave(false)});
     if(!NET.room){NET.room=fbRoom('lobby');NET.room.onPeers(ch=>{NET.lobby=ch.peers;onLobby()},()=>{});lobbyPresence()}
     if(state==='menu')renderMenu();if(state==='settings')renderSettings();updNetUI()}
-  else{FB.lastUid=null;NET.uid=null;NET.db=null;if(NET.room){NET.room.leave().catch(()=>{});NET.room=null}NET.lobby=[];updNetUI();openAuth('login')}}
+  else{FB.lastUid=null;NET.uid=null;NET.db=null;if(NET.room){NET.room.leave().catch(()=>{});NET.room=null}NET.lobby=[];updNetUI();
+    if(save.guest&&save.auth){$('authScr').hidden=true;tryGuestOnline()}else openAuth('login')}}
 async function initFirebase(){
   if(!FB_CONFIG||inClaude())return false;
   try{if(!window.supabase)await loadScript(SB_LIB);FB.sb=supabase.createClient(FB_CONFIG.url,FB_CONFIG.key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});FB.on=true}
@@ -2181,8 +2182,7 @@ function openAuth(mode){FB.mode=mode||'login';$('authScr').hidden=false;$('auErr
   for(const b of $('authTabs').children)b.classList.toggle('on',b.dataset.t===FB.mode);
   const su=FB.mode==='signup';$('auNameRow').hidden=!su;$('auGo').textContent=su?'Crear cuenta':'Iniciar sesión';$('auForgot').hidden=su;$('auPass').autocomplete=su?'new-password':'current-password';
   if(su&&!$('auName').value)$('auName').value=save.name&&!/^Invitado/.test(save.name)?save.name:'';
-  $('auGuest').hidden=!!(FB.user&&FB.user.isAnonymous);$('auGuest').textContent='Jugar sin cuenta';
-  if(FB.user&&FB.user.isAnonymous){$('auGuest').hidden=false;$('auGuest').textContent='Volver al juego'}}
+  $('auGuest').hidden=false;$('auGuest').textContent=(FB.user||save.guest)?'Volver al juego':'Continuar sin iniciar sesión'}
 for(const b of $('authTabs').children)b.onclick=()=>{sfx('click');openAuth(b.dataset.t)};
 $('auGo').onclick=async()=>{const m=String($('auMail').value||'').trim(),pw=String($('auPass').value||''),er=$('auErr');er.style.color='';
   if(!FB.sb){er.textContent='Sin conexión con el servidor.';return}
@@ -2203,10 +2203,12 @@ $('auGo').onclick=async()=>{const m=String($('auMail').value||'').trim(),pw=Stri
   catch(e){er.style.color='';er.textContent=fbErr(e)}
   go.disabled=false};
 $('auPass').addEventListener('keydown',e=>{if(e.key==='Enter')$('auGo').click()});
-$('auGuest').onclick=async()=>{if(FB.user){$('authScr').hidden=true;return}const er=$('auErr');er.style.color='var(--mist)';er.textContent='Entrando…';
-  const offline=msg=>{er.style.color='';er.textContent=msg+' Juegas sin conexión.';save.guest=true;save.auth=1;if(!save.name)save.name='Invitado'+Math.floor(1000+Math.random()*9000);persistLocal();setTimeout(()=>{$('authScr').hidden=true;renderMenu()},1400)};
-  try{if(!FB.sb)throw new Error('network');const r=await FB.sb.auth.signInAnonymously();if(r.error)throw r.error;if(!save.name)save.name='Invitado'+Math.floor(1000+Math.random()*9000);save.guest=true;save.auth=1;persist()}
-  catch(e){offline(fbErr(e))}};
+// continuar sin cuenta: se juega al momento con el progreso guardado en el móvil.
+// Si el servidor lo permite, además entra como invitado para jugar online. Se puede crear cuenta luego en Ajustes.
+async function tryGuestOnline(){if(!FB.sb||FB.user)return;try{const r=await FB.sb.auth.signInAnonymously();if(r.error)throw r.error}catch(e){}}
+$('auGuest').onclick=async()=>{sfx('click');$('authScr').hidden=true;
+  if(!save.name)save.name='Capitán'+Math.floor(1000+Math.random()*9000);save.guest=true;save.auth=1;persist();
+  if(state==='menu')renderMenu();if(!FB.user){note('Puedes crear tu cuenta cuando quieras en Ajustes');tryGuestOnline()}};
 $('auForgot').onclick=async()=>{const m=String($('auMail').value||'').trim(),er=$('auErr');if(!MAIL_RE.test(m)){er.style.color='';er.textContent='Escribe arriba tu correo y vuelve a pulsar.';return}
   try{const r=await FB.sb.auth.resetPasswordForEmail(m,{redirectTo:/^https?:$/.test(location.protocol)?location.origin+location.pathname:undefined});if(r.error)throw r.error;er.style.color='var(--teal)';er.textContent='Te hemos enviado un correo para cambiar la contraseña.'}catch(e){er.style.color='';er.textContent=fbErr(e)}};
 async function deleteAccount(){
@@ -2218,7 +2220,10 @@ async function deleteAccount(){
   catch(e){note('No se pudo borrar la cuenta. Inténtalo de nuevo.')}}
 function renderFbAcct(ab){
   const u=FB.user;const row=document.createElement('div');row.className='srow';const l=document.createElement('span');const sm=document.createElement('small');
-  if(!u){l.textContent='Sin conexión al servidor';sm.textContent='Revisa tu internet';l.append(sm);row.append(l);ab.append(row);return}
+  if(!u){l.textContent='Jugando sin cuenta';sm.textContent='Tu progreso solo está en este móvil. Crea una cuenta para guardarlo en la nube y jugar online.';l.append(sm);row.append(l);ab.append(row);
+    if(!FB.sb){const p=document.createElement('p');p.className='note';p.textContent='Sin conexión al servidor. Revisa tu internet.';ab.append(p);return}
+    const b1=document.createElement('button');b1.className='btn small primary';b1.textContent='Crear cuenta';b1.onclick=()=>openAuth('signup');
+    const b2=document.createElement('button');b2.className='btn small';b2.textContent='Iniciar sesión';b2.onclick=()=>openAuth('login');ab.append(b1,b2);return}
   if(u.isAnonymous){l.textContent='Jugando sin cuenta';sm.textContent='Crea una cuenta para no perder tu progreso';l.append(sm);const b=document.createElement('button');b.className='btn small primary';b.textContent='Crear cuenta';b.onclick=()=>openAuth('signup');row.append(l,b);ab.append(row);
     const b2=document.createElement('button');b2.className='btn small';b2.textContent='Ya tengo cuenta: iniciar sesión';b2.onclick=()=>openAuth('login');ab.append(b2);return}
   l.textContent='Sesión iniciada · '+(save.name||u.displayName||'Capitán');sm.textContent=u.email||'';l.append(sm);const b=document.createElement('button');b.className='btn small';b.textContent='Cerrar sesión';

@@ -6,6 +6,7 @@ import {ReflejoShort, ReflejoThumb, DURATION_S as D_REFLEJO} from './videos/refl
 import {MentesShort, MentesThumb, DURATION_S as D_MENTES} from './videos/mentes/Main';
 import {TierraShort, TierraThumb, DURATION_S as D_TIERRA} from './videos/tierra/Main';
 import {CharacterTest} from './tests/CharacterTest';
+import {CinematicTest} from './tests/CinematicTest';
 import {SolShort, SolThumb, DURATION_S as D_SOL} from './videos/sol/Main';
 import {DuplicarShort, DuplicarThumb, DURATION_S as D_DUP} from './videos/duplicar/Main';
 import {Largo1, DURATION_S as D_LARGO1} from './videos/largo1/Main';
@@ -39,5 +40,6 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="Gta6Short" component={Gta6Short} durationInFrames={Math.round(D_GTA * FPS)} fps={FPS} width={W} height={H} />
     <Still id="Gta6Thumb" component={Gta6Thumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
+    <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>
 );

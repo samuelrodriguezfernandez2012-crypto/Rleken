@@ -9,6 +9,8 @@ export const loadFonts = () => {
   const faces = [
     new FontFace('Luckiest', `url(${staticFile('luckiest.woff2')})`),
     new FontFace('Baloo', `url(${staticFile('baloo800.woff2')})`, {weight: '800'}),
+    new FontFace('Montserrat', `url(${staticFile('montserrat900.woff2')})`, {weight: '900'}),
+    new FontFace('Montserrat', `url(${staticFile('montserrat800.woff2')})`, {weight: '800'}),
   ];
   Promise.all(faces.map((f) => f.load()))
     .then((loaded) => {

@@ -623,7 +623,29 @@ def cfg_largo1(m):
     return round(E[13] + 4, 2), ev
 
 
-CFG = {'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
+
+def cfg_duplicar(m):
+    m.tense(0.0, 7.0, roots=(45, 45, 46, 44))
+    m.happy(7.0, 18.7, prog=(60, 57, 53, 55))
+    m.silence(18.7, 19.0)
+    m.creepy(19.0, 23.0, root=47)
+    m.epic(23.0, 32.6, roots=(45, 41, 48, 43))
+    m.tense(32.6, 40.0, roots=(44, 44, 45, 43))
+    m.creepy(40.0, 43.2, root=46, ticks=False)
+    m.outro(43.2, 48.6)
+    ev = [('impact', 0.0, 0.8), ('whoosh', 0.0, 0.5), ('pop', 0.6, 0.5), ('zap', 1.3, 0.4)]
+    ev += [('pop', 1.3 + k * 0.19, 0.25) for k in range(8)]
+    ev += [('whoosh', 2.8, 0.5), ('sparkle', 5.2, 0.5), ('rise', 7.1, 0.5),
+           ('coin', 11.0, 0.7), ('pop', 13.6, 0.5), ('pop', 13.9, 0.4), ('pop', 14.2, 0.4), ('zap', 16.5, 0.5),
+           ('sparkle', 17.5, 0.6), ('scratch', 18.8, 0.5), ('swell', 19.6, 0.4), ('boom', 21.6, 0.8), ('glitch', 21.7, 0.4),
+           ('zap', 23.4, 0.5), ('impact', 25.0, 0.5), ('impact', 26.0, 0.6), ('impact', 27.0, 0.7),
+           ('whoosh', 28.4, 0.6), ('whispers', 28.6, 0.6), ('boom', 30.5, 0.8), ('whispers', 30.6, 0.8),
+           ('impact', 34.5, 0.6), ('pop', 36.6, 0.5), ('whispers', 37.9, 0.9), ('swell', 37.9, 0.5),
+           ('heartbeat', 40.5, 0.9), ('heartbeat', 41.3, 0.9), ('whoosh', 43.2, 0.5), ('pop', 43.4, 0.6), ('ding', 44.8, 0.4)]
+    return 48.6, ev
+
+
+CFG = {'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
 
 
 def read_wav(p):

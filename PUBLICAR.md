@@ -105,3 +105,11 @@ Ve hasta el final: el giro no te lo esperas 🤯
 **Etiquetas:** sobreviví 100 días, 100 días, qué pasaría si, que pasaria si, parar el tiempo, superpoderes, poder de parar el tiempo, historias animadas, animación, animacion stickman, stickman, historia completa, giro final, misterio, la relojera, animación en español, chiki, chiki2225, 100 dias con un superpoder, historias de impacto
 
 **Comentario para fijar:** `Yo pararía el tiempo para dormir 5 minutos más cada mañana 😴⏳ ¿Y TÚ? 👇 Si llegamos a 100 comentarios, hago la PARTE 2: ¿quién se queda el reloj?`
+
+---
+
+# Short: "Duplico todo lo que toco" (personaje nuevo)
+**Archivo:** `out/duplicar/` · **Publicación:** miércoles 11 nov, 14:30
+**Título:** `DUPLICO todo lo que toco… y me toqué a mí 😱 #shorts`
+**Comentario para fijar:** `Yo duplicaría el finde para tener 4 días 😂 ¿Y TÚ qué duplicarías? 👇`
+**Dato:** 2^80 ≈ 1,2·10²⁴, del orden del número estimado de estrellas del universo observable.

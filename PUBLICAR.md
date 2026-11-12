@@ -177,7 +177,7 @@ Ve hasta el final: el giro no te lo esperas 🤯
 
 ---
 
-## Short "Océanos" — jueves 12 nov 2026, 20:00
+## Short "Océanos" — jueves 12 nov 2026, 20:20 (Metricool id 426115452)
 - **Archivo:** `out/oceanos/chiki_oceanos_short.mp4` · miniatura `out/oceanos/miniatura.png`
 - **Título:** ¿Y si los OCÉANOS desaparecieran en 1 hora? 🌊😱 #shorts
 - **Descripción:** Minuto 1: los barcos caen al vacío. Minuto 30: aparece la fosa de las Marianas. Una hora después… la Tierra se convierte en Marte. ¿Aguantarías una semana? 👇
@@ -185,7 +185,7 @@ Ve hasta el final: el giro no te lo esperas 🤯
 - **Etiquetas:** qué pasaría si, océanos, desaparecen los océanos, fosa de las marianas, tierra, marte, ciencia, animación, shorts
 - **Comentario fijado:** ¿Cuánto aguantarías tú sin océanos? 1 día, 1 semana o 1 mes 👇🌊
 
-## Short "Mi nombre" (Leo) — jueves 12 nov 2026, 21:00
+## Short "Mi nombre" (Leo) — jueves 12 nov 2026, 21:00 (Metricool id 426142578)
 - **Archivo:** `out/nombre/chiki_nombre_short.mp4` · miniatura `out/nombre/miniatura.png`
 - **Título:** Cada vez que dicen mi NOMBRE gano 1 €… 💸😱 #shorts
 - **Descripción:** Día 1: 3 euros. Luego 1 millón de visitas y 10.000 € por minuto… pero hay algo que Leo no contó. Por favor, no escribas su nombre en los comentarios 👇

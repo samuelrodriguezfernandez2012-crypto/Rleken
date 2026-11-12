@@ -192,3 +192,24 @@ Ve hasta el final: el giro no te lo esperas 🤯
 #shorts #quepasariasi #poderes #animacion #stickman #historia
 - **Etiquetas:** qué pasaría si, poderes imposibles, gano dinero, mi nombre, leo, animación, stickman, historia, shorts
 - **Comentario fijado:** Leo te está leyendo… 👀 NO escribas su nombre aquí abajo.
+
+## Short "Nunca has visto el presente" — jueves 12 nov 2026, 23:00 (Metricool id 426256024)
+- **Archivo:** `out/presente/chiki_presente_short.mp4`
+- **Título:** NUNCA has visto el presente (y no lo sabías) 🤯 #shorts
+- **Comentario fijado:** Si todo lo que ves ya ha pasado… ¿cómo sabes que sigue existiendo? 🤔
+
+## Short "Parar el tiempo" — viernes 13 nov 2026, 12:00
+- **Archivo:** `out/tiempo/chiki_tiempo_short.mp4`
+- **Título:** Si PARARAS el tiempo, morirías en 3 minutos ⏸️💀 #shorts
+- **Descripción:** Parece el mejor poder del mundo… pero si el tiempo se congela, la luz no llega a tus ojos, el sonido desaparece y el aire se vuelve cemento. ¿Seguirías queriéndolo?
+#shorts #quepasariasi #parareltiempo #ciencia #fisica #poderes
+- **Etiquetas:** qué pasaría si, parar el tiempo, poderes, física, ciencia, curiosidades, shorts
+- **Comentario fijado:** ¿Qué poder crees que también sería una trampa? 👀
+
+## Short "11 días sin dormir" — viernes 13 nov 2026, 16:00
+- **Archivo:** `out/insomnio/chiki_insomnio_short.mp4`
+- **Título:** Esto le pasa a tu cerebro si NO duermes en 11 días 😵 #shorts
+- **Descripción:** Microsueños, alucinaciones, olvidar lo que dices a mitad de frase… En 1964 Randy Gardner aguantó 11 días despierto. Hoy ese récord ya ni siquiera se acepta.
+#shorts #curiosidades #cerebro #dormir #record #ciencia
+- **Etiquetas:** sin dormir, 11 días sin dormir, randy gardner, cerebro, microsueños, curiosidades, ciencia, shorts
+- **Comentario fijado:** ¿Cuál es tu récord de horas sin dormir? 😴

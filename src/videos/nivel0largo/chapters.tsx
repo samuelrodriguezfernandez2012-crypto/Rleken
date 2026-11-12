@@ -4,6 +4,7 @@ import {LW, GY, Cine, CText, Flash, shots, kb, ramp, easeOut, rnd, pop, CF} from
 import {Hero, NPC, POSES, Suit, CityNight, Room, Screen, PhoneV, Cup, Library, LibTable} from '../futuro/props';
 import {Kitchen, Table, Classroom, Yard, Street, Car, Crowd, Bathroom, Mirror} from '../largo1/props';
 import {Hallway, Bus, HospitalRoom, Sign} from '../fuerte/props';
+import {lerpT, EASE_IN, EASE_OUT, SPRING, hitStop, impactFilter, Shockwave, SpeedBurst, Debris, Aura, ZeroZone, EnergyBall, quake, ImpactOverlay} from './fight';
 import wordsJson from './words.json';
 import startsJson from '../../../assets/nivel0largo/starts.json';
 
@@ -25,14 +26,16 @@ type F = React.FC<{t: number}>;
 const RED = '#C1121F', DANI = '#E9C46A', VEC = '#2A9D8F', MOM = '#E07A5F', COP = '#1D3557';
 const shake = (t: number, k: number) => ({x: Math.sin(t * 61) * k, y: Math.cos(t * 53) * k * 0.6});
 
-// numero de nivel sobre la cabeza
-export const Lvl: React.FC<{x: number; y?: number; s?: number; n: number | string; t: number; dim?: boolean}> = ({x, y = GY, s = 1.1, n, t, dim}) => {
+// numero de nivel sobre la cabeza (acepta '∞' y giro)
+export const Lvl: React.FC<{x: number; y?: number; s?: number; n: number | string; t: number; dim?: boolean; rot?: number}> = ({x, y = GY, s = 1.1, n, t, dim, rot = 0}) => {
   const v = typeof n === 'number' ? n : 0;
-  const col = n === 0 || n === '0' ? '#9AA0A6' : v >= 90 ? '#FF3B5C' : v >= 60 ? '#FFD23F' : '#7CF4FF';
+  const inf = n === '∞';
+  const col = inf ? '#FFD23F' : n === 0 || n === '0' ? '#9AA0A6' : v >= 90 ? '#FF3B5C' : v >= 60 ? '#FFD23F' : '#7CF4FF';
+  const fs = 92 * s * (inf ? 1.35 : 1);
   return (
-    <g transform={`translate(${x} ${y - 470 * s + Math.sin(t * 2 + x) * 6})`} opacity={dim ? 0.55 : 1}>
-      <text textAnchor="middle" fontFamily="Montserrat" fontWeight={900} fontSize={92 * s} fill="none" stroke={col} strokeWidth={16} opacity={0.35} filter="url(#blurGlow)">{n}</text>
-      <text textAnchor="middle" fontFamily="Montserrat" fontWeight={900} fontSize={92 * s} fill={col} stroke="#0B0A1A" strokeWidth={4} paintOrder="stroke">{n}</text>
+    <g transform={`translate(${x} ${y - 470 * s + Math.sin(t * 2 + x) * 6}) rotate(${rot})`} opacity={dim ? 0.55 : 1}>
+      <text textAnchor="middle" dominantBaseline="central" fontFamily="Montserrat" fontWeight={900} fontSize={fs} fill="none" stroke={col} strokeWidth={inf ? 30 : 16} opacity={inf ? 0.6 : 0.35} filter="url(#blurGlow)">{n}</text>
+      <text textAnchor="middle" dominantBaseline="central" fontFamily="Montserrat" fontWeight={900} fontSize={fs} fill={col} stroke="#0B0A1A" strokeWidth={4} paintOrder="stroke">{n}</text>
     </g>
   );
 };
@@ -57,13 +60,46 @@ const Say: React.FC<{t: number; at: number; until?: number; text: string; x: num
     </div>
   );
 };
-const punch = (t: number, cam: any, n: number | string, hit: boolean, crowd = false) => (
-  <Cine t={t} mood={n === 0 ? 'cold' : 'red'} cam={{...cam, ...(hit ? shake(t, 10) : {})}} rain bg={<CityNight />} hero={<>
-    {crowd && <Crowd t={t} n={14} cheer={n === 0} />}
-    <Me x={820} t={t} eyes={hit ? 'normal' : 'angry'} />
-    <Vortex x={1050} t={t} n={n} pose={hit ? POSES.point : POSES.fists} eyes={n === 0 ? 'wide' : 'evil'} mouth={n === 0 ? 'o' : 'grin'} />
-  </>} />
-);
+const HX = 820, VX0 = 1520, VXHIT = 1000, VXBACK = 1120;
+// coreografia: carga con aura -> embestida con estela -> golpes en serie. hits en tiempo local
+function villainX(tt: number, hits: number[]) {
+  const first = hits[0];
+  if (tt < first - 0.35) return VX0;
+  if (tt < first) return lerpT(tt, first - 0.35, first, VX0, VXHIT, EASE_IN);
+  for (let i = 1; i < hits.length; i++) {
+    const prev = hits[i - 1], h = hits[i];
+    if (tt < h - 0.25) return lerpT(tt, prev, h - 0.25, VXHIT, VXBACK, SPRING);
+    if (tt < h) return lerpT(tt, h - 0.25, h, VXBACK, VXHIT, EASE_IN);
+  }
+  return lerpT(tt, hits[hits.length - 1], hits[hits.length - 1] + 0.6, VXHIT, VXBACK, SPRING);
+}
+const fight = (t: number, lt: number, o: {hits: number[]; n: number | string; crowd?: boolean; zoom?: [number, number]; heroEyes?: any}) => {
+  const tt = o.hits.reduce((acc, h) => hitStop(acc, h, 0.1), lt);
+  const vx = villainX(tt, o.hits);
+  const dashing = o.hits.some((h) => tt > h - 0.35 && tt < h);
+  const charge = lerpT(tt, 0, o.hits[0] - 0.35, 0.3, 1.2);
+  const lastHit = o.hits.filter((h) => tt >= h).pop();
+  const fist = {x: HX + 90, y: GY - 1.1 * 300};
+  const [z0, z1] = o.zoom ?? [1.15, 1.4];
+  const zoom = lastHit != null ? lerpT(tt, lastHit, lastHit + 0.5, z1, z0 + (z1 - z0) * 0.5, SPRING) : lerpT(tt, 0, o.hits[0], z0, z0 + 0.08);
+  const q = quake(lt, o.hits, 30);
+  const nn = o.n;
+  return (
+    <AbsoluteFill style={{filter: impactFilter(lt, o.hits)}}>
+      <Cine t={t} mood={nn === 0 ? 'cold' : 'red'} cam={{s: zoom, ox: (HX + vx) / 2, oy: 520, x: q.x, y: q.y}} rain bg={<CityNight />} hero={<>
+        {o.crowd && <Crowd t={t} n={14} cheer={nn === 0} />}
+        <ZeroZone x={HX} t={lt} hits={o.hits} />
+        <Me x={HX} t={t} eyes={o.heroEyes ?? 'normal'} />
+        <Aura x={vx} s={1.3} t={t} k={typeof nn === 'number' ? (nn / 99) * charge : 0} />
+        {dashing && [0.05, 0.1, 0.15].map((d, i) => <g key={i} opacity={0.3 - i * 0.09}><NPC x={villainX(tt - d, o.hits)} s={1.3} t={t} color={RED} pose={POSES.point} flip /></g>)}
+        <Vortex x={vx} t={t} n={nn} pose={dashing || (lastHit != null && tt - lastHit < 0.3) ? POSES.point : POSES.fists} eyes={nn === 0 ? 'wide' : 'evil'} mouth={nn === 0 ? 'o' : 'teeth'} />
+        {o.hits.map((h, i) => <g key={i}><SpeedBurst x={fist.x} y={fist.y} t={lt} at={h} /><Shockwave x={HX + 40} y={GY} t={lt} at={h} max={800} /><Debris x={HX + 60} t={lt} at={h} n={12} power={0.8} /></g>)}
+      </>} />
+      <ImpactOverlay t={lt} hits={o.hits} />
+    </AbsoluteFill>
+  );
+};
+const punch = (t: number, cam: any, n: number | string, hit: boolean, crowd = false) => fight(t, hit ? 0.7 : 99, {hits: [0.6], n, crowd, zoom: [cam.s ?? 1.2, (cam.s ?? 1.2) + 0.15]});
 
 // ---------- 0: el punetazo (gancho) ----------
 export const Ch0: F = ({t}) => {
@@ -72,9 +108,9 @@ export const Ch0: F = ({t}) => {
   return (
     <AbsoluteFill>
       {shots(t, [
-        [0, (lt) => punch(t, kb(lt, 1.6, 1.4, 1.5, 960, 500), 99, true)],
-        [W(c, 'nivel'), (lt) => punch(t, kb(lt, 2.4, 2.6, 2, 1110, 380), n, true)],
-        [W(c, 'gente'), (lt) => punch(t, kb(lt, 1.0, 1.1, 3), n, false, true)],
+        [0, (lt) => fight(t, lt, {hits: [0.75, 1.55, 2.3, 3.1], n: 99, zoom: [1.1, 1.45]})],
+        [W(c, 'nivel'), (lt) => <AbsoluteFill style={{filter: impactFilter(lt, [0, 0.9])}}><Cine t={t} mood="red" cam={{...kb(lt, 2.3, 2.6, 2, 1080, 380), ...quake(lt, [0, 0.9, 1.8], 20)}} rain bg={<CityNight />} hero={<><Aura x={1080} s={1.3} t={t} k={n / 99} /><Vortex x={1080} t={t} n={n} pose={POSES.point} eyes="wide" mouth="teeth" /></>} /></AbsoluteFill>],
+        [W(c, 'gente'), (lt) => fight(t, lt + 5, {hits: [0.4], n, crowd: true, zoom: [1.0, 1.05]})],
         [W(c, 'porque'), (lt) => <Cine t={t} mood="cold" cam={kb(lt, 2.0, 2.4, 5, 960, 420)} bg={<CityNight />} hero={<Me x={960} s={1.2} t={t} eyes="side" />} />],
         [W(c, 'hace'), (lt) => <Cine t={t} mood="day" cam={kb(lt, 1.1, 1.0, 5)} bg={<Hallway />} hero={<><Me x={960} t={t} eyes="closed" mouth="frown" />{[400, 600, 1350, 1550].map((x, i) => <P key={x} x={x} t={t} color={['#457B9D', '#6A4C93', DANI, '#E76F51'][i]} n={[54, 71, 88, 63][i]} pose={POSES.laugh} mouth="grin" eyes="happy" flip={x > 960} />)}</>} />],
         [(W(c, 'historia') - 0.4), (lt) => <Cine t={t} mood="future" cam={kb(lt, 1.3, 1.0, 8)} bg={<CityNight />} hero={<Me x={960} s={1.2} t={t} eyes="glow" glow n={lt > 7 ? '?' : 0} />} />],
@@ -206,7 +242,7 @@ export const Ch6: F = ({t}) => {
     <AbsoluteFill>
       {shots(t, [
         [CS(c), (lt) => <Cine t={t} mood="red" cam={{...kb(lt, 1.0, 1.25, 4, 960, 450), ...shake(t, 3)}} rain bg={<CityNight />} hero={<Vortex x={960} t={t} s={1.4} pose={POSES.armsUp} flip={false} />} />],
-        [W(c, 'tarde'), (lt) => <Cine t={t} mood="red" cam={{...kb(lt, 1.0, 1.1, 3), ...shake(t, 6)}} bg={<CityNight lights={false} />} hero={<><Vortex x={700} t={t} s={1.2} pose={POSES.point} flip={false} /><g transform={`translate(${1000 + lt * 500} ${620 - lt * 280}) rotate(${lt * 200})`}><rect x={-160} y={-60} width={320} height={120} rx={14} fill="#D62828" stroke="#111" strokeWidth={6} /></g></>} />],
+        [W(c, 'tarde'), (lt) => <Cine t={t} mood="red" cam={{...kb(lt, 1.0, 1.1, 3), ...shake(t, 6)}} bg={<CityNight lights={false} />} hero={<><Vortex x={700} t={t} s={1.2} pose={POSES.point} flip={false} /><Aura x={700} s={1.2} t={t} /><g transform={`translate(${1000 + lt * 500} ${620 - lt * 280}) rotate(${lt * 200})`}><rect x={-160} y={-60} width={320} height={120} rx={14} fill="#D62828" stroke="#111" strokeWidth={6} /></g><Shockwave x={760} y={GY} t={lt} at={0.15} max={900} /><Debris x={760} t={lt} at={0.15} n={20} /></>} />],
         [W(c, 'heroes'), (lt) => <Cine t={t} mood="red" cam={kb(lt, 1.1, 1.0, 3)} bg={<CityNight />} hero={<>{[0, 1, 2].map((i) => { const k = Math.min(1, Math.max(0, lt - i * 0.5) / 0.9); return <g key={i} transform={`translate(${(i - 1) * 260 + k * 800} ${-k * 600}) rotate(${k * 300} 960 ${GY - 200})`}><P x={960} t={t} s={0.95} color={['#457B9D', VEC, '#6A4C93'][i]} n={90 + i * 2} pose={POSES.fly} /></g>; })}</>} />],
         [W(c, 'tele'), (lt) => <Cine t={t} mood="night" cam={kb(lt, 1.2, 1.5, 6, 960, 460)} bg={<Room night />} hero={<Screen x={960} y={460} s={1.1} glow="#FF2244"><g transform="translate(0 -250) scale(0.55)"><Vortex x={0} t={t} s={1.1} flip={false} /></g></Screen>} />],
         [W(c, 'justo'), (lt) => <Cine t={t} mood="cold" cam={kb(lt, 1.4, 1.7, 6, 960, 450)} bg={<Room night />} hero={<><Me x={900} t={t} pose={POSES.phone} eyes="wide" /></>} />],
@@ -247,15 +283,31 @@ export const Ch8: F = ({t}) => {
       {shots(t, [
         [CS(c), (lt) => <Cine t={t} mood="red" cam={kb(lt, 1.0, 1.15, 5)} rain bg={<CityNight />} hero={<><Me x={500 + lt * 60} t={t} eyes="angry" />{[900, 1300].map((x, i) => <Car key={x} x={x} y={t > W(c, '100') + 0.6 ? GY : 400 + Math.sin(t * 2 + i) * 30} c={['#4361EE', '#2A9D8F'][i]} s={1.3} />)}</>} />],
         [W(c, '50'), (lt) => <Cine t={t} mood="red" cam={kb(lt, 1.2, 1.3, 3)} rain bg={<CityNight />} hero={<>{[1000, 1250].map((x, i) => <g key={x}><NPC x={x} t={t} s={1.0} color={COP} flip />{lt < 0.8 && <circle cx={x - 60} cy={GY - 220} r={130} fill="#7CF4FF" opacity={0.3} />}</g>)}<Me x={600} t={t} /></>} />],
-        [W(c, 'vortice'), (lt) => <Cine t={t} mood="red" cam={kb(lt, 2.2, 2.4, 3, 1150, 380)} rain bg={<CityNight />} hero={<Vortex x={1150} t={t} pose={t > W(c, 'rio') ? POSES.laugh : POSES.idle} mouth={t > W(c, 'rio') ? 'open' : 'grin'} />} />],
+        [W(c, 'vortice'), (lt) => <Cine t={t} mood="red" cam={kb(lt, 2.2, 2.4, 3, 1150, 380)} rain bg={<CityNight />} hero={<><Aura x={1150} s={1.3} t={t} /><Vortex x={1150} t={t} pose={t > W(c, 'rio') ? POSES.laugh : POSES.idle} mouth={t > W(c, 'rio') ? 'open' : 'grin'} /></>} />],
+        [W(c, 'rio') + 0.5, (lt) => {
+          const balls = [0.1, 0.45, 0.8];
+          const hits = balls.map((b) => b + 0.5);
+          return <Cine t={t} mood="red" cam={{...kb(lt, 1.0, 1.1, 3), ...quake(lt, hits, 10)}} rain bg={<CityNight />} hero={<><ZeroZone x={600} t={lt} hits={hits} /><Me x={600} t={t} eyes="wide" /><Aura x={1550} s={1.3} t={t} /><Vortex x={1550} t={t} pose={POSES.point} />{balls.map((b, i) => <EnergyBall key={i} x0={1420} y0={GY - 420} x1={760} y1={GY - 260 - i * 40} t={lt} at={b} dur={0.5} />)}</>} />;
+        }],
         [bus, (lt) => {
-          const fall = W(c, '10') + 0.3;
-          const k = Math.min(1, lt / 1.6);
-          return <Cine t={t} mood="red" cam={{...kb(lt, 1.0, 1.1, 3), ...(t > fall ? shake(t, 10 * Math.max(0, 1 - (t - fall))) : {})}} rain bg={<CityNight />} hero={<><Me x={600} t={t} eyes="wide" /><Bus x={t > fall ? 1000 : 1500 - k * 450} y={t > fall ? GY : 500 - Math.sin(k * 3) * 60} s={1.1} rot={t > fall ? 0 : -10} /><Vortex x={1650} t={t} pose={POSES.point} /></>} />;
+          const fall = W(c, '10') - bus + 0.3;
+          const k = lerpT(lt, 0, fall, 0, 1, EASE_IN);
+          const bx = (kk: number) => 1650 - kk * 900, by = (kk: number) => 380 - Math.sin(kk * Math.PI) * 140;
+          const dropped = lt > fall;
+          const yDrop = dropped ? lerpT(lt, fall, fall + 0.35, by(1), GY, EASE_IN) : by(k);
+          return <AbsoluteFill style={{filter: impactFilter(lt, [fall + 0.35])}}><Cine t={t} mood="red" cam={{...kb(lt, 1.0, 1.1, 3), ...quake(lt, [fall + 0.35], 34)}} rain bg={<CityNight />} hero={<>
+            <ZeroZone x={600} t={lt} hits={[fall]} r={420} />
+            <Me x={600} t={t} eyes="wide" mouth="o" />
+            {!dropped && [0.06, 0.12, 0.18].map((d, i) => <g key={i} opacity={0.25 - i * 0.07}><Bus x={bx(Math.max(0, k - d))} y={by(Math.max(0, k - d))} s={1.1} rot={-10 - (k - d) * 40} /></g>)}
+            <Bus x={dropped ? bx(1) : bx(k)} y={yDrop} s={1.1} rot={dropped ? lerpT(lt, fall, fall + 0.35, -50, 0) : -10 - k * 40} />
+            <Shockwave x={bx(1)} y={GY} t={lt} at={fall + 0.35} max={900} />
+            <Debris x={bx(1)} t={lt} at={fall + 0.35} n={22} power={1.1} />
+            <Aura x={1700} s={1.3} t={t} /><Vortex x={1700} t={t} pose={POSES.point} />
+          </>} /></AbsoluteFill>;
         }],
         [W(c, 'sonrisa'), (lt) => <Cine t={t} mood="cold" cam={kb(lt, 2.4, 2.6, 2, 1150, 380)} rain bg={<CityNight />} hero={<Vortex x={1150} t={t} eyes="wide" mouth="o" />} />],
         [W(c, 'corri'), (lt) => <Cine t={t} mood="night" cam={kb(lt, 1.2, 1.35, 4)} rain bg={<CityNight />} hero={<><Me x={700} t={t} pose={POSES.tug} eyes="angry" /><NPC x={850} t={t} s={0.65} color="#FFB703" pose={POSES.scared} eyes="wide" /></>} />],
-        [W(c, 'cuando'), (lt) => punch(t, kb(lt, 1.3, 1.5, 3, 960, 480), 99, false)],
+        [W(c, 'cuando'), (lt) => <Cine t={t} mood="red" cam={kb(lt, 1.3, 1.5, 3, 960, 480)} rain bg={<CityNight />} hero={<><ZeroZone x={820} t={lt} /><Me x={820} t={t} eyes="angry" /><Aura x={1080} s={1.3} t={t} /><Vortex x={1080} t={t} pose={POSES.fists} mouth="teeth" /></>} />],
       ])}
       <CText t={t} at={W(c, '100')} until={W(c, '50') - 0.05} a="100 M" size={180} y={100} />
       <CText t={t} at={W(c, '50')} until={W(c, 'vortice') - 0.05} a="50 M" size={180} y={100} />
@@ -271,9 +323,18 @@ export const Ch9: F = ({t}) => {
   return (
     <AbsoluteFill>
       {shots(t, [
-        [CS(c), (lt) => punch(t, kb(lt, 1.4, 1.6, 2, 960, 480), 99, true)],
-        [W(c, 'no'), (lt) => punch(t, kb(lt, 2.4, 2.6, 3, 820, 400), 99, false)],
-        [W(c, 'su', 2), (lt) => punch(t, kb(lt, 1.5, 1.8, 6, 1110, 420), n, false)],
+        [CS(c), (lt) => fight(t, lt, {hits: [0.55, 1.35, 2.1], n: 99, zoom: [1.15, 1.5]})],
+        [W(c, 'no'), (lt) => <Cine t={t} mood="cold" cam={kb(lt, 2.4, 2.6, 3, 820, 400)} rain bg={<CityNight />} hero={<><ZeroZone x={820} t={lt} /><Me x={820} t={t} eyes="normal" /><NPC x={1000} s={1.3} t={t} color={RED} pose={POSES.point} flip /></>} />],
+        [W(c, 'su', 2), (lt) => {
+          const drops = [W(c, '50'), W(c, '10'), W(c, 'cero')].map((x) => x - W(c, 'su', 2));
+          return <AbsoluteFill style={{filter: impactFilter(lt, drops, 0.05)}}><Cine t={t} mood={n === 0 ? 'cold' : 'red'} cam={{...kb(lt, 1.5, 1.8, 6, 1060, 420), ...quake(lt, drops, 14)}} rain bg={<CityNight />} hero={<>
+            <ZeroZone x={820} t={lt} hits={drops} />
+            <Me x={820} t={t} />
+            <Aura x={1050} s={1.3} t={t} k={n / 99} />
+            {drops.map((d, i) => <Shockwave key={i} x={1050} y={GY - 260} t={lt} at={d} max={500} color="#9AA0A6" />)}
+            <Vortex x={1050} t={t} n={n} pose={n < 50 ? POSES.kneel : POSES.scared} eyes={n < 50 ? 'scared' : 'wide'} mouth="o" />
+          </>} /></AbsoluteFill>;
+        }],
         [W(c, 'vortice'), (lt) => <Cine t={t} mood="cold" cam={kb(lt, 2.4, 2.7, 4, 1110, 420)} rain bg={<CityNight />} hero={<Vortex x={1110} t={t} n={0} pose={POSES.hands} eyes="wide" mouth="o" />} />],
         [W(c, 'policia'), (lt) => <Cine t={t} mood="night" cam={kb(lt, 1.0, 1.1, 4)} rain bg={<CityNight />} hero={<><Vortex x={1000 + lt * 80} t={t} n={0} pose={POSES.idle} eyes="side" mouth="frown" /><NPC x={1250 + lt * 80} t={t} color={COP} flip /><NPC x={780 + lt * 80} t={t} color={COP} /></>} />],
         [W(c, 'calle'), (lt) => <Cine t={t} mood="dusk" cam={kb(lt, 1.0, 1.15, 6)} bg={<CityNight />} hero={<><Crowd t={t} n={16} cheer /><Me x={960} t={t} eyes="happy" mouth="grin" /></>} />],
@@ -308,19 +369,39 @@ export const Ch10: F = ({t}) => {
 // ---------- 11: el contador ----------
 export const Ch11: F = ({t}) => {
   const c = 11;
-  const n = t < W(c, 'uno') ? 0 : t < W(c, 'dos') ? 1 : t < W(c, 'siete') ? 2 : t < W(c, '30') ? 7 : 30 + Math.floor(Math.max(0, t - W(c, 'sigue')) * 2);
+  const tl = W(c, 'esta');
+  const n: number | string = t < W(c, 'uno') ? 0 : t < W(c, '10') ? 1 : t < W(c, '100') ? 10 : t < tl ? 100 : t < W(c, 'tumbado') ? 0 : '∞';
+  const rot = t < W(c, 'girado') ? 0 : t < W(c, 'tumbado') ? lerpT(t, W(c, 'girado'), W(c, 'tumbado'), 0, 90, SPRING) : 0;
+  const boom = W(c, 'infinito');
   return (
     <AbsoluteFill>
       {shots(t, [
         [CS(c), (lt) => <Cine t={t} mood="cold" cam={kb(lt, 1.0, 1.15, 6)} bg={<Bathroom />} mid={<Mirror x={960} y={480} w={620} h={700}><Hero x={960} y={1260} s={2.2} t={t} /></Mirror>} />],
         [W(c, 'movio'), (lt) => <Cine t={t} mood="future" cam={kb(lt, 1.8, 2.2, 6, 960, 380)} bg={<Bathroom />} hero={<Me x={960} s={1.2} t={t} eyes="wide" mouth="o" n={n} />} />],
-        [W(c, 'lo'), (lt) => <Cine t={t} mood="night" cam={kb(lt, 1.2, 1.4, 8)} bg={<CityNight />} hero={<Me x={960} s={1.2} t={t} eyes="glow" n={n} />} />],
-        [W(c, 'hoy'), (lt) => <Cine t={t} mood="future" cam={kb(lt, 1.6, 2.4, 6, 960, 300)} bg={<CityNight />} hero={<Me x={960} s={1.2} t={t} eyes="glow" glow n={n} />} />],
-        [W(c, 'que', 5), (lt) => <Cine t={t} mood="dusk" cam={kb(lt, 1.1, 1.2, 5)} bg={<CityNight />} hero={<><Me x={800} t={t} pose={POSES.pointDown} eyes="happy" mouth="grin" n={n} /><g transform={`translate(1200 ${720 + Math.sin(t * 7) * 18})`}><path d="M -40 -140 L 40 -140 L 40 0 L 100 0 L 0 120 L -100 0 L -40 0 Z" fill="#FFD23F" stroke="#111" strokeWidth={8} strokeLinejoin="round" /></g></>} />],
+        [W(c, 'cada', 2), (lt) => <Cine t={t} mood="night" cam={kb(lt, 1.0, 1.15, 6)} bg={<CityNight />} hero={<>
+          {[400, 650, 1270, 1520].map((x, i) => <g key={x}><P x={x} t={t} s={0.9} color={['#457B9D', VEC, DANI, '#6A4C93'][i]} n={[54, 40, 88, 71][i]} />
+            {Array.from({length: 5}).map((_, j) => { const p = (lt * 0.8 + j / 5 + i * 0.13) % 1; return <circle key={j} cx={x + (960 - x) * p} cy={GY - 0.9 * 470 + (GY - 1.15 * 250 - (GY - 0.9 * 470)) * p - Math.sin(p * Math.PI) * 120} r={9} fill="#7CF4FF" opacity={0.8 * (1 - p * 0.5)} />; })}</g>)}
+          <Me x={960} s={1.15} t={t} eyes="glow" n={n} />
+        </>} />],
+        [tl, (lt) => <Cine t={t} mood={t > W(c, 'tumbado') ? 'dusk' : 'cold'} cam={{...kb(lt, 1.0, 1.1, 8, 960, 600), ...quake(t, [W(c, 'tumbado')], 16)}} bg={<CityNight lights={false} />} hero={<>
+          <Lvl x={960} y={1830} s={2.6} n={n} t={t} rot={rot} />
+          <Shockwave x={960} y={600} t={t} at={W(c, 'tumbado')} max={900} color="#FFD23F" />
+          <SpeedBurst x={960} y={600} t={t} at={W(c, 'tumbado')} color="#FFE8A3" />
+        </>} />],
+        [boom - 0.2, (lt) => <AbsoluteFill style={{filter: impactFilter(t, [boom])}}><Cine t={t} mood="dusk" cam={{...kb(lt, 1.4, 1.0, 3, 960, 420), ...quake(t, [boom], 34)}} bg={<CityNight lights={t > boom + 0.3} />} hero={<>
+          <Aura x={960} s={1.4} t={t} k={lerpT(t, boom, boom + 0.8, 0, 1.3, EASE_OUT)} color="#FFD23F" />
+          <Shockwave x={960} y={GY} t={t} at={boom} max={1500} color="#FFD23F" dur={1.2} />
+          <SpeedBurst x={960} y={GY - 300} t={t} at={boom} color="#FFE8A3" dur={0.8} n={34} />
+          <Debris x={960} t={t} at={boom} n={26} power={1.3} />
+          <Me x={960} s={1.25} t={t} eyes="glow" glow n="∞" />
+        </>} /></AbsoluteFill>],
+        [W(c, 'que', 4), (lt) => <Cine t={t} mood="dusk" cam={kb(lt, 1.1, 1.2, 5)} bg={<CityNight />} hero={<><Aura x={800} s={1.1} t={t} k={0.6} color="#FFD23F" /><Me x={800} t={t} pose={POSES.pointDown} eyes="happy" mouth="grin" n="∞" /><g transform={`translate(1200 ${720 + Math.sin(t * 7) * 18})`}><path d="M -40 -140 L 40 -140 L 40 0 L 100 0 L 0 120 L -100 0 L -40 0 Z" fill="#FFD23F" stroke="#111" strokeWidth={8} strokeLinejoin="round" /></g></>} />],
       ])}
-      <CText t={t} at={W(c, 'contador')} until={W(c, 'hoy') - 0.05} a="NO ERA UN CERO." b="ERA UN CONTADOR" size={110} y={100} color2="#7CF4FF" />
-      <CText t={t} at={W(c, '30')} until={W(c, 'que', 5) - 0.05} a="NIVEL 30" b="Y SUBIENDO" size={150} y={100} color2="#7CF4FF" />
-      <CText t={t} at={W(c, 'que', 5)} a="¿QUÉ NÚMERO" b="TENDRÍAS TÚ?" size={120} y={100} />
+      <CText t={t} at={W(c, '100')} until={tl - 0.05} a="1 → 10 → 100" size={130} y={100} color="#7CF4FF" />
+      <CText t={t} at={W(c, 'girado')} until={W(c, 'tumbado') - 0.05} a="SE HA GIRADO…" size={130} y={100} />
+      <CText t={t} at={W(c, 'tumbado')} until={boom - 0.25} a="NO ES UN 0" b="ES UN 8 TUMBADO" size={110} y={100} color2="#FFD23F" />
+      <CText t={t} at={boom} until={W(c, 'que', 4) - 0.05} a="NIVEL" b="INFINITO" size={150} y={90} color="#fff" color2="#FFD23F" />
+      <CText t={t} at={W(c, 'que', 4)} a="¿QUÉ NÚMERO" b="TENDRÍAS TÚ?" size={120} y={100} />
     </AbsoluteFill>
   );
 };

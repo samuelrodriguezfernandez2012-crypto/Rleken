@@ -903,9 +903,9 @@ def cfg_nivel0largo(m):
     m.tense(at(7, 'cogi'), E[9], roots=(43, 44, 45, 46))
     m.epic(E[9], E[10])
     m.calm(E[10], E[11])
-    m.creepy(E[11], at(11, 'que', 5), root=44)
-    m.outro(at(11, 'que', 5), dur)
-    ev = [('boom', 0.0, 1.0), ('impact', 0.0, 0.8), ('tick', at(0, '90'), 0.7), ('tick', at(0, '70'), 0.7), ('tick', at(0, '50'), 0.7), ('whoosh', at(0, 'hace'), 0.5), ('rise', at(0, 'empezo'), 0.6),
+    m.creepy(E[11], at(11, 'que', 4), root=44)
+    m.outro(at(11, 'que', 4), dur)
+    ev = [('rumble', 0.0, 0.8), ('whoosh', 0.4, 0.6), ('boom', 0.75, 1.0), ('impact', 1.55, 0.9), ('impact', 2.3, 0.9), ('boom', 3.1, 0.9), ('glass', 0.8, 0.5), ('tick', at(0, '90'), 0.7), ('tick', at(0, '70'), 0.7), ('tick', at(0, '50'), 0.7), ('whoosh', at(0, 'hace'), 0.5), ('rise', at(0, 'empezo'), 0.6),
           ('boom', at(1, 'aparecio'), 0.8), ('sparkle', at(1, 'aparecio') + 0.2, 0.6), ('zap', at(1, 'vecina'), 0.4), ('whoosh', at(1, 'profe'), 0.6), ('static', at(1, 'noticias'), 0.4), ('freeze', at(1, 'cero'), 0.6),
           ('heartbeat', at(2, 'llamaban'), 0.7), ('impact', at(2, 'portero') + 0.6, 0.6), ('chime', at(2, 'fallo'), 0.4),
           ('glitch', at(3, '88'), 0.5), ('glitch', at(3, '88', 2), 0.5), ('crack', at(3, '12'), 0.6), ('boom', at(3, 'miedo'), 0.7),
@@ -913,10 +913,10 @@ def cfg_nivel0largo(m):
           ('static', at(5, 'periodista'), 0.4), ('heartbeat', at(5, 'arma'), 0.8),
           ('rumble', at(6, 'vortice'), 0.8), ('boom', at(6, 'tarde'), 0.8), ('whoosh', at(6, 'heroes'), 0.6), ('static', at(6, 'tele'), 0.4), ('ding', at(6, 'telefono'), 0.5),
           ('heartbeat', at(7, 'miedo'), 0.8), ('rumble', at(7, 'humo'), 0.5), ('swell', at(7, 'madre'), 0.5), ('whoosh', at(7, 'cogi'), 0.6),
-          ('impact', at(8, '100'), 0.6), ('glitch', at(8, '50'), 0.5), ('whoosh', at(8, 'autobus'), 0.7), ('boom', at(8, '10') + 0.3, 0.9), ('heartbeat', at(8, 'cuando'), 0.8),
-          ('sonicboom', at(9, 'puñetazo') if False else st[9] + 0.3, 0.9), ('freeze', at(9, 'nada'), 0.6), ('tick', at(9, '99'), 0.7), ('tick', at(9, '50'), 0.7), ('tick', at(9, '10'), 0.7), ('impact', at(9, 'cero'), 0.9), ('swell', at(9, 'calle'), 0.6),
+          ('impact', at(8, '100'), 0.6), ('glitch', at(8, '50'), 0.5), ('zap', at(8, 'rio') + 0.6, 0.6), ('zap', at(8, 'rio') + 0.95, 0.6), ('zap', at(8, 'rio') + 1.3, 0.6), ('whoosh', at(8, 'autobus'), 0.8), ('boom', at(8, '10') + 0.65, 1.0), ('crack', at(8, '10') + 0.7, 0.7), ('heartbeat', at(8, 'cuando'), 0.8),
+          ('boom', st[9] + 0.55, 1.0), ('impact', st[9] + 1.35, 0.9), ('boom', st[9] + 2.1, 1.0), ('freeze', at(9, 'nada'), 0.6), ('tick', at(9, '99'), 0.7), ('tick', at(9, '50'), 0.7), ('tick', at(9, '10'), 0.7), ('impact', at(9, 'cero'), 0.9), ('swell', at(9, 'calle'), 0.6),
           ('chime', at(10, 'hospital'), 0.4), ('sparkle', at(10, 'regalo'), 0.6),
-          ('glitch', at(11, 'movio'), 0.6), ('tick', at(11, 'uno'), 0.6), ('tick', at(11, 'dos'), 0.6), ('tick', at(11, 'siete'), 0.6), ('rise', at(11, '30'), 0.6), ('boom', at(11, '30') + 0.6, 0.7), ('pop', at(11, 'que', 5), 0.6)]
+          ('glitch', at(11, 'movio'), 0.6), ('tick', at(11, 'uno'), 0.6), ('tick', at(11, '10'), 0.6), ('tick', at(11, '100'), 0.7), ('glitch', at(11, 'esta'), 0.6), ('rise', at(11, 'girado'), 0.7), ('impact', at(11, 'tumbado'), 0.9), ('sparkle', at(11, 'tumbado') + 0.2, 0.7), ('boom', at(11, 'infinito'), 1.0), ('sonicboom', at(11, 'infinito'), 0.8), ('pop', at(11, 'que', 4), 0.6)]
     return dur, ev
 
 

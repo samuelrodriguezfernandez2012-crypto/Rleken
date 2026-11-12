@@ -171,6 +171,6 @@ Ve hasta el final: el giro no te lo esperas 🤯
 - **Comentario para fijar:** Las cuentas son reales: 1,70 m × 2 cada día = el día 29 llegas a la Luna 🌕 ¿En qué día parabas tú? 👇
 
 ## Vídeo largo: Mi nivel es 0 (estilo cine, ~7:40) — jue 12 nov 18:00
-- **Título:** Todos tienen un NIVEL de poder. El mío es 0… y por eso me TEMEN 😶🔥
-- **Miniatura (inglés):** MY POWER LEVEL IS 0. / THAT'S WHY THEY FEAR ME.
+- **Título:** Todos tienen un NIVEL de poder. El mío es 0… o eso creía ♾️😶
+- **Miniatura (inglés):** MY POWER LEVEL IS 0. / IT WAS NEVER ZERO. ∞
 - **Comentario para fijar:** ¿Qué número tendrías tú encima de la cabeza? 🔢 Y ahora que el mío sube... ¿hacemos la parte 2? 👇

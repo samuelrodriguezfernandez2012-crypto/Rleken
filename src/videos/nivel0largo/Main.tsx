@@ -74,7 +74,7 @@ export const Nivel0LargoThumb: React.FC = () => {
           <div style={{color: '#fff'}}>MY POWER</div>
           <div style={{color: '#FFD23F'}}>LEVEL IS 0.</div>
         </div>
-        <div style={{position: 'absolute', right: 60, bottom: 60, fontFamily: CF, fontWeight: 900, fontSize: 84, color: '#FF4D6D', textShadow: '0 6px 30px rgba(0,0,0,0.9)', transform: 'rotate(-3deg)', textAlign: 'right', lineHeight: 1}}>THAT'S WHY<br/>THEY FEAR ME.</div>
+        <div style={{position: 'absolute', right: 60, bottom: 60, fontFamily: CF, fontWeight: 900, fontSize: 84, color: '#FF4D6D', textShadow: '0 6px 30px rgba(0,0,0,0.9)', transform: 'rotate(-3deg)', textAlign: 'right', lineHeight: 1}}>IT WAS NEVER<br/>ZERO. ∞</div>
       </AbsoluteFill>
     </AbsoluteFill>
   );

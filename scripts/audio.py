@@ -953,7 +953,24 @@ def cfg_nombre(m):
     return 61.0, ev
 
 
-CFG = {'oceanos': cfg_oceanos, 'nombre': cfg_nombre, 'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
+def cfg_presente(m):
+    m.epic(0.0, 2.4)
+    m.calm(2.4, 11.6)
+    m.tense(11.6, 18.0, roots=(43, 44, 45, 46))
+    m.creepy(18.0, 25.9, root=44)
+    m.tense(25.9, 40.7, roots=(44, 45, 46, 47))
+    m.silence(40.7, 41.0)
+    m.outro(41.0, 51.0)
+    ev = [('boom', 0.0, 1.0), ('rumble', 0.0, 0.6), ('whoosh', 0.6, 0.5), ('glass', 1.2, 0.5), ('glitch', 1.8, 0.6), ('impact', 2.4, 0.6)]
+    for d in [3.8, 6.1, 8.8, 18.0, 26.0, 28.8, 36.0]:
+        ev += [('impact', d, 0.6), ('rise', d - 0.4, 0.4)]
+    ev += [('zap', 4.4, 0.4), ('sparkle', 7.6, 0.4), ('boom', 12.2, 0.8), ('tick', 14.0, 0.4), ('tick', 15.0, 0.4), ('tick', 16.0, 0.4), ('tick', 17.0, 0.4),
+           ('freeze', 23.0, 0.5), ('whispers', 24.4, 0.6), ('heartbeat', 30.0, 0.7), ('glitch', 34.7, 0.5), ('static', 37.6, 0.4),
+           ('boom', 40.8, 0.8), ('heartbeat', 43.4, 0.7), ('whoosh', 44.5, 0.5), ('ding', 47.5, 0.4)]
+    return 51.0, ev
+
+
+CFG = {'presente': cfg_presente, 'oceanos': cfg_oceanos, 'nombre': cfg_nombre, 'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
 
 
 def read_wav(p):

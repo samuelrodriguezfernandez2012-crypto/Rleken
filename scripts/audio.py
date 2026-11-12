@@ -873,7 +873,54 @@ def cfg_doble(m):
     return 69.5, ev
 
 
-CFG = {'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
+def cfg_nivel0largo(m):
+    import json as _j, unicodedata, re
+    st = [c['start'] for c in _j.load(open('assets/nivel0largo/starts.json'))]
+    ws = _j.load(open('src/videos/nivel0largo/words.json'))
+    nm = lambda x: re.sub(r'[^a-z0-9ñ]', '', ''.join(ch for ch in unicodedata.normalize('NFD', x.lower()) if unicodedata.category(ch) != 'Mn'))
+    def at(c, word, n=1):
+        end = st[c + 1] - 0.3 if c + 1 < len(st) else 1e9
+        k = 0
+        for w in ws:
+            s0 = w['start_ms'] / 1000
+            if st[c] - 0.3 <= s0 < end and nm(w['text']) == nm(word):
+                k += 1
+                if k == n:
+                    return s0
+        raise KeyError(word)
+    dur = round(ws[-1]['end_ms'] / 1000 + 3, 2)
+    E = st + [dur]
+    m.epic(0, at(0, 'gente'))
+    m.calm(at(0, 'gente'), E[1])
+    m.happy(E[1], at(1, 'entonces'), prog=(60, 57, 53, 55))
+    m.creepy(at(1, 'entonces'), E[2], root=45, ticks=False)
+    m.calm(E[2], E[3])
+    m.tense(E[3], E[4], roots=(44, 45, 46, 47))
+    m.calm(E[4], E[5])
+    m.creepy(E[5], E[6], root=44)
+    m.tense(E[6], E[7], roots=(42, 43, 44, 45))
+    m.calm(E[7], at(7, 'cogi'))
+    m.tense(at(7, 'cogi'), E[9], roots=(43, 44, 45, 46))
+    m.epic(E[9], E[10])
+    m.calm(E[10], E[11])
+    m.creepy(E[11], at(11, 'que', 5), root=44)
+    m.outro(at(11, 'que', 5), dur)
+    ev = [('boom', 0.0, 1.0), ('impact', 0.0, 0.8), ('tick', at(0, '90'), 0.7), ('tick', at(0, '70'), 0.7), ('tick', at(0, '50'), 0.7), ('whoosh', at(0, 'hace'), 0.5), ('rise', at(0, 'empezo'), 0.6),
+          ('boom', at(1, 'aparecio'), 0.8), ('sparkle', at(1, 'aparecio') + 0.2, 0.6), ('zap', at(1, 'vecina'), 0.4), ('whoosh', at(1, 'profe'), 0.6), ('static', at(1, 'noticias'), 0.4), ('freeze', at(1, 'cero'), 0.6),
+          ('heartbeat', at(2, 'llamaban'), 0.7), ('impact', at(2, 'portero') + 0.6, 0.6), ('chime', at(2, 'fallo'), 0.4),
+          ('glitch', at(3, '88'), 0.5), ('glitch', at(3, '88', 2), 0.5), ('crack', at(3, '12'), 0.6), ('boom', at(3, 'miedo'), 0.7),
+          ('zap', at(4, 'taza'), 0.4), ('glitch', at(4, 'acerque'), 0.5), ('glass', at(4, 'cayo'), 0.6), ('sparkle', at(4, 'interruptor'), 0.6),
+          ('static', at(5, 'periodista'), 0.4), ('heartbeat', at(5, 'arma'), 0.8),
+          ('rumble', at(6, 'vortice'), 0.8), ('boom', at(6, 'tarde'), 0.8), ('whoosh', at(6, 'heroes'), 0.6), ('static', at(6, 'tele'), 0.4), ('ding', at(6, 'telefono'), 0.5),
+          ('heartbeat', at(7, 'miedo'), 0.8), ('rumble', at(7, 'humo'), 0.5), ('swell', at(7, 'madre'), 0.5), ('whoosh', at(7, 'cogi'), 0.6),
+          ('impact', at(8, '100'), 0.6), ('glitch', at(8, '50'), 0.5), ('whoosh', at(8, 'autobus'), 0.7), ('boom', at(8, '10') + 0.3, 0.9), ('heartbeat', at(8, 'cuando'), 0.8),
+          ('sonicboom', at(9, 'puñetazo') if False else st[9] + 0.3, 0.9), ('freeze', at(9, 'nada'), 0.6), ('tick', at(9, '99'), 0.7), ('tick', at(9, '50'), 0.7), ('tick', at(9, '10'), 0.7), ('impact', at(9, 'cero'), 0.9), ('swell', at(9, 'calle'), 0.6),
+          ('chime', at(10, 'hospital'), 0.4), ('sparkle', at(10, 'regalo'), 0.6),
+          ('glitch', at(11, 'movio'), 0.6), ('tick', at(11, 'uno'), 0.6), ('tick', at(11, 'dos'), 0.6), ('tick', at(11, 'siete'), 0.6), ('rise', at(11, '30'), 0.6), ('boom', at(11, '30') + 0.6, 0.7), ('pop', at(11, 'que', 5), 0.6)]
+    return dur, ev
+
+
+CFG = {'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
 
 
 def read_wav(p):

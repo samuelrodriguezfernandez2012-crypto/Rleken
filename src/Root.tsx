@@ -19,6 +19,7 @@ import {Nivel0Short, Nivel0Thumb, DURATION_S as D_N0} from './videos/nivel0/Main
 import {FuerteLargo, FuerteThumb, DURATION_S as D_FU} from './videos/fuerte/Main';
 import {LunaShort, LunaThumb, DURATION_S as D_LUNA} from './videos/luna/Main';
 import {DobleShort, DobleThumb, DURATION_S as D_DOB} from './videos/doble/Main';
+import {Nivel0Largo, Nivel0LargoThumb, DURATION_S as D_N0L} from './videos/nivel0largo/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -54,6 +55,8 @@ export const RemotionRoot: React.FC = () => (
     <Still id="LunaThumb" component={LunaThumb} width={W} height={H} />
     <Composition id="DobleShort" component={DobleShort} durationInFrames={Math.round(D_DOB * FPS)} fps={FPS} width={W} height={H} />
     <Still id="DobleThumb" component={DobleThumb} width={W} height={H} />
+    <Composition id="Nivel0Largo" component={Nivel0Largo} durationInFrames={D_N0L * FPS} fps={FPS} width={1920} height={1080} />
+    <Still id="Nivel0LargoThumb" component={Nivel0LargoThumb} width={1280} height={720} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>

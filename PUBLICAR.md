@@ -161,3 +161,16 @@ Ve hasta el final: el giro no te lo esperas 🤯
 - **Miniatura (en inglés):** 100x STRONGER / THEY CALLED ME A MONSTER.
 - **Etiquetas:** 100 veces más fuerte, qué pasaría si, superfuerza, superpoderes, héroe, historias animadas, animación, stickman, historia completa, chiki, chiki2225, what if
 - **Comentario para fijar:** ¿Tú qué habrías hecho: esconderte o ayudar? 💪 Y ahora que soy x1000... ¿hacemos la parte 2? 👇
+
+## Short: ¿Y si la Luna se acercara? (sin personas) — jue 12 nov 14:00
+- **Título:** ¿Y si la LUNA se acercara cada día? 🌕💥 #shorts · categoría Ciencia y tecnología
+- **Comentario para fijar:** Dato real: la Luna se aleja de nosotros casi 4 cm cada año 🌕 ¿La echarías de menos? 👇
+
+## Short: Cada día el doble de grande — jue 12 nov 16:00
+- **Título:** Cada día soy el DOBLE de grande… Día 29 😱 #shorts
+- **Comentario para fijar:** Las cuentas son reales: 1,70 m × 2 cada día = el día 29 llegas a la Luna 🌕 ¿En qué día parabas tú? 👇
+
+## Vídeo largo: Mi nivel es 0 (estilo cine, ~7:40) — jue 12 nov 18:00
+- **Título:** Todos tienen un NIVEL de poder. El mío es 0… y por eso me TEMEN 😶🔥
+- **Miniatura (inglés):** MY POWER LEVEL IS 0. / THAT'S WHY THEY FEAR ME.
+- **Comentario para fijar:** ¿Qué número tendrías tú encima de la cabeza? 🔢 Y ahora que el mío sube... ¿hacemos la parte 2? 👇

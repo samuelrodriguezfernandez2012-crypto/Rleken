@@ -23,10 +23,10 @@ export const Suit: React.FC<{x: number; y?: number; s?: number; pose?: any; flip
 export {Hero, NPC, POSES};
 
 // ---------- fondos ----------
-export const CityNight: React.FC<{lights?: boolean; t?: number}> = ({lights = true}) => (
+export const CityNight: React.FC<{lights?: boolean; t?: number; noSky?: boolean}> = ({lights = true, noSky}) => (
   <g>
-    <rect width={LW} height={LH} fill="#140F2E" />
-    <circle cx={1500} cy={200} r={70} fill="#F4F1DE" opacity={0.9} />
+    {!noSky && <rect width={LW} height={LH} fill="#140F2E" />}
+    {!noSky && <circle cx={1500} cy={200} r={70} fill="#F4F1DE" opacity={0.9} />}
     {Array.from({length: 16}).map((_, i) => {
       const w = 110 + rnd(i) * 80, h = 260 + rnd(i + 3) * 420, x = i * 125 - 30;
       return (

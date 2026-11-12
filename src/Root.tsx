@@ -20,6 +20,8 @@ import {FuerteLargo, FuerteThumb, DURATION_S as D_FU} from './videos/fuerte/Main
 import {LunaShort, LunaThumb, DURATION_S as D_LUNA} from './videos/luna/Main';
 import {DobleShort, DobleThumb, DURATION_S as D_DOB} from './videos/doble/Main';
 import {Nivel0Largo, Nivel0LargoThumb, DURATION_S as D_N0L} from './videos/nivel0largo/Main';
+import {OceanosShort, OceanosThumb, DURATION_S as D_OCE} from './videos/oceanos/Main';
+import {NombreShort, NombreThumb, DURATION_S as D_NOM} from './videos/nombre/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -57,6 +59,10 @@ export const RemotionRoot: React.FC = () => (
     <Still id="DobleThumb" component={DobleThumb} width={W} height={H} />
     <Composition id="Nivel0Largo" component={Nivel0Largo} durationInFrames={D_N0L * FPS} fps={FPS} width={1920} height={1080} />
     <Still id="Nivel0LargoThumb" component={Nivel0LargoThumb} width={1280} height={720} />
+    <Composition id="OceanosShort" component={OceanosShort} durationInFrames={Math.round(D_OCE * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="OceanosThumb" component={OceanosThumb} width={W} height={H} />
+    <Composition id="NombreShort" component={NombreShort} durationInFrames={Math.round(D_NOM * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="NombreThumb" component={NombreThumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>

@@ -77,7 +77,9 @@ export const Stars: React.FC<{t: number; n?: number}> = ({t, n = 160}) => (
     <ellipse cx={1400} cy={300} rx={700} ry={180} fill="#3A2A7A" opacity={0.18} transform="rotate(-20 1400 300)" />
   </g>
 );
-export const Earth: React.FC<{x: number; y: number; r: number; t: number; cracks?: number; rings?: number; fire?: number}> = ({x, y, r, t, cracks = 0, rings = 0, fire = 0}) => {
+export const Earth: React.FC<{x: number; y: number; r: number; t: number; cracks?: number; rings?: number; fire?: number; dry?: number; mars?: number}> = ({x, y, r, t, cracks = 0, rings = 0, fire = 0, dry = 0, mars = 0}) => {
+  const mix = (a: string, b: string, k: number) => { const pa = a.match(/\w\w/g)!.map((h) => parseInt(h, 16)), pb = b.match(/\w\w/g)!.map((h) => parseInt(h, 16)); return '#' + pa.map((v, i) => Math.round(v + (pb[i] - v) * k).toString(16).padStart(2, '0')).join(''); };
+  const c1 = mix(mix('6EC1FF', 'E8DCC8', dry), 'E9A07A', mars), c2 = mix(mix('1C5FB8', 'C9B28E', dry), 'C1440E', mars), c3 = mix(mix('0A1F4A', '5E4A32', dry), '5A1A0A', mars);
   const id = `e${Math.round(x)}${Math.round(y)}${Math.round(r)}`;
   const ring = (front: boolean) => rings > 0 && (
     <g opacity={rings}>
@@ -91,16 +93,16 @@ export const Earth: React.FC<{x: number; y: number; r: number; t: number; cracks
         <clipPath id={id}><circle cx={x} cy={y} r={r} /></clipPath>
         <clipPath id={`${id}f`}><rect x={x - r * 3} y={y} width={r * 6} height={r * 3} /></clipPath>
         <clipPath id={`${id}b`}><rect x={x - r * 3} y={y - r * 3} width={r * 6} height={r * 3} /></clipPath>
-        <radialGradient id={`${id}g`} cx="35%" cy="30%" r="75%"><stop offset="0" stopColor="#6EC1FF" /><stop offset="0.6" stopColor="#1C5FB8" /><stop offset="1" stopColor="#0A1F4A" /></radialGradient>
+        <radialGradient id={`${id}g`} cx="35%" cy="30%" r="75%"><stop offset="0" stopColor={c1} /><stop offset="0.6" stopColor={c2} /><stop offset="1" stopColor={c3} /></radialGradient>
       </defs>
       {ring(false)}
-      <circle cx={x} cy={y} r={r * 1.08} fill="#5AB8FF" opacity={0.25} filter="url(#blurGlow)" />
+      <circle cx={x} cy={y} r={r * 1.08} fill={mix('5AB8FF', 'E9A07A', Math.max(dry * 0.6, mars))} opacity={0.25} filter="url(#blurGlow)" />
       <circle cx={x} cy={y} r={r} fill={`url(#${id}g)`} />
       <g clipPath={`url(#${id})`}>
         {[[-0.4, -0.2, 0.42, 0.3], [0.35, 0.15, 0.35, 0.42], [-0.1, 0.5, 0.3, 0.18], [0.5, -0.5, 0.22, 0.16]].map(([dx, dy, rx, ry], i) => (
-          <ellipse key={i} cx={x + ((dx + t * 0.03) % 1.6 - 0.2) * r} cy={y + dy * r} rx={rx * r} ry={ry * r} fill="#3E9B4F" opacity={0.9} />
+          <ellipse key={i} cx={x + ((dx + t * 0.03) % 1.6 - 0.2) * r} cy={y + dy * r} rx={rx * r} ry={ry * r} fill={mix(mix('3E9B4F', 'A68A64', dry), '8E3A1A', mars)} opacity={0.9} />
         ))}
-        {[0.1, 0.45, 0.8].map((k, i) => <ellipse key={i} cx={x + ((k + t * 0.05) % 1.4 - 0.7) * r * 2} cy={y + (i - 1) * r * 0.5} rx={r * 0.5} ry={r * 0.08} fill="#fff" opacity={0.55} />)}
+        {dry < 0.5 && [0.1, 0.45, 0.8].map((k, i) => <ellipse key={i} cx={x + ((k + t * 0.05) % 1.4 - 0.7) * r * 2} cy={y + (i - 1) * r * 0.5} rx={r * 0.5} ry={r * 0.08} fill="#fff" opacity={0.55} />)}
         {fire > 0 && Array.from({length: 14}).map((_, i) => <circle key={i} cx={x + (rnd(i) - 0.5) * r * 1.6} cy={y + (rnd(i + 4) - 0.5) * r * 1.6} r={r * 0.08 * (0.5 + rnd(i + 2))} fill="#FF7A1A" opacity={fire * (0.5 + 0.5 * Math.sin(t * 6 + i))} filter="url(#blurGlow)" />)}
         {cracks > 0 && Array.from({length: 6}).map((_, i) => <path key={i} d={`M ${x + (rnd(i) - 0.5) * r} ${y + (rnd(i + 2) - 0.5) * r} l ${r * 0.2} ${r * 0.1} l -${r * 0.08} ${r * 0.2} l ${r * 0.18} ${r * 0.08}`} stroke="#FF9A3C" strokeWidth={r * 0.025} fill="none" opacity={cracks} />)}
         <circle cx={x + r * 0.45} cy={y + r * 0.35} r={r * 1.05} fill="#000" opacity={0.35} />

@@ -41,3 +41,4 @@ El espectador tiene que quedar enganchado desde el primer fotograma:
 - Cada idea: Short (50-60 s) + vídeo largo (8-10 min).
 - Miniaturas de los vídeos largos: en INGLÉS.
 - Nada de temas de "dato curioso" sin historia (el usuario los ha borrado por aburridos).
+- No todos los vídeos necesitan personajes: si sale un personaje, es StickmanV2; pero también valen vídeos sin personas (espacio, planetas, mapas, objetos, animales, máquinas, datos visuales...).

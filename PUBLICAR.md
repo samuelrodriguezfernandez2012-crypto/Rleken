@@ -217,3 +217,11 @@ Ve hasta el final: el giro no te lo esperas 🤯
 > (Programados el 13 nov a las 17:01, cuando Metricool volvió a conectar)
 > - tiempo → https://res.cloudinary.com/qdypdvl7/video/upload/v1794520141/chiki/chiki_tiempo_short.mp4 · miniatura https://res.cloudinary.com/qdypdvl7/image/upload/v1794520143/chiki/chiki_tiempo_thumb.jpg · 13 nov 12:00
 > - insomnio → https://res.cloudinary.com/qdypdvl7/video/upload/v1794520144/chiki/chiki_insomnio_short.mp4 · miniatura https://res.cloudinary.com/qdypdvl7/image/upload/v1794520146/chiki/chiki_insomnio_thumb.jpg · 13 nov 16:00
+
+## SERIE «¿Cuánto aguantarías?» (desde el 13 nov 2026, para conseguir suscriptores)
+### #1 Sin agua — viernes 13 nov 2026, 23:30 (Metricool id 427529688)
+- **Título:** ¿Cuánto aguantarías SIN AGUA? 💧 #1 #shorts
+- **Comentario fijado:** Mañana: el espacio sin traje 🚀 ¿Qué episodio queréis después? Os leo 👇
+### #2 Espacio sin traje — sábado 14 nov 2026, 13:00 (Metricool id 427532278)
+- **Título:** ¿Cuánto aguantarías en el ESPACIO sin traje? 🚀 #2 #shorts
+- **Comentario fijado:** El próximo: el fondo del mar 🌊 ¿Cuántos segundos aguantarías tú?

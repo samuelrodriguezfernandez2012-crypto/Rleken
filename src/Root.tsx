@@ -25,6 +25,8 @@ import {NombreShort, NombreThumb, DURATION_S as D_NOM} from './videos/nombre/Mai
 import {PresenteShort, PresenteThumb, DURATION_S as D_PRE} from './videos/presente/Main';
 import {TiempoShort, TiempoThumb, DURATION_S as D_TIE} from './videos/tiempo/Main';
 import {InsomnioShort, InsomnioThumb, DURATION_S as D_INS} from './videos/insomnio/Main';
+import {AguaShort, AguaThumb, DURATION_S as D_AGU} from './videos/agua/Main';
+import {EspacioShort, EspacioThumb, DURATION_S as D_ESP} from './videos/espacio/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -72,6 +74,10 @@ export const RemotionRoot: React.FC = () => (
     <Still id="TiempoThumb" component={TiempoThumb} width={W} height={H} />
     <Composition id="InsomnioShort" component={InsomnioShort} durationInFrames={Math.round(D_INS * FPS)} fps={FPS} width={W} height={H} />
     <Still id="InsomnioThumb" component={InsomnioThumb} width={W} height={H} />
+    <Composition id="AguaShort" component={AguaShort} durationInFrames={Math.round(D_AGU * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="AguaThumb" component={AguaThumb} width={W} height={H} />
+    <Composition id="EspacioShort" component={EspacioShort} durationInFrames={Math.round(D_ESP * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="EspacioThumb" component={EspacioThumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>

@@ -49,3 +49,9 @@ El espectador tiene que quedar enganchado desde el primer fotograma:
 - Siempre ciencia o hechos reales, con algún dato concreto (cifras, fechas, casos reales).
 - Se puede mezclar con más acción y tensión en el gancho, pero lo principal es que sea curioso.
 - NO: finales tipo truco para niños ("no escribas X en los comentarios"), historias tontas de poderes sin ciencia (el de "mi nombre" no gustó), ni temas que solo describen sin sorprender (el de océanos no pareció curioso).
+
+## Objetivo: 500 suscriptores (desde el 13 nov 2026)
+- Serie fija **«¿Cuánto aguantarías? #N»** (`src/videos/serie/kit.tsx`): etiqueta `SerieTag` siempre visible y tarjeta final `FollowCard` ("MAÑANA · EPISODIO #N+1" + botón SUSCRIBIRSE que se pulsa solo).
+- Cada episodio acaba anunciando el siguiente ("Mañana: … Sígueme para no perdértelo").
+- Siempre StickmanV2 azul, mismo estilo, títulos con «#N».
+- Hechos ya: #1 Sin agua, #2 Espacio sin traje. Siguiente prometido: #3 Fondo del mar.

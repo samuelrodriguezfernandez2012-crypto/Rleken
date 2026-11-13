@@ -1004,7 +1004,39 @@ def cfg_insomnio(m):
     return 57.0, ev
 
 
-CFG = {'tiempo': cfg_tiempo, 'insomnio': cfg_insomnio, 'presente': cfg_presente, 'oceanos': cfg_oceanos, 'nombre': cfg_nombre, 'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
+def cfg_agua(m):
+    m.epic(0.0, 2.3)
+    m.calm(2.3, 10.8)
+    m.tense(10.8, 27.5, roots=(43, 44, 45, 46))
+    m.creepy(27.5, 38.0, root=44)
+    m.epic(38.0, 53.6)
+    m.outro(53.6, 60.0)
+    ev = [('boom', 0.0, 1.0), ('heartbeat', 0.6, 0.8), ('glass', 1.2, 0.5), ('whoosh', 1.8, 0.5)]
+    for d in [2.3, 10.9, 18.6, 27.6, 40.9]:
+        ev += [('impact', d, 0.7), ('rise', d - 0.4, 0.4)]
+    ev += [('heartbeat', 22.3, 0.8), ('heartbeat', 23.3, 0.8), ('heartbeat', 24.1, 0.8), ('glitch', 25.6, 0.5), ('whispers', 28.8, 0.8), ('swell', 33.8, 0.5),
+           ('impact', 46.7, 0.6), ('ding', 48.6, 0.3), ('whoosh', 53.7, 0.6), ('pop', 54.0, 0.6), ('ding', 55.4, 0.6), ('chime', 55.6, 0.6)]
+    return 60.0, ev
+
+
+def cfg_espacio(m):
+    m.epic(0.0, 2.8)
+    m.calm(2.8, 8.5)
+    m.tense(8.5, 30.3, roots=(43, 44, 45, 46))
+    m.silence(30.3, 30.6)
+    m.creepy(30.6, 35.5, root=44)
+    m.epic(35.5, 56.8)
+    m.outro(56.8, 63.0)
+    ev = [('boom', 0.0, 1.0), ('wind', 0.0, 0.7), ('static', 0.6, 0.5), ('zap', 1.2, 0.5), ('heartbeat', 1.8, 0.7)]
+    for d in [2.9, 8.6, 18.3, 30.4, 42.0]:
+        ev += [('impact', d, 0.7), ('rise', d - 0.4, 0.4)]
+    ev += [('wind', 10.2, 0.8), ('crack', 14.8, 0.5), ('sparkle', 21.3, 0.4), ('swell', 28.1, 0.5), ('heartbeat', 31.7, 0.8), ('heartbeat', 33.0, 0.6),
+           ('chime', 37.5, 0.5), ('tick', 38.8, 0.4), ('tick', 39.8, 0.4), ('static', 46.5, 0.5), ('whispers', 51.2, 0.6), ('sparkle', 53.4, 0.5),
+           ('whoosh', 56.9, 0.6), ('pop', 57.2, 0.6), ('ding', 58.6, 0.6), ('chime', 58.8, 0.6)]
+    return 63.0, ev
+
+
+CFG = {'agua': cfg_agua, 'espacio': cfg_espacio, 'tiempo': cfg_tiempo, 'insomnio': cfg_insomnio, 'presente': cfg_presente, 'oceanos': cfg_oceanos, 'nombre': cfg_nombre, 'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
 
 
 def read_wav(p):

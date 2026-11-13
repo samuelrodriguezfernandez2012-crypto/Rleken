@@ -42,3 +42,10 @@ El espectador tiene que quedar enganchado desde el primer fotograma:
 - Miniaturas de los vídeos largos: en INGLÉS.
 - Nada de temas de "dato curioso" sin historia (el usuario los ha borrado por aburridos).
 - No todos los vídeos necesitan personajes: si sale un personaje, es StickmanV2; pero también valen vídeos sin personas (espacio, planetas, mapas, objetos, animales, máquinas, datos visuales...).
+
+## Formato favorito (desde el 13 nov 2026): CURIOSO QUE TE HACE PENSAR
+- Lo que más le gusta: "Si paras el tiempo, mueres" y "11 días sin dormir". Informan y atraen a la vez.
+- Fórmula: algo que parece genial o normal → datos REALES que lo dan la vuelta (paso a paso: 1, 2, 3… o Día 1… Día 11) → giro final inquietante → pregunta que haga pensar.
+- Siempre ciencia o hechos reales, con algún dato concreto (cifras, fechas, casos reales).
+- Se puede mezclar con más acción y tensión en el gancho, pero lo principal es que sea curioso.
+- NO: finales tipo truco para niños ("no escribas X en los comentarios"), historias tontas de poderes sin ciencia (el de "mi nombre" no gustó), ni temas que solo describen sin sorprender (el de océanos no pareció curioso).

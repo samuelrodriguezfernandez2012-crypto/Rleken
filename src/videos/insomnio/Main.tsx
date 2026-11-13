@@ -14,7 +14,7 @@ const Caps = makeCaps(words as any, /\d|dormir|microsueños|sombras|real|récord
 const kbV = (lt: number, s0: number, s1: number, d = 6, ox = 960, oy = 540) => kb(lt, 1 + (s0 - 1) * 0.3, 1 + (s1 - 1) * 0.3, d, ox, oy);
 const shake = (t: number, k: number) => ({x: Math.sin(t * 61) * k, y: Math.cos(t * 53) * k * 0.6});
 
-const Shadows: React.FC<{t: number; k: number}> = ({t, k}) => (
+export const Shadows: React.FC<{t: number; k: number}> = ({t, k}) => (
   <g opacity={k}>
     {[[260, 1], [1660, -1], [1380, 1]].map(([x, d], i) => (
       <g key={i} transform={`translate(${x + Math.sin(t * 0.8 + i) * 40 * d} ${GY}) scale(${1.3 + i * 0.2})`} opacity={0.5 + 0.3 * Math.sin(t * 2 + i)}>
@@ -25,7 +25,7 @@ const Shadows: React.FC<{t: number; k: number}> = ({t, k}) => (
     ))}
   </g>
 );
-const Brain: React.FC<{t: number; off: number}> = ({t, off}) => (
+export const Brain: React.FC<{t: number; off: number}> = ({t, off}) => (
   <g transform="translate(960 520) scale(1.6)">
     <ellipse rx={170} ry={130} fill="#F4A7B9" stroke="#111" strokeWidth={6} />
     {Array.from({length: 14}).map((_, i) => {
@@ -35,14 +35,14 @@ const Brain: React.FC<{t: number; off: number}> = ({t, off}) => (
     {[-90, -30, 30, 90].map((x) => <path key={x} d={`M ${x} -120 q 30 60 0 120 q -30 60 0 120`} stroke="#C9184A" strokeWidth={4} fill="none" opacity={0.5} />)}
   </g>
 );
-const Clock: React.FC<{t: number; speed: number}> = ({t, speed}) => (
+export const Clock: React.FC<{t: number; speed: number}> = ({t, speed}) => (
   <g transform="translate(1500 260)">
     <circle r={110} fill="#F1FAEE" stroke="#111" strokeWidth={8} />
     <line x1={0} y1={0} x2={Math.sin(t * speed) * 80} y2={-Math.cos(t * speed) * 80} stroke="#111" strokeWidth={8} strokeLinecap="round" />
     <line x1={0} y1={0} x2={Math.sin(t * speed / 12) * 55} y2={-Math.cos(t * speed / 12) * 55} stroke="#E63946" strokeWidth={10} strokeLinecap="round" />
   </g>
 );
-const Book: React.FC<{t: number; stamp: number}> = ({t, stamp}) => (
+export const Book: React.FC<{t: number; stamp: number}> = ({t, stamp}) => (
   <g transform="translate(960 520) scale(0.85)">
     <rect x={-330} y={-230} width={660} height={460} rx={14} fill="#1D3557" stroke="#111" strokeWidth={10} />
     <rect x={-300} y={-200} width={600} height={400} rx={8} fill="none" stroke="#FFD23F" strokeWidth={6} />
@@ -51,7 +51,7 @@ const Book: React.FC<{t: number; stamp: number}> = ({t, stamp}) => (
     {stamp > 0 && <g transform={`rotate(-14) scale(${1 + (1 - stamp) * 1.5})`} opacity={stamp}><rect x={-260} y={60} width={520} height={110} rx={10} fill="none" stroke="#E63946" strokeWidth={12} /><text x={0} y={140} textAnchor="middle" fontFamily="Montserrat" fontWeight={900} fontSize={70} fill="#E63946">ELIMINADO</text></g>}
   </g>
 );
-const Count: React.FC<{t: number; at: number}> = ({t, at}) => {
+export const Count: React.FC<{t: number; at: number}> = ({t, at}) => {
   const nums = ['100', '93', '86', '79', '72', '65', '…?'];
   const i = Math.min(6, Math.floor((t - at) / 0.55));
   if (i < 0) return null;

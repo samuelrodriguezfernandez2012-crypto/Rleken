@@ -15,7 +15,7 @@ const Caps = makeCaps(words as any, /\d|agua|litros|sangre|corazón|riñones|alu
 const kbV = (lt: number, s0: number, s1: number, d = 6, ox = 960, oy = 540) => kb(lt, 1 + (s0 - 1) * 0.3, 1 + (s1 - 1) * 0.3, d, ox, oy);
 const shake = (t: number, k: number) => ({x: Math.sin(t * 61) * k, y: Math.cos(t * 53) * k * 0.6});
 
-const Desert: React.FC<{t: number; heat?: number; mirage?: boolean}> = ({t, heat = 0.5, mirage}) => (
+export const Desert: React.FC<{t: number; heat?: number; mirage?: boolean}> = ({t, heat = 0.5, mirage}) => (
   <g>
     <rect width={1920} height={1080} fill="#F4A261" />
     <circle cx={1500} cy={200} r={110 + heat * 40} fill="#FFE24A" />
@@ -26,25 +26,25 @@ const Desert: React.FC<{t: number; heat?: number; mirage?: boolean}> = ({t, heat
     {Array.from({length: 6}).map((_, i) => <path key={i} d={`M ${250 + i * 280} ${GY - 160} q 20 -40 0 -80 q -20 -40 0 -80`} stroke="#fff" strokeWidth={4} fill="none" opacity={0.35 * heat * Math.abs(Math.sin(t * 2 + i))} />)}
   </g>
 );
-const Bottle: React.FC<{x: number; y: number; k: number}> = ({x, y, k}) => (
+export const Bottle: React.FC<{x: number; y: number; k: number}> = ({x, y, k}) => (
   <g transform={`translate(${x} ${y})`}>
     <rect x={-70} y={-260} width={140} height={360} rx={30} fill="#E0F4FF" stroke="#111" strokeWidth={8} opacity={0.9} />
     <rect x={-62} y={92 - 340 * k} width={124} height={340 * k} rx={22} fill="#4EA8DE" />
     <rect x={-34} y={-310} width={68} height={56} rx={10} fill="#1D3557" />
   </g>
 );
-const Vessel: React.FC<{t: number; thick: number}> = ({t, thick}) => (
+export const Vessel: React.FC<{t: number; thick: number}> = ({t, thick}) => (
   <g>
     <rect width={1920} height={1080} fill="#3A0A10" />
     <rect x={0} y={330} width={1920} height={420} fill="#7A1020" />
     {Array.from({length: 40}).map((_, i) => { const sp = 260 * (1 - thick * 0.8); const x = ((rnd(i) * 2200 + t * sp) % 2200) - 140; return <ellipse key={i} cx={x} cy={380 + rnd(i + 2) * 320} rx={48} ry={22} fill="#E63946" stroke="#9D0208" strokeWidth={5} />; })}
   </g>
 );
-const Heart: React.FC<{t: number; bpm: number}> = ({t, bpm}) => {
+export const Heart: React.FC<{t: number; bpm: number}> = ({t, bpm}) => {
   const beat = 1 + 0.12 * Math.max(0, Math.sin(t * (bpm / 60) * Math.PI * 2)) ** 8;
   return <g transform={`translate(960 520) scale(${3 * beat})`}><path d="M 0 40 C -90 -20 -60 -100 0 -60 C 60 -100 90 -20 0 40 Z" fill="#E63946" stroke="#111" strokeWidth={5} /></g>;
 };
-const Bars: React.FC<{t: number; at: number}> = ({t, at}) => {
+export const Bars: React.FC<{t: number; at: number}> = ({t, at}) => {
   const a = easeOut(ramp(t, at, at + 1.2)), b = easeOut(ramp(t, at + 1.4, at + 2.2));
   return (
     <g fontFamily="Montserrat" fontWeight={900}>
@@ -57,7 +57,7 @@ const Bars: React.FC<{t: number; at: number}> = ({t, at}) => {
     </g>
   );
 };
-const Cell: React.FC<{t: number}> = ({t}) => (
+export const Cell: React.FC<{t: number}> = ({t}) => (
   <g>
     <rect width={1920} height={1080} fill="#4A4E69" />
     {Array.from({length: 8}).map((_, i) => <rect key={i} x={i * 250} y={0} width={244} height={GY} fill="#5C6079" stroke="#3A3D52" strokeWidth={6} />)}

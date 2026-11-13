@@ -1036,7 +1036,27 @@ def cfg_espacio(m):
     return 63.0, ev
 
 
-CFG = {'agua': cfg_agua, 'espacio': cfg_espacio, 'tiempo': cfg_tiempo, 'insomnio': cfg_insomnio, 'presente': cfg_presente, 'oceanos': cfg_oceanos, 'nombre': cfg_nombre, 'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
+def cfg_limites(m):
+    import json as _j
+    st = [c['start'] for c in _j.load(open('assets/limites/starts.json'))]
+    ws = _j.load(open('src/videos/limites/words.json'))
+    dur = round(ws[-1]['end_ms'] / 1000 + 3, 2)
+    E = st + [dur]
+    m.epic(0, 4.8)
+    m.calm(4.8, E[1])
+    moods = [('tense', dict(roots=(43, 44, 45, 46))), ('creepy', dict(root=44)), ('calm', {}), ('tense', dict(roots=(44, 45, 46, 47))),
+             ('creepy', dict(root=42)), ('tense', dict(roots=(43, 44, 45, 46))), ('epic', {})]
+    for c, (fn, kw) in enumerate(moods, start=1):
+        getattr(m, fn)(E[c], E[c + 1] - 0.4, **kw)
+        m.silence(E[c + 1] - 0.4, E[c + 1])
+    m.outro(E[8], dur)
+    ev = [('boom', 0.0, 1.0), ('wind', 0.0, 0.6), ('impact', 1.2, 0.6), ('boom', 2.4, 0.5), ('whispers', 3.6, 0.6)]
+    for c in range(1, 9):
+        ev += [('rise', E[c] - 0.6, 0.5), ('impact', E[c], 0.8), ('whoosh', E[c] + 0.1, 0.5)]
+    return dur, ev
+
+
+CFG = {'limites': cfg_limites, 'agua': cfg_agua, 'espacio': cfg_espacio, 'tiempo': cfg_tiempo, 'insomnio': cfg_insomnio, 'presente': cfg_presente, 'oceanos': cfg_oceanos, 'nombre': cfg_nombre, 'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
 
 
 def read_wav(p):

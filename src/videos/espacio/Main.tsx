@@ -15,19 +15,19 @@ const Caps = makeCaps(words as any, /\d|espacio|pulmones|hervir|hierve|desmayas|
 const kbV = (lt: number, s0: number, s1: number, d = 6, ox = 960, oy = 540) => kb(lt, 1 + (s0 - 1) * 0.3, 1 + (s1 - 1) * 0.3, d, ox, oy);
 const shake = (t: number, k: number) => ({x: Math.sin(t * 61) * k, y: Math.cos(t * 53) * k * 0.6});
 
-const Space: React.FC<{t: number}> = ({t}) => <g><Stars t={t} /><Earth x={1500} y={1150} r={520} t={t} /></g>;
-const Float: React.FC<{t: number; s?: number; eyes?: any; mouth?: any; pose?: any; swell?: number; x?: number; y?: number}> = ({t, s = 1.4, eyes = 'wide', mouth = 'o', pose = POSES.fly, swell = 0, x = 960, y = 920}) => (
+export const Space: React.FC<{t: number}> = ({t}) => <g><Stars t={t} /><Earth x={1500} y={1150} r={520} t={t} /></g>;
+export const Float: React.FC<{t: number; s?: number; eyes?: any; mouth?: any; pose?: any; swell?: number; x?: number; y?: number}> = ({t, s = 1.4, eyes = 'wide', mouth = 'o', pose = POSES.fly, swell = 0, x = 960, y = 920}) => (
   <g transform={`translate(${x} ${y + Math.sin(t * 1.2) * 20}) rotate(${Math.sin(t * 0.5) * 12}) scale(${1 + swell * 0.12}) translate(${-x} ${-y})`}>
     <Hero x={x} y={y} s={s} t={t} pose={pose} eyes={eyes} mouth={mouth} />
   </g>
 );
-const Puff: React.FC<{x: number; y: number; t: number; at: number}> = ({x, y, t, at}) => (
+export const Puff: React.FC<{x: number; y: number; t: number; at: number}> = ({x, y, t, at}) => (
   <g>{Array.from({length: 14}).map((_, i) => { const p = Math.max(0, Math.min(1, (t - at - i * 0.03) / 1.2)); return <circle key={i} cx={x + (rnd(i) - 0.3) * 600 * p} cy={y - (rnd(i + 2) - 0.5) * 300 * p} r={20 + 30 * p} fill="#E0F4FF" opacity={(1 - p) * 0.7} />; })}</g>
 );
-const Bubbles: React.FC<{x: number; y: number; t: number}> = ({x, y, t}) => (
+export const Bubbles: React.FC<{x: number; y: number; t: number}> = ({x, y, t}) => (
   <g>{Array.from({length: 10}).map((_, i) => { const p = (t * 1.5 + i / 10) % 1; return <circle key={i} cx={x + Math.sin(i * 3 + t * 4) * 30} cy={y - p * 120} r={6 + p * 10} fill="none" stroke="#BDE0FE" strokeWidth={4} opacity={1 - p} />; })}</g>
 );
-const Chamber: React.FC<{t: number}> = ({t}) => (
+export const Chamber: React.FC<{t: number}> = ({t}) => (
   <g>
     <rect width={1920} height={1080} fill="#4A4E69" />
     <rect y={GY} width={1920} height={200} fill="#22223B" />

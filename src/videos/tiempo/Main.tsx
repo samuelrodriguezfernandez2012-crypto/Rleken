@@ -15,7 +15,7 @@ const kbV = (lt: number, s0: number, s1: number, d = 6, ox = 960, oy = 540) => k
 const shake = (t: number, k: number) => ({x: Math.sin(t * 61) * k, y: Math.cos(t * 53) * k * 0.6});
 
 /** ciudad congelada: gente a mitad de paso, lluvia suspendida, pajaro quieto */
-const Frozen: React.FC<{t: number; dim?: number}> = ({t, dim = 0}) => (
+export const Frozen: React.FC<{t: number; dim?: number}> = ({t, dim = 0}) => (
   <g>
     <CityNight />
     {Array.from({length: 70}).map((_, i) => <line key={i} x1={rnd(i) * 1920} y1={rnd(i + 3) * 900} x2={rnd(i) * 1920 - 6} y2={rnd(i + 3) * 900 + 26} stroke="#BDE0FE" strokeWidth={3} opacity={0.6} />)}
@@ -26,7 +26,7 @@ const Frozen: React.FC<{t: number; dim?: number}> = ({t, dim = 0}) => (
     {dim > 0 && <rect width={1920} height={1080} fill="#000" opacity={dim} />}
   </g>
 );
-const Molecules: React.FC<{t: number; push?: number; big?: boolean}> = ({t, push = 0, big}) => (
+export const Molecules: React.FC<{t: number; push?: number; big?: boolean}> = ({t, push = 0, big}) => (
   <g>
     {Array.from({length: big ? 60 : 160}).map((_, i) => {
       const x = (i % (big ? 10 : 16)) * (big ? 200 : 125) + 40 + rnd(i) * 40, y = Math.floor(i / (big ? 10 : 16)) * (big ? 190 : 110) + 40 + rnd(i + 2) * 30;
@@ -34,7 +34,7 @@ const Molecules: React.FC<{t: number; push?: number; big?: boolean}> = ({t, push
     })}
   </g>
 );
-const Lungs: React.FC<{t: number; k: number}> = ({t, k}) => (
+export const Lungs: React.FC<{t: number; k: number}> = ({t, k}) => (
   <g transform="translate(960 520)">
     {[-1, 1].map((d) => <path key={d} d={`M ${d * 30} -160 Q ${d * 250} -140 ${d * 230} 120 Q ${d * 130} 220 ${d * 40} 140 Z`} fill={k > 0.5 ? '#6C757D' : '#F4A7B9'} stroke="#111" strokeWidth={8} transform={`scale(${1 + Math.sin(t * 9) * 0.02 * (1 - k)})`} />)}
     <rect x={-14} y={-260} width={28} height={110} fill="#E5989B" stroke="#111" strokeWidth={6} />
@@ -45,7 +45,7 @@ const Timer: React.FC<{t: number; at: number; until: number; secs: number; speed
   const left = Math.max(0, secs - (t - at) * speed);
   return <div style={{position: 'absolute', left: 0, right: 0, top: 1640, textAlign: 'center', fontFamily: 'Montserrat', fontWeight: 900, fontSize: 150, color: '#FF4D6D', WebkitTextStroke: '8px #0B0A1A', paintOrder: 'stroke'}}>{Math.floor(left / 60)}:{String(Math.floor(left % 60)).padStart(2, '0')}</div>;
 };
-const Wave: React.FC<{t: number; amp: number}> = ({t, amp}) => (
+export const Wave: React.FC<{t: number; amp: number}> = ({t, amp}) => (
   <path d={Array.from({length: 97}).map((_, i) => `${i ? 'L' : 'M'} ${i * 20} ${540 + Math.sin(i * 0.4 + t * 8) * amp * Math.sin((i / 96) * Math.PI)}`).join(' ')} stroke="#7CF4FF" strokeWidth={10} fill="none" />
 );
 

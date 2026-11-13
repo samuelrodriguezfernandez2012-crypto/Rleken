@@ -213,3 +213,7 @@ Ve hasta el final: el giro no te lo esperas 🤯
 #shorts #curiosidades #cerebro #dormir #record #ciencia
 - **Etiquetas:** sin dormir, 11 días sin dormir, randy gardner, cerebro, microsueños, curiosidades, ciencia, shorts
 - **Comentario fijado:** ¿Cuál es tu récord de horas sin dormir? 😴
+
+> Pendiente de programar en Metricool (la conexión falló):
+> - tiempo → https://res.cloudinary.com/qdypdvl7/video/upload/v1794520141/chiki/chiki_tiempo_short.mp4 · miniatura https://res.cloudinary.com/qdypdvl7/image/upload/v1794520143/chiki/chiki_tiempo_thumb.jpg · 13 nov 12:00
+> - insomnio → https://res.cloudinary.com/qdypdvl7/video/upload/v1794520144/chiki/chiki_insomnio_short.mp4 · miniatura https://res.cloudinary.com/qdypdvl7/image/upload/v1794520146/chiki/chiki_insomnio_thumb.jpg · 13 nov 16:00

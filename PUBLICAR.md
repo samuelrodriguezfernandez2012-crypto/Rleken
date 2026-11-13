@@ -198,7 +198,7 @@ Ve hasta el final: el giro no te lo esperas 🤯
 - **Título:** NUNCA has visto el presente (y no lo sabías) 🤯 #shorts
 - **Comentario fijado:** Si todo lo que ves ya ha pasado… ¿cómo sabes que sigue existiendo? 🤔
 
-## Short "Parar el tiempo" — viernes 13 nov 2026, 12:00
+## Short "Parar el tiempo" — viernes 13 nov 2026, 17:10 (Metricool id 427140613)
 - **Archivo:** `out/tiempo/chiki_tiempo_short.mp4`
 - **Título:** Si PARARAS el tiempo, morirías en 3 minutos ⏸️💀 #shorts
 - **Descripción:** Parece el mejor poder del mundo… pero si el tiempo se congela, la luz no llega a tus ojos, el sonido desaparece y el aire se vuelve cemento. ¿Seguirías queriéndolo?
@@ -206,7 +206,7 @@ Ve hasta el final: el giro no te lo esperas 🤯
 - **Etiquetas:** qué pasaría si, parar el tiempo, poderes, física, ciencia, curiosidades, shorts
 - **Comentario fijado:** ¿Qué poder crees que también sería una trampa? 👀
 
-## Short "11 días sin dormir" — viernes 13 nov 2026, 16:00
+## Short "11 días sin dormir" — viernes 13 nov 2026, 17:40 (Metricool id 427145642)
 - **Archivo:** `out/insomnio/chiki_insomnio_short.mp4`
 - **Título:** Esto le pasa a tu cerebro si NO duermes en 11 días 😵 #shorts
 - **Descripción:** Microsueños, alucinaciones, olvidar lo que dices a mitad de frase… En 1964 Randy Gardner aguantó 11 días despierto. Hoy ese récord ya ni siquiera se acepta.
@@ -214,6 +214,6 @@ Ve hasta el final: el giro no te lo esperas 🤯
 - **Etiquetas:** sin dormir, 11 días sin dormir, randy gardner, cerebro, microsueños, curiosidades, ciencia, shorts
 - **Comentario fijado:** ¿Cuál es tu récord de horas sin dormir? 😴
 
-> Pendiente de programar en Metricool (la conexión falló):
+> (Programados el 13 nov a las 17:01, cuando Metricool volvió a conectar)
 > - tiempo → https://res.cloudinary.com/qdypdvl7/video/upload/v1794520141/chiki/chiki_tiempo_short.mp4 · miniatura https://res.cloudinary.com/qdypdvl7/image/upload/v1794520143/chiki/chiki_tiempo_thumb.jpg · 13 nov 12:00
 > - insomnio → https://res.cloudinary.com/qdypdvl7/video/upload/v1794520144/chiki/chiki_insomnio_short.mp4 · miniatura https://res.cloudinary.com/qdypdvl7/image/upload/v1794520146/chiki/chiki_insomnio_thumb.jpg · 13 nov 16:00

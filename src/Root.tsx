@@ -28,6 +28,8 @@ import {InsomnioShort, InsomnioThumb, DURATION_S as D_INS} from './videos/insomn
 import {AguaShort, AguaThumb, DURATION_S as D_AGU} from './videos/agua/Main';
 import {EspacioShort, EspacioThumb, DURATION_S as D_ESP} from './videos/espacio/Main';
 import {LimitesLargo, LimitesLargoThumb, DURATION_S as D_LIM} from './videos/limites/Main';
+import {MarShort, MarThumb, DURATION_S as D_MAR} from './videos/mar/Main';
+import {RapidoShort, RapidoThumb, DURATION_S as D_RAP} from './videos/rapido/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -81,6 +83,10 @@ export const RemotionRoot: React.FC = () => (
     <Still id="EspacioThumb" component={EspacioThumb} width={W} height={H} />
     <Composition id="LimitesLargo" component={LimitesLargo} durationInFrames={Math.round(D_LIM * FPS)} fps={FPS} width={1920} height={1080} />
     <Still id="LimitesLargoThumb" component={LimitesLargoThumb} width={1280} height={720} />
+    <Composition id="MarShort" component={MarShort} durationInFrames={Math.round(D_MAR * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="MarThumb" component={MarThumb} width={W} height={H} />
+    <Composition id="RapidoShort" component={RapidoShort} durationInFrames={Math.round(D_RAP * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="RapidoThumb" component={RapidoThumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>

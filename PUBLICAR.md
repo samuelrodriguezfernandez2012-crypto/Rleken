@@ -231,3 +231,11 @@ Ve hasta el final: el giro no te lo esperas 🤯
 - **Título:** ¿Cuánto aguantarías? 7 límites del cuerpo humano (de 15 segundos a 382 días)
 - **Capítulos:** 0:00 Intro · 0:24 #7 Espacio · 1:36 #6 Sin respirar · 2:30 #5 Agua helada · 3:29 #4 Calor · 4:25 #3 Sin agua · 5:25 #2 Sin dormir · 6:24 #1 Sin comer · 7:28 Resumen
 - **Comentario fijado:** ¿En cuál de los 7 aguantarías más que nadie? 👇 Cada día sale un episodio nuevo de la serie en Shorts.
+
+## Short ACCIÓN «Cada día corro 10 veces más rápido» — sábado 14 nov 2026, 19:00 (Metricool id 428204770)
+- **Título:** Cada día corro 10 veces MÁS RÁPIDO… ⚡💥 #shorts
+- **Comentario fijado:** ¿En qué día te habrías parado tú? ⚡ 1, 3, 5 o 7 👇
+
+### #3 Fondo del mar — sábado 14 nov 2026, 21:00 (Metricool id 428264461)
+- **Título:** ¿Cuánto aguantarías en el FONDO DEL MAR? 🌊 #3 #shorts
+- **Comentario fijado:** Mañana: Marte sin traje 🔴 ¿Tú habrías seguido bajando con la ventana rota?

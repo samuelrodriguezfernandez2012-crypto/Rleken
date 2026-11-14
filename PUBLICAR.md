@@ -225,3 +225,9 @@ Ve hasta el final: el giro no te lo esperas 🤯
 ### #2 Espacio sin traje — sábado 14 nov 2026, 13:00 (Metricool id 427532278)
 - **Título:** ¿Cuánto aguantarías en el ESPACIO sin traje? 🚀 #2 #shorts
 - **Comentario fijado:** El próximo: el fondo del mar 🌊 ¿Cuántos segundos aguantarías tú?
+
+## LARGO «¿Cuánto aguantarías? 7 límites del cuerpo humano» — sábado 14 nov 2026, 18:09 (Metricool id 427917522)
+- **Archivo:** `out/limites/chiki_limites_short.mp4` (8:07, 1920x1080) · miniatura en inglés `out/limites/miniatura.jpg` ("HOW LONG WOULD YOU LAST? 15 SEC → 382 DAYS")
+- **Título:** ¿Cuánto aguantarías? 7 límites del cuerpo humano (de 15 segundos a 382 días)
+- **Capítulos:** 0:00 Intro · 0:24 #7 Espacio · 1:36 #6 Sin respirar · 2:30 #5 Agua helada · 3:29 #4 Calor · 4:25 #3 Sin agua · 5:25 #2 Sin dormir · 6:24 #1 Sin comer · 7:28 Resumen
+- **Comentario fijado:** ¿En cuál de los 7 aguantarías más que nadie? 👇 Cada día sale un episodio nuevo de la serie en Shorts.

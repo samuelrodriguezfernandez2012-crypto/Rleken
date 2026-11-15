@@ -16,7 +16,7 @@ const Caps = makeCaps(words as any, /\d|sonido|explosión|grados|espacio|luna|lu
 const kbV = (lt: number, s0: number, s1: number, d = 6, ox = 960, oy = 540) => kb(lt, 1 + (s0 - 1) * 0.3, 1 + (s1 - 1) * 0.3, d, ox, oy);
 const shake = (t: number, k: number) => ({x: Math.sin(t * 61) * k, y: Math.cos(t * 53) * k * 0.6});
 
-const Runner: React.FC<{t: number; x?: number; y?: number; s?: number; lines?: number; fire?: number; aura?: number; eyes?: any}> = ({t, x = 1090, y = GY + 20, s = 1.4, lines = 1, fire = 0, aura = 0, eyes = 'angry'}) => (
+export const Runner: React.FC<{t: number; x?: number; y?: number; s?: number; lines?: number; fire?: number; aura?: number; eyes?: any}> = ({t, x = 1090, y = GY + 20, s = 1.4, lines = 1, fire = 0, aura = 0, eyes = 'angry'}) => (
   <g>
     {Array.from({length: 14}).map((_, i) => { const yy = y - 60 - rnd(i) * 420 * s / 1.4, len = (200 + rnd(i + 2) * 500) * lines; const off = ((t * 3000 + i * 300) % 1600); return <line key={i} x1={x - 120 - off * 0.2} y1={yy} x2={x - 120 - len - off * 0.2} y2={yy} stroke="#fff" strokeWidth={6} opacity={0.6 * Math.min(1, lines)} strokeLinecap="round" />; })}
     {fire > 0 && <g opacity={fire}><ellipse cx={x - 60} cy={y - 220 * s / 1.4} rx={260} ry={190 * s / 1.4} fill="#FF6B00" opacity={0.35} filter="url(#blurGlow)" /><path d={`M ${x + 110} ${y - 380 * s / 1.4} Q ${x - 300} ${y - 220 * s / 1.4} ${x + 110} ${y - 40} Q ${x - 900} ${y - 200 * s / 1.4} ${x + 110} ${y - 380 * s / 1.4} Z`} fill="#FFB703" opacity={0.55 + 0.2 * Math.sin(t * 30)} /></g>}
@@ -24,7 +24,7 @@ const Runner: React.FC<{t: number; x?: number; y?: number; s?: number; lines?: n
     <g transform={`rotate(${-12} ${x} ${y})`}><Hero x={x} y={y} s={s} t={t} pose={POSES.push} eyes={eyes} mouth="flat" /></g>
   </g>
 );
-const Street: React.FC<{t: number; speed: number; broken?: number}> = ({t, speed, broken = 0}) => (
+export const Street: React.FC<{t: number; speed: number; broken?: number}> = ({t, speed, broken = 0}) => (
   <g>
     <CityNight noSky={false} />
     {Array.from({length: 7}).map((_, i) => { const x = ((i * 320 - t * speed) % 2240 + 2240) % 2240 - 160; return <g key={i}><rect x={x} y={GY - 360} width={240} height={360} fill="#2B2D42" stroke="#111" strokeWidth={5} />{[0, 1, 2].map((r) => [0, 1].map((c) => <rect key={`${r}${c}`} x={x + 30 + c * 110} y={GY - 330 + r * 110} width={70} height={70} fill={broken > 0 && rnd(i * 7 + r * 3 + c) < broken ? '#111' : '#FFE8A3'} stroke="#111" strokeWidth={4} />))}</g>; })}
@@ -40,10 +40,10 @@ const Highway: React.FC<{t: number}> = ({t}) => (
     {[0, 1, 2].map((i) => { const x = ((1700 + i * 600 - t * 500) % 2200 + 2200) % 2200 - 200; return <g key={i} transform={`translate(${x} ${GY + 10})`}><rect x={-110} y={-70} width={220} height={60} rx={18} fill={['#E63946', '#457B9D', '#F4A261'][i]} stroke="#111" strokeWidth={5} />{[-60, 60].map((d) => <circle key={d} cx={d} cy={-8} r={24} fill="#222" />)}</g>; })}
   </g>
 );
-const Glass: React.FC<{t: number; at: number}> = ({t, at}) => (
+export const Glass: React.FC<{t: number; at: number}> = ({t, at}) => (
   <g>{t > at && Array.from({length: 26}).map((_, i) => { const s = t - at; const x = 300 + rnd(i) * 1300 + (rnd(i + 1) - 0.5) * 600 * s, y = 200 + rnd(i + 2) * 300 + 900 * s * s; return <path key={i} d={`M ${x} ${y} l 26 -10 l -8 30 Z`} fill="#BDE0FE" stroke="#fff" strokeWidth={2} opacity={Math.max(0, 1 - s / 1.6)} />; })}</g>
 );
-const Mach: React.FC<{t: number; x: number; y: number}> = ({t, x, y}) => (
+export const Mach: React.FC<{t: number; x: number; y: number}> = ({t, x, y}) => (
   <g opacity={0.8}>{[0, 1, 2].map((i) => { const k = ((t * 2 + i / 3) % 1); return <path key={i} d={`M ${x + 120} ${y} Q ${x - 200 - k * 300} ${y - 400 - k * 200} ${x - 700 - k * 400} ${y - 500 - k * 300} M ${x + 120} ${y} Q ${x - 200 - k * 300} ${y + 400 + k * 200} ${x - 700 - k * 400} ${y + 500 + k * 300}`} stroke="#fff" strokeWidth={10 * (1 - k)} fill="none" opacity={1 - k} />; })}</g>
 );
 const Speedo: React.FC<{t: number}> = ({t}) => {

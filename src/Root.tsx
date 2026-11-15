@@ -30,6 +30,8 @@ import {EspacioShort, EspacioThumb, DURATION_S as D_ESP} from './videos/espacio/
 import {LimitesLargo, LimitesLargoThumb, DURATION_S as D_LIM} from './videos/limites/Main';
 import {MarShort, MarThumb, DURATION_S as D_MAR} from './videos/mar/Main';
 import {RapidoShort, RapidoThumb, DURATION_S as D_RAP} from './videos/rapido/Main';
+import {MarteShort, MarteThumb, DURATION_S as D_MRT} from './videos/marte/Main';
+import {SaltoShort, SaltoThumb, DURATION_S as D_SAL} from './videos/salto/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -87,6 +89,10 @@ export const RemotionRoot: React.FC = () => (
     <Still id="MarThumb" component={MarThumb} width={W} height={H} />
     <Composition id="RapidoShort" component={RapidoShort} durationInFrames={Math.round(D_RAP * FPS)} fps={FPS} width={W} height={H} />
     <Still id="RapidoThumb" component={RapidoThumb} width={W} height={H} />
+    <Composition id="MarteShort" component={MarteShort} durationInFrames={Math.round(D_MRT * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="MarteThumb" component={MarteThumb} width={W} height={H} />
+    <Composition id="SaltoShort" component={SaltoShort} durationInFrames={Math.round(D_SAL * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="SaltoThumb" component={SaltoThumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>

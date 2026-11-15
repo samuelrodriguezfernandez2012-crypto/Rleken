@@ -54,5 +54,6 @@ El espectador tiene que quedar enganchado desde el primer fotograma:
 - Serie fija **«¿Cuánto aguantarías? #N»** (`src/videos/serie/kit.tsx`): etiqueta `SerieTag` siempre visible y tarjeta final `FollowCard` ("MAÑANA · EPISODIO #N+1" + botón SUSCRIBIRSE que se pulsa solo).
 - Cada episodio acaba anunciando el siguiente ("Mañana: … Sígueme para no perdértelo").
 - Siempre StickmanV2 azul, mismo estilo, títulos con «#N».
-- Hechos ya: #1 Sin agua, #2 Espacio sin traje, #3 Fondo del mar. Siguiente prometido: #4 Marte sin traje.
+- Hechos ya: #1 Sin agua, #2 Espacio sin traje, #3 Fondo del mar, #4 Marte. Siguiente prometido: #5 Dentro de un volcán.
+- IMPORTANTE: subir algo TODOS los días (el usuario se queja si un día no hay vídeos). Acción hechos: corro x10, salto x10.
 - Alternar con shorts de ACCIÓN y poder (ej. «Cada día corro x10 más rápido»): protagonista poderoso + escalada + ciencia real + giro.

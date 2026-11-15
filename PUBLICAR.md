@@ -239,3 +239,11 @@ Ve hasta el final: el giro no te lo esperas 🤯
 ### #3 Fondo del mar — sábado 14 nov 2026, 21:00 (Metricool id 428264461)
 - **Título:** ¿Cuánto aguantarías en el FONDO DEL MAR? 🌊 #3 #shorts
 - **Comentario fijado:** Mañana: Marte sin traje 🔴 ¿Tú habrías seguido bajando con la ventana rota?
+
+## Short ACCIÓN «Cada día salto 10 veces más alto» — domingo 15 nov 2026, 18:30 (Metricool id 429083704)
+- **Título:** Cada día salto 10 veces MÁS ALTO… 🚀🔥 #shorts
+- **Comentario fijado:** ¿Hasta qué día saltarías tú? 🚀 El 7 da miedo… 👇
+
+### #4 Marte sin traje — domingo 15 nov 2026, 20:30 (Metricool id 429128845)
+- **Título:** ¿Cuánto aguantarías en MARTE sin traje? 🔴 #4 #shorts
+- **Comentario fijado:** Mañana: dentro de un volcán 🌋 ¿Viajarías a Marte sabiendo esto?

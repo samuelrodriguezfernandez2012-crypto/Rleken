@@ -57,3 +57,4 @@ El espectador tiene que quedar enganchado desde el primer fotograma:
 - Hechos ya: #1 Sin agua, #2 Espacio sin traje, #3 Fondo del mar, #4 Marte. Siguiente prometido: #5 Dentro de un volcán.
 - IMPORTANTE: subir algo TODOS los días (el usuario se queja si un día no hay vídeos). Acción hechos: corro x10, salto x10.
 - Alternar con shorts de ACCIÓN y poder (ej. «Cada día corro x10 más rápido»): protagonista poderoso + escalada + ciencia real + giro.
+- 15 nov 2026: Metricool devolvió "You have reached your Metricool account limit" (límite del plan). Antes de programar, comprobar con getScheduledPosts que los anteriores no están en ERROR; si hay límite, avisar al usuario y mandarle los MP4 para subir a mano.

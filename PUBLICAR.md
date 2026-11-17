@@ -271,3 +271,11 @@ Ve hasta el final: el giro no te lo esperas 🤯
 #shorts #gta6 #gtavi #gta #videojuegos #curiosidades #vicecity
 - **Etiquetas:** gta 6, gta vi, gta 6 fecha, gta 6 19 noviembre, vice city, leonida, lucía y jason, curiosidades gta 6, shorts
 - **Comentario fijado:** ¿Lo vas a jugar el primer día? 🎮 ¿PS5 o Xbox? 👇
+
+## Short «Así inventas el paracaídas 🤕» — 17 nov 2026 (SUBIR A MANO) · formato inspirado en "Así inventas…" (Supongamos3D)
+- **Archivo:** `out/inventa/chiki_inventa_short.mp4` (44 s) · miniatura `out/inventa/miniatura.jpg`
+- **Título:** Así inventas el paracaídas 🤕 #shorts
+- **Descripción:** Intento 1: paraguas. Intento 2: sábana. Intento 3… el primer salto de la historia (Garnerin, 1797). Y Leonardo da Vinci ya lo había dibujado 300 años antes. ¿Qué inventamos ahora?
+#shorts #asiinventas #inventos #historia #curiosidades #animacion
+- **Etiquetas:** así inventas, inventos, paracaídas, leonardo da vinci, historia, curiosidades, animación, shorts
+- **Comentario fijado:** ¿Qué invento hacemos en el próximo? 👇 (el más votado sale)

@@ -34,6 +34,7 @@ import {MarteShort, MarteThumb, DURATION_S as D_MRT} from './videos/marte/Main';
 import {SaltoShort, SaltoThumb, DURATION_S as D_SAL} from './videos/salto/Main';
 import {VolcanShort, VolcanThumb, DURATION_S as D_VOL} from './videos/volcan/Main';
 import {AniosShort, AniosThumb, DURATION_S as D_ANI} from './videos/anios/Main';
+import {Gta19Short, Gta19Thumb, DURATION_S as D_G19} from './videos/gta19/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -99,6 +100,8 @@ export const RemotionRoot: React.FC = () => (
     <Still id="VolcanThumb" component={VolcanThumb} width={W} height={H} />
     <Composition id="AniosShort" component={AniosShort} durationInFrames={Math.round(D_ANI * FPS)} fps={FPS} width={W} height={H} />
     <Still id="AniosThumb" component={AniosThumb} width={W} height={H} />
+    <Composition id="Gta19Short" component={Gta19Short} durationInFrames={Math.round(D_G19 * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="Gta19Thumb" component={Gta19Thumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>

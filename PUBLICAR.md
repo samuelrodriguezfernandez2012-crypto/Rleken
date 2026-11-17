@@ -263,3 +263,11 @@ Ve hasta el final: el giro no te lo esperas 🤯
 #shorts #quepasariasi #curiosidades #cerebro #ciencia #animacion
 - **Etiquetas:** qué pasaría si, parpadear, cada parpadeo un año, cerebro, curiosidades, ciencia, animación, shorts
 - **Comentario fijado:** Yo he aguantado 30 segundos sin parpadear… ¿y tú? 👁️👇
+
+## Short «GTA 6: 5 cosas que casi nadie sabe» — 17 nov 2026 (SUBIR A MANO, antes del jueves 19)
+- **Archivo:** `out/gta19/chiki_gta19_short.mp4` (70 s) · miniatura `out/gta19/miniatura.jpg`
+- **Título:** GTA 6 sale este JUEVES 19… y 5 cosas que casi nadie sabe 🌴🔥 #shorts
+- **Descripción:** Después de 13 años, GTA 6 llega el 19 de noviembre a PS5 y Xbox Series (PC más tarde). El tráiler que rompió YouTube, Lucía y Jason, Leonida, los 2 retrasos y por qué puede ser el lanzamiento más grande de la historia. ¿Lo juegas el primer día?
+#shorts #gta6 #gtavi #gta #videojuegos #curiosidades #vicecity
+- **Etiquetas:** gta 6, gta vi, gta 6 fecha, gta 6 19 noviembre, vice city, leonida, lucía y jason, curiosidades gta 6, shorts
+- **Comentario fijado:** ¿Lo vas a jugar el primer día? 🎮 ¿PS5 o Xbox? 👇

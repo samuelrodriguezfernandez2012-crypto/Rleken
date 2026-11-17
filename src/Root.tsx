@@ -32,6 +32,7 @@ import {MarShort, MarThumb, DURATION_S as D_MAR} from './videos/mar/Main';
 import {RapidoShort, RapidoThumb, DURATION_S as D_RAP} from './videos/rapido/Main';
 import {MarteShort, MarteThumb, DURATION_S as D_MRT} from './videos/marte/Main';
 import {SaltoShort, SaltoThumb, DURATION_S as D_SAL} from './videos/salto/Main';
+import {VolcanShort, VolcanThumb, DURATION_S as D_VOL} from './videos/volcan/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -93,6 +94,8 @@ export const RemotionRoot: React.FC = () => (
     <Still id="MarteThumb" component={MarteThumb} width={W} height={H} />
     <Composition id="SaltoShort" component={SaltoShort} durationInFrames={Math.round(D_SAL * FPS)} fps={FPS} width={W} height={H} />
     <Still id="SaltoThumb" component={SaltoThumb} width={W} height={H} />
+    <Composition id="VolcanShort" component={VolcanShort} durationInFrames={Math.round(D_VOL * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="VolcanThumb" component={VolcanThumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>

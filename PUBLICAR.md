@@ -247,3 +247,11 @@ Ve hasta el final: el giro no te lo esperas 🤯
 ### #4 Marte sin traje — domingo 15 nov 2026, 20:30 (Metricool id 429128845)
 - **Título:** ¿Cuánto aguantarías en MARTE sin traje? 🔴 #4 #shorts
 - **Comentario fijado:** Mañana: dentro de un volcán 🌋 ¿Viajarías a Marte sabiendo esto?
+
+### #5 Dentro de un volcán — martes 17 nov 2026 (SUBIR A MANO: Metricool sin cupo este mes)
+- **Archivo:** `out/volcan/chiki_volcan_short.mp4` (70 s) · miniatura `out/volcan/miniatura.jpg`
+- **Título:** ¿Cuánto aguantarías DENTRO DE UN VOLCÁN? 🌋 #5 #shorts
+- **Descripción:** Episodio 5 de ¿Cuánto aguantarías? 🌋 Si caes a la lava no te hundes… flotas ardiendo. Pero lo peor no es la lava: son los gases y la nube ardiente que borró Pompeya. Sígueme: cada día un nuevo límite.
+#shorts #cuantoaguantarias #volcan #lava #pompeya #curiosidades #ciencia
+- **Etiquetas:** cuánto aguantarías, volcán, lava, pompeya, gases volcánicos, curiosidades, ciencia, shorts
+- **Comentario fijado:** Mañana: Venus 🪐 ¿Te acercarías a un volcán sabiendo esto? 👇

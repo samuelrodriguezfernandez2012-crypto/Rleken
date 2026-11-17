@@ -36,6 +36,8 @@ import {VolcanShort, VolcanThumb, DURATION_S as D_VOL} from './videos/volcan/Mai
 import {AniosShort, AniosThumb, DURATION_S as D_ANI} from './videos/anios/Main';
 import {Gta19Short, Gta19Thumb, DURATION_S as D_G19} from './videos/gta19/Main';
 import {InventaShort, InventaThumb, DURATION_S as D_INV} from './videos/inventa/Main';
+import {Test3D} from './videos/td/Test';
+import {RuedaShort, RuedaThumb, DURATION_S as D_RUE} from './videos/rueda/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -105,6 +107,9 @@ export const RemotionRoot: React.FC = () => (
     <Still id="Gta19Thumb" component={Gta19Thumb} width={W} height={H} />
     <Composition id="InventaShort" component={InventaShort} durationInFrames={Math.round(D_INV * FPS)} fps={FPS} width={W} height={H} />
     <Still id="InventaThumb" component={InventaThumb} width={W} height={H} />
+    <Still id="Test3D" component={Test3D} width={W} height={H} />
+    <Composition id="RuedaShort" component={RuedaShort} durationInFrames={Math.round(D_RUE * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="RuedaThumb" component={RuedaThumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>

@@ -15,7 +15,7 @@ const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'st-'));
 let i = 0;
 for (const s of secs) {
   const frame = Math.min(composition.durationInFrames - 1, Math.round(parseFloat(s) * composition.fps));
-  await renderStill({composition, serveUrl, output: path.join(dir, `f_${String(i++).padStart(3, '0')}.png`), frame, scale: 0.25, browserExecutable});
+  await renderStill({composition, serveUrl, output: path.join(dir, `f_${String(i++).padStart(3, '0')}.png`), frame, scale: 0.25, browserExecutable, chromiumOptions: {gl: 'swangle'}});
 }
 const cols = composition.width > composition.height ? 6 : 9;
 execSync(`ffmpeg -loglevel error -y -pattern_type glob -i '${dir}/f_*.png' -vf "drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='%{n}':x=4:y=4:fontsize=18:fontcolor=white:box=1:boxcolor=black,tile=${cols}x${Math.ceil(i / cols)}" -frames:v 1 ${out}`);

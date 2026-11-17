@@ -279,3 +279,11 @@ Ve hasta el final: el giro no te lo esperas 🤯
 #shorts #asiinventas #inventos #historia #curiosidades #animacion
 - **Etiquetas:** así inventas, inventos, paracaídas, leonardo da vinci, historia, curiosidades, animación, shorts
 - **Comentario fijado:** ¿Qué invento hacemos en el próximo? 👇 (el más votado sale)
+
+## 3D · «Así inventas la rueda» — 17 nov 2026 (SUBIR A MANO) · primer short en 3D
+- **Archivo:** `out/rueda/chiki_rueda_short.mp4` (35 s) · miniatura `out/rueda/miniatura.jpg`
+- **Título:** Así inventas la rueda 🛞🤕 #shorts
+- **Descripción:** Cuadrada, triangular, con pinchos… y la redonda funciona DEMASIADO bien. Y la primera rueda ni siquiera era para moverse. ¿Qué inventamos ahora?
+#shorts #asiinventas #3d #animacion3d #humor #inventos #curiosidades
+- **Etiquetas:** así inventas, la rueda, animación 3d, humor, inventos, historia, curiosidades, shorts
+- **Comentario fijado:** ¿Qué invento hacemos en 3D el próximo? 👇 El más votado sale.

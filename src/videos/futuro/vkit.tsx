@@ -40,7 +40,7 @@ export const makeCaps = (words: Wd[], KEY: RegExp) => {
     cur.push(w);
     if (i === words.length - 1) groups.push(cur);
   });
-  const Caps: React.FC<{t: number}> = ({t}) => {
+  const Caps: React.FC<{t: number; top?: number}> = ({t, top = 1360}) => {
     const ms = t * 1000;
     let gi = -1;
     for (let i = 0; i < groups.length; i++) {
@@ -51,7 +51,7 @@ export const makeCaps = (words: Wd[], KEY: RegExp) => {
     if (gi < 0) return null;
     const g = groups[gi];
     return (
-      <div style={{position: 'absolute', left: 60, width: VW - 120, top: 1360, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0 20px', transform: `scale(${0.92 + 0.08 * pop(t, g[0].start_ms / 1000 - 0.06, 12, 260)})`}}>
+      <div style={{position: 'absolute', left: 60, width: VW - 120, top, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0 20px', transform: `scale(${0.92 + 0.08 * pop(t, g[0].start_ms / 1000 - 0.06, 12, 260)})`}}>
         {g.map((w, i) => {
           const active = ms >= w.start_ms && ms < (g[i + 1]?.start_ms ?? w.end_ms + 400);
           return <span key={i} style={{fontFamily: CF, fontWeight: 900, fontSize: 84, lineHeight: 1.1, textTransform: 'uppercase', color: active ? (KEY.test(w.text) ? '#FF5C7A' : '#FFD23F') : ms >= w.start_ms ? '#fff' : 'rgba(255,255,255,0.55)', textShadow: '0 5px 22px rgba(0,0,0,0.95), 0 0 4px #000', display: 'inline-block', transform: `scale(${active ? 1 + 0.1 * pop(t, w.start_ms / 1000, 8, 300) : 1})`}}>{w.text}</span>;

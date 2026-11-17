@@ -255,3 +255,11 @@ Ve hasta el final: el giro no te lo esperas 🤯
 #shorts #cuantoaguantarias #volcan #lava #pompeya #curiosidades #ciencia
 - **Etiquetas:** cuánto aguantarías, volcán, lava, pompeya, gases volcánicos, curiosidades, ciencia, shorts
 - **Comentario fijado:** Mañana: Venus 🪐 ¿Te acercarías a un volcán sabiendo esto? 👇
+
+## Short «Cada vez que parpadeas pasa 1 año» — 17 nov 2026 (SUBIR A MANO)
+- **Archivo:** `out/anios/chiki_anios_short.mp4` (53 s) · miniatura `out/anios/miniatura.jpg`
+- **Título:** Cada vez que PARPADEAS pasa 1 AÑO… 👁️⏳ #shorts
+- **Descripción:** Parpadeo 1: tu móvil ya es viejo. Parpadeo 10: nadie te reconoce. Pero parpadeas 15 veces por minuto… y lo más loco es que tu cerebro ya te oculta más de una hora al día. ¿Cuántos años habrían pasado mientras lo ves?
+#shorts #quepasariasi #curiosidades #cerebro #ciencia #animacion
+- **Etiquetas:** qué pasaría si, parpadear, cada parpadeo un año, cerebro, curiosidades, ciencia, animación, shorts
+- **Comentario fijado:** Yo he aguantado 30 segundos sin parpadear… ¿y tú? 👁️👇

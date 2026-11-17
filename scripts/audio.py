@@ -1137,7 +1137,22 @@ def cfg_volcan(m):
     return 70.0, ev
 
 
-CFG = {'volcan': cfg_volcan, 'marte': cfg_marte, 'salto': cfg_salto, 'mar': cfg_mar, 'rapido': cfg_rapido, 'limites': cfg_limites, 'agua': cfg_agua, 'espacio': cfg_espacio, 'tiempo': cfg_tiempo, 'insomnio': cfg_insomnio, 'presente': cfg_presente, 'oceanos': cfg_oceanos, 'nombre': cfg_nombre, 'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
+def cfg_anios(m):
+    m.epic(0.0, 4.2)
+    m.calm(4.2, 16.0)
+    m.tense(16.0, 28.0, roots=(43, 44, 45, 46))
+    m.creepy(28.0, 35.8, root=44)
+    m.epic(35.8, 46.8)
+    m.outro(46.8, 53.0)
+    ev = [('boom', 0.0, 1.0)]
+    for b in [0.35, 0.95, 1.55, 2.1, 4.3, 7.5, 11.2, 21.2, 24.9, 34.2, 38.7]:
+        ev += [('whoosh', b, 0.5), ('tick', b, 0.5)]
+    ev += [('glass', 5.0, 0.5), ('chime', 12.0, 0.4), ('rise', 15.7, 0.4), ('impact', 16.1, 0.7), ('heartbeat', 26.9, 0.8), ('heartbeat', 30.5, 0.8),
+           ('glitch', 32.3, 0.6), ('impact', 35.9, 0.7), ('sparkle', 43.3, 0.5), ('static', 45.7, 0.4), ('ding', 47.0, 0.5)]
+    return 53.0, ev
+
+
+CFG = {'anios': cfg_anios, 'volcan': cfg_volcan, 'marte': cfg_marte, 'salto': cfg_salto, 'mar': cfg_mar, 'rapido': cfg_rapido, 'limites': cfg_limites, 'agua': cfg_agua, 'espacio': cfg_espacio, 'tiempo': cfg_tiempo, 'insomnio': cfg_insomnio, 'presente': cfg_presente, 'oceanos': cfg_oceanos, 'nombre': cfg_nombre, 'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
 
 
 def read_wav(p):

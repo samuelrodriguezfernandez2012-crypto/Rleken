@@ -21,7 +21,7 @@ const Sun: React.FC<{x: number; y: number; r: number; t: number; k?: number}> = 
     <circle cx={x} cy={y} r={r} fill="#FFD23F" stroke="#F77F00" strokeWidth={r * 0.06} />
   </g>
 );
-const Eye: React.FC<{x: number; y: number; s?: number; t: number}> = ({x, y, s = 1, t}) => (
+export const Eye: React.FC<{x: number; y: number; s?: number; t: number}> = ({x, y, s = 1, t}) => (
   <g transform={`translate(${x} ${y}) scale(${s})`}>
     <path d="M -300 0 Q 0 -230 300 0 Q 0 230 -300 0 Z" fill="#F8F4EC" stroke="#111" strokeWidth={10} />
     <circle cx={Math.sin(t * 0.7) * 20} cy={0} r={120} fill="#2A6F97" stroke="#111" strokeWidth={8} />

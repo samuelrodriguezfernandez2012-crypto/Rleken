@@ -41,6 +41,10 @@ import {RuedaShort, RuedaThumb, DURATION_S as D_RUE} from './videos/rueda/Main';
 import {RuedaIAShort, RuedaIAThumb, DURATION_S as D_RIA} from './videos/rueda/IA';
 import {AvionIAShort, AvionIAThumb, AvionEsqShort, AvionEsqThumb, AvionMovShort, DURATION_S as D_AVI} from './videos/avion/IA';
 import {CongelaShort, CongelaThumb, DURATION_S as D_CON} from './videos/congela/Main';
+import {GtaHoyShort, GtaHoyThumb, DURATION_S as D_GH} from './videos/gtahoy/Main';
+import {GtaFloridaShort, GtaFloridaThumb, DURATION_S as D_GF} from './videos/gtaflorida/Main';
+import {GtaEggsShort, GtaEggsThumb, DURATION_S as D_GE} from './videos/gtaeggs/Main';
+import {GtaLeakShort, GtaLeakThumb, DURATION_S as D_GL} from './videos/gtaleak/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -122,6 +126,14 @@ export const RemotionRoot: React.FC = () => (
     <Still id="AvionEsqThumb" component={AvionEsqThumb} width={W} height={H} />
     <Composition id="CongelaShort" component={CongelaShort} durationInFrames={Math.round(D_CON * FPS)} fps={FPS} width={W} height={H} />
     <Still id="CongelaThumb" component={CongelaThumb} width={W} height={H} />
+    <Composition id="GtaHoyShort" component={GtaHoyShort} durationInFrames={Math.round(D_GH * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="GtaHoyThumb" component={GtaHoyThumb} width={W} height={H} />
+    <Composition id="GtaFloridaShort" component={GtaFloridaShort} durationInFrames={Math.round(D_GF * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="GtaFloridaThumb" component={GtaFloridaThumb} width={W} height={H} />
+    <Composition id="GtaEggsShort" component={GtaEggsShort} durationInFrames={Math.round(D_GE * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="GtaEggsThumb" component={GtaEggsThumb} width={W} height={H} />
+    <Composition id="GtaLeakShort" component={GtaLeakShort} durationInFrames={Math.round(D_GL * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="GtaLeakThumb" component={GtaLeakThumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>

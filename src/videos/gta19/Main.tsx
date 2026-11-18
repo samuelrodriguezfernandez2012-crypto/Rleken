@@ -16,7 +16,7 @@ const shake = (t: number, k: number) => ({x: Math.sin(t * 61) * k, y: Math.cos(t
 const PINK = '#FF4FA3', CYAN = '#3DF5FF';
 
 /** atardecer neón con palmeras y edificios (dibujo propio) */
-const Sunset: React.FC<{t: number; scroll?: number; night?: boolean}> = ({t, scroll = 0, night}) => (
+export const Sunset: React.FC<{t: number; scroll?: number; night?: boolean}> = ({t, scroll = 0, night}) => (
   <g>
     <defs><linearGradient id="sky19" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor={night ? '#120B3A' : '#3A0CA3'} /><stop offset="0.55" stopColor={night ? '#5B1A7A' : '#F72585'} /><stop offset="1" stopColor={night ? '#B5179E' : '#FFB703'} /></linearGradient></defs>
     <rect width={1920} height={1080} fill="url(#sky19)" />
@@ -28,7 +28,7 @@ const Sunset: React.FC<{t: number; scroll?: number; night?: boolean}> = ({t, scr
     {Array.from({length: 10}).map((_, i) => <rect key={i} x={((i * 260 - scroll * 2) % 2600 + 2600) % 2600 - 200} y={GY + 80} width={120} height={12} fill="#FFD166" />)}
   </g>
 );
-const Car: React.FC<{x: number; t: number; color?: string}> = ({x, t, color = PINK}) => (
+export const Car: React.FC<{x: number; t: number; color?: string}> = ({x, t, color = PINK}) => (
   <g transform={`translate(${x} ${GY - 140})`}>
     <path d="M -250 -40 L -190 -110 L 110 -110 L 210 -60 L 260 -40 L 260 0 L -260 0 Z" fill={color} stroke="#111" strokeWidth={7} />
     <path d="M -160 -100 L 80 -100 L 150 -60 L -190 -60 Z" fill="#3DF5FF" opacity={0.8} stroke="#111" strokeWidth={5} />
@@ -36,7 +36,7 @@ const Car: React.FC<{x: number; t: number; color?: string}> = ({x, t, color = PI
     <ellipse cx={0} cy={50} rx={300} ry={14} fill={PINK} opacity={0.4} filter="url(#blurGlow)" />
   </g>
 );
-const Cal: React.FC<{x: number; y: number; top: string; big: string; state?: 'x' | 'ok' | ''; k?: number}> = ({x, y, top, big, state = '', k = 1}) => (
+export const Cal: React.FC<{x: number; y: number; top: string; big: string; state?: 'x' | 'ok' | ''; k?: number}> = ({x, y, top, big, state = '', k = 1}) => (
   <g transform={`translate(${x} ${y}) scale(${k})`}>
     <rect x={-140} y={-150} width={280} height={300} rx={24} fill="#fff" stroke="#111" strokeWidth={8} />
     <rect x={-140} y={-150} width={280} height={80} rx={24} fill={state === 'ok' ? '#2EC4B6' : '#E63946'} />
@@ -45,7 +45,7 @@ const Cal: React.FC<{x: number; y: number; top: string; big: string; state?: 'x'
     {state === 'x' && <path d="M -110 -120 L 110 130 M 110 -120 L -110 130" stroke="#E63946" strokeWidth={22} strokeLinecap="round" />}
   </g>
 );
-const PlayCount: React.FC<{t: number; k: number}> = ({t, k}) => (
+export const PlayCount: React.FC<{t: number; k: number}> = ({t, k}) => (
   <g transform="translate(960 470)">
     <rect x={-300} y={-200} width={600} height={360} rx={40} fill="#111" stroke="#fff" strokeWidth={8} />
     <path d="M -50 -80 L 80 0 L -50 80 Z" fill="#fff" />
@@ -53,7 +53,7 @@ const PlayCount: React.FC<{t: number; k: number}> = ({t, k}) => (
     <text y={240} textAnchor="middle" fontFamily="Montserrat" fontWeight={900} fontSize={90} fill="#fff" stroke="#111" strokeWidth={6} paintOrder="stroke">{Math.round(90 * k)}M 👁️</text>
   </g>
 );
-const MapL: React.FC<{t: number; k: number}> = ({t, k}) => (
+export const MapL: React.FC<{t: number; k: number}> = ({t, k}) => (
   <g>
     <rect width={1920} height={1080} fill="#0B4F6C" />
     {Array.from({length: 12}).map((_, i) => <path key={i} d={`M ${i * 180 + Math.sin(t + i) * 20} ${100 + (i % 4) * 230} q 40 -16 80 0`} stroke="#9AD0EC" strokeWidth={4} fill="none" opacity={0.5} />)}
@@ -63,7 +63,7 @@ const MapL: React.FC<{t: number; k: number}> = ({t, k}) => (
     <text x={1150} y={720} textAnchor="middle" fontFamily="Montserrat" fontWeight={900} fontSize={54} fill="#fff" opacity={k} stroke="#0B0620" strokeWidth={6} paintOrder="stroke">VICE CITY</text>
   </g>
 );
-const Boxes: React.FC<{t: number; k: number}> = ({t, k}) => (
+export const Boxes: React.FC<{t: number; k: number}> = ({t, k}) => (
   <g fontFamily="Montserrat" fontWeight={900}>
     {[['PS5', '#2B59C3', true], ['XBOX', '#107C10', true], ['PC', '#555', false]].map(([l, c, ok], i) => (
       <g key={i} transform={`translate(${770 + i * 190} 560) scale(${0.8 * easeOut(ramp(k, i * 0.2, i * 0.2 + 0.3))})`}>

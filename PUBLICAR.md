@@ -306,3 +306,29 @@ Ve hasta el final: el giro no te lo esperas 🤯
 - **Descripción:** Hay unas 500 personas congeladas esperando despertar en el futuro. Pero para congelarte primero tienes que estar muerto, te bajan a -196 °C en nitrógeno líquido y el hielo puede romper tus células como cristal. James Bedford lleva congelado desde 1967… y en 1979, en California, 9 cuerpos se descongelaron sin que nadie se diera cuenta. ¿Cuántos han despertado? Cero. Pero hay una rana que lo consigue cada invierno. ¿Te congelarías tú? 👇 #criogenia #ciencia #curiosidades #futuro #shorts
 - **Etiquetas:** criogenia, congelado, año 3000, ciencia, curiosidades, futuro, nitrógeno líquido, james bedford, rana congelada, shorts, chiki
 - **Comentario fijado:** Te dan la opción GRATIS: ¿te congelarías sabiendo que nadie ha despertado todavía? 🧊 Sí o no 👇
+
+## GTA 6 — tanda del lanzamiento (18-19 nov 2026, subir a mano en YouTube Studio)
+
+### 1) GTA 6 sale ESTA NOCHE — `out/gtahoy/chiki_gtahoy_short.mp4` (subir YA, antes de las 00:00)
+- **Título:** GTA 6 sale ESTA NOCHE a las 00:00… 4 cosas que tienes que saber 🌴🔥 #shorts
+- **Descripción:** GTA 6 se desbloquea a las 00:00 del 19 de noviembre en tu hora local, después de 13 años de espera. Ocupa 212 GB (precarga desde el 10 de noviembre), sale en PS5 y Xbox Series (en PC de momento no) y ya ha batido el récord de reservas en PlayStation y Xbox. ¿Vas a estar despierto a las 12? #gta6 #gtavi #vicecity #gta #shorts
+- **Etiquetas:** gta 6, gta vi, gta 6 hora, gta 6 lanzamiento, gta 6 españa, gta 6 212 gb, vice city, rockstar, gta 6 ps5, gta 6 xbox, shorts, chiki
+- **Comentario fijado:** ¿A qué hora vas a empezar a jugar? 🌴 ¿00:00 o mañana? 👇
+
+### 2) La filtración del chaval de 17 años — `out/gtaleak/chiki_gtaleak_short.mp4`
+- **Título:** Un chaval de 17 años filtró GTA 6… desde un HOTEL 😳 #shorts
+- **Descripción:** En septiembre de 2022 se filtraron más de 90 vídeos de GTA 6 en desarrollo: la mayor filtración de la historia de Rockstar. El culpable, Arion Kurtaj, tenía 17 años y lo hizo en libertad bajo fianza desde un hotel con un Amazon Fire Stick, la tele y un móvil. Un juez ordenó internarlo en un hospital de seguridad. Hoy, 4 años después, GTA 6 por fin sale. #gta6 #gtavi #rockstar #hacker #shorts
+- **Etiquetas:** gta 6, gta 6 filtración, gta 6 leak, hacker gta 6, arion kurtaj, rockstar, gta vi, curiosidades gta 6, shorts, chiki
+- **Comentario fijado:** ¿Crees que la filtración le hizo daño a GTA 6? 🤔 👇
+
+### 3) Referencias reales de Florida — `out/gtaflorida/chiki_gtaflorida_short.mp4`
+- **Título:** Esto del tráiler de GTA 6 PASÓ DE VERDAD 🐊 #shorts
+- **Descripción:** El caimán en la tienda, el coche volcado, PlanetLeonidaMan y el hombre absorbido por una tromba marina: el tráiler de GTA 6 está lleno de referencias a las noticias más locas de Florida (Florida Man). Leonida = Florida y Vice City = Miami. ¿Cuál es la noticia más loca que has visto? #gta6 #floridaman #vicecity #shorts
+- **Etiquetas:** gta 6, gta 6 tráiler, florida man, gta 6 referencias, gta 6 easter eggs, leonida, vice city, caimán gta 6, shorts, chiki
+- **Comentario fijado:** Escribe la noticia más loca que conozcas 🐊 La mejor la meto en un vídeo 👇
+
+### 4) 5 detalles ocultos del tráiler — `out/gtaeggs/chiki_gtaeggs_short.mp4`
+- **Título:** 5 detalles del tráiler de GTA 6 que NO viste 👀 #shorts
+- **Descripción:** La canción de Tom Petty («Love Is a Long Road», 1989) y su guiño a San Andreas, el Cheetah con matrícula CH33TAH, el Pole Position Club de Vice City (2002), las redes sociales en directo… y el tráiler que se filtró antes de tiempo. #gta6 #gtavi #eastereggs #shorts
+- **Etiquetas:** gta 6, gta 6 easter eggs, gta 6 detalles, gta 6 tráiler, tom petty, cheetah, pole position, vice city, gta vi, shorts, chiki
+- **Comentario fijado:** ¿Qué detalle se me ha escapado? 👀 👇

@@ -332,3 +332,9 @@ Ve hasta el final: el giro no te lo esperas 🤯
 - **Descripción:** La canción de Tom Petty («Love Is a Long Road», 1989) y su guiño a San Andreas, el Cheetah con matrícula CH33TAH, el Pole Position Club de Vice City (2002), las redes sociales en directo… y el tráiler que se filtró antes de tiempo. #gta6 #gtavi #eastereggs #shorts
 - **Etiquetas:** gta 6, gta 6 easter eggs, gta 6 detalles, gta 6 tráiler, tom petty, cheetah, pole position, vice city, gta vi, shorts, chiki
 - **Comentario fijado:** ¿Qué detalle se me ha escapado? 👀 👇
+
+### 1-EN) GTA 6 TONIGHT (English) — `out/gtahoyen/chiki_gtahoyen_short.mp4`
+- **Title:** GTA 6 unlocks TONIGHT at midnight… 4 things you need to know 🌴🔥 #shorts
+- **Description:** GTA 6 unlocks at midnight on November 19 in your local time, after 13 years of waiting. It's 212 GB (preloading opened November 10), it's only on PS5 and Xbox Series (no PC for now) and it already broke the pre-order record on PlayStation and Xbox. Are you staying up until midnight? #gta6 #gtavi #vicecity #gta #shorts
+- **Tags:** gta 6, gta vi, gta 6 release time, gta 6 midnight, gta 6 212 gb, gta 6 preload, vice city, rockstar, gta 6 ps5, gta 6 xbox, shorts
+- **Pinned comment:** What time are you starting? 🌴 Midnight or tomorrow? 👇

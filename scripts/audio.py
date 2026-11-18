@@ -1276,7 +1276,20 @@ def cfg_gtaleak(m):
     return 52.0, ev
 
 
-CFG = {'gtaflorida': cfg_gtaflorida, 'gtaeggs': cfg_gtaeggs, 'gtaleak': cfg_gtaleak, 'gtahoy': cfg_gtahoy, 'congela': cfg_congela, 'avion': cfg_avion, 'rueda': cfg_rueda, 'inventa': cfg_inventa, 'gta19': cfg_gta19, 'anios': cfg_anios, 'volcan': cfg_volcan, 'marte': cfg_marte, 'salto': cfg_salto, 'mar': cfg_mar, 'rapido': cfg_rapido, 'limites': cfg_limites, 'agua': cfg_agua, 'espacio': cfg_espacio, 'tiempo': cfg_tiempo, 'insomnio': cfg_insomnio, 'presente': cfg_presente, 'oceanos': cfg_oceanos, 'nombre': cfg_nombre, 'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
+def cfg_gtahoyen(m):
+    m.epic(0.0, 8.0)
+    m.happy(8.0, 37.2, prog=(60, 57, 53, 55))
+    m.epic(37.2, 43.7)
+    m.outro(43.7, 48.0)
+    ev = [('boom', 0.0, 0.9), ('impact', 0.0, 0.8), ('screech', 0.6, 0.6), ('whoosh', 1.3, 0.6), ('ding', 1.4, 0.5),
+          ('rise', 3.8, 0.5), ('pop', 6.2, 0.5), ('pop', 8.0, 0.5), ('ding', 12.0, 0.4), ('ding', 12.5, 0.4), ('ding', 13.0, 0.4),
+          ('pop', 14.5, 0.5), ('zap', 15.6, 0.5), ('glitch', 20.9, 0.5), ('ding', 22.1, 0.5), ('pop', 24.7, 0.5), ('pop', 26.2, 0.4),
+          ('pop', 27.3, 0.4), ('scratch', 30.1, 0.6), ('pop', 31.6, 0.5), ('sparkle', 32.0, 0.6), ('coin', 34.6, 0.5),
+          ('whoosh', 37.2, 0.6), ('rumble', 38.0, 0.5), ('tick', 41.6, 0.3), ('tick', 42.1, 0.3), ('tick', 42.6, 0.3), ('boom', 43.2, 0.9)]
+    return 48.0, ev
+
+
+CFG = {'gtahoyen': cfg_gtahoyen, 'gtaflorida': cfg_gtaflorida, 'gtaeggs': cfg_gtaeggs, 'gtaleak': cfg_gtaleak, 'gtahoy': cfg_gtahoy, 'congela': cfg_congela, 'avion': cfg_avion, 'rueda': cfg_rueda, 'inventa': cfg_inventa, 'gta19': cfg_gta19, 'anios': cfg_anios, 'volcan': cfg_volcan, 'marte': cfg_marte, 'salto': cfg_salto, 'mar': cfg_mar, 'rapido': cfg_rapido, 'limites': cfg_limites, 'agua': cfg_agua, 'espacio': cfg_espacio, 'tiempo': cfg_tiempo, 'insomnio': cfg_insomnio, 'presente': cfg_presente, 'oceanos': cfg_oceanos, 'nombre': cfg_nombre, 'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
 
 
 def read_wav(p):

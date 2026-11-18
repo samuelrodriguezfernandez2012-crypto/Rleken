@@ -39,7 +39,7 @@ import {InventaShort, InventaThumb, DURATION_S as D_INV} from './videos/inventa/
 import {Test3D} from './videos/td/Test';
 import {RuedaShort, RuedaThumb, DURATION_S as D_RUE} from './videos/rueda/Main';
 import {RuedaIAShort, RuedaIAThumb, DURATION_S as D_RIA} from './videos/rueda/IA';
-import {AvionIAShort, AvionIAThumb, AvionEsqShort, AvionEsqThumb, DURATION_S as D_AVI} from './videos/avion/IA';
+import {AvionIAShort, AvionIAThumb, AvionEsqShort, AvionEsqThumb, AvionMovShort, DURATION_S as D_AVI} from './videos/avion/IA';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -117,6 +117,7 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="AvionIAShort" component={AvionIAShort} durationInFrames={Math.round(D_AVI * FPS)} fps={FPS} width={W} height={H} />
     <Still id="AvionIAThumb" component={AvionIAThumb} width={W} height={H} />
     <Composition id="AvionEsqShort" component={AvionEsqShort} durationInFrames={Math.round(D_AVI * FPS)} fps={FPS} width={W} height={H} />
+    <Composition id="AvionMovShort" component={AvionMovShort} durationInFrames={Math.round(D_AVI * FPS)} fps={FPS} width={W} height={H} />
     <Still id="AvionEsqThumb" component={AvionEsqThumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />

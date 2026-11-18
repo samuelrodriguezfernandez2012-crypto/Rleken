@@ -295,7 +295,7 @@ Ve hasta el final: el giro no te lo esperas 🤯
 #shorts #asiinventas #animacion3d #humor #inventos #curiosidades
 - **Comentario fijado:** ¿Qué invento hacemos el próximo? 👇 El más votado sale.
 
-## Así inventas el avión ✈️ (3D IA) — `out/avion/chiki_avion_short.mp4` · versión ESQUELETO: `out/avionesq/chiki_avionesq_short.mp4`
+## Así inventas el avión ✈️ (3D IA) — `out/avion/chiki_avion_short.mp4` · versión ESQUELETO: `out/avionesq/chiki_avionesq_short.mp4` · versión ESQUELETO ANIMADA (la buena): `out/avionmov/chiki_avionmov_short.mp4`
 - **Título:** Así inventas el avión ✈️🤕 #shorts
 - **Descripción:** Plumas, cartón, una bici con alas… y al final un motor. Pero esto pasó de verdad: en el año 875 Abbás ibn Firnás se lanzó con alas de plumas, y en 1903 los hermanos Wright volaron solo 12 segundos y 36 metros, menos que las alas de un Boeing 747. 66 años después pisamos la Luna. ¿Qué inventamos ahora? 👇 #avion #inventos #historia #curiosidades #3d #humor #shorts
 - **Etiquetas:** avión, inventos, hermanos wright, historia del avión, curiosidades, animación 3d, humor, shorts, chiki

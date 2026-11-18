@@ -121,21 +121,87 @@ const Arrow: React.FC<{t: number; at: number}> = ({t, at}) => {
   return <div style={{position: 'absolute', right: 80, top: 1500 + b, fontSize: 150, opacity: ramp(t, at, at + 0.3)}}>👇</div>;
 };
 
-export const AvionIAShort: React.FC<{dir?: string}> = ({dir = 'avion'}) => {
+
+const A = (n: string) => staticFile(`ia3d/esq_anim/${n}`);
+const L_CLIP = 'polygon(0 0, 400px 0, 400px 850px, 0 850px)';
+const R_CLIP = 'polygon(700px 0, 100% 0, 100% 850px, 700px 850px)';
+const M_CLIP = 'polygon(400px 0, 700px 0, 700px 850px, 100% 850px, 100% 100%, 0 100%, 0 850px, 400px 850px)';
+
+/** esqueleto con alas de plumas ANIMADO: salta, aletea (alas que se mueven de verdad) y cae */
+const PlumasAnim: React.FC<{t: number; t0: number; fall: number; flapAt: number}> = ({t, t0, fall, flapAt}) => {
+  const lt = t - t0;
+  const jump = easeOut(ramp(t, t0, t0 + 0.9));
+  const flapping = t > flapAt;
+  const fr = t > fall ? 30 : flapping ? 17 : 9;
+  const wing = Math.sin(lt * fr) * (t > fall ? 34 : flapping ? 26 : 12);
+  const df = Math.max(0, t - fall);
+  let y = 900 * (1 - jump) - (flapping ? Math.sin(lt * fr + 1.2) * 40 + ramp(t, flapAt, fall) * 120 : 0) + df * df * 3200;
+  const rot = Math.sin(lt * 3) * 4 + df * df * 220;
+  const x = Math.sin(lt * 1.7) * 30;
+  const camY = -ramp(t, t0, fall) * 60 + df * 260;
+  const img = (clip: string, ang: number, ox: number) => (
+    <img src={A('esq_plumas.png')} style={{position: 'absolute', width: 1080, height: 1920, left: 0, top: 0, clipPath: clip, transformOrigin: `${ox}px 520px`, transform: `rotate(${ang}deg)`}} />
+  );
+  return (
+    <AbsoluteFill style={{overflow: 'hidden', background: '#000'}}>
+      <img src={A('fondo_prado.jpg')} style={{position: 'absolute', width: 1080, height: 1920, transform: `translateY(${camY}px) scale(1.15)`}} />
+      {Array.from({length: 14}).map((_, i) => { const st = t0 + 0.6 + rnd(i) * 4; if (t < st) return null; const s = t - st; return <div key={i} style={{position: 'absolute', left: 200 + rnd(i + 1) * 700 + Math.sin(s * 3 + i) * 60, top: 700 + s * 160 + rnd(i + 2) * 300, width: 60, height: 22, borderRadius: '50%', background: '#fff', opacity: Math.max(0, 0.9 - s * 0.25), transform: `rotate(${s * 90 + i * 30}deg)`}} />; })}
+      <div style={{position: 'absolute', inset: 0, transform: `translate(${x}px, ${y}px) rotate(${rot}deg) scale(0.92)`, transformOrigin: '540px 800px'}}>
+        {img(L_CLIP, -wing, 400)}
+        {img(R_CLIP, wing, 700)}
+        {img(M_CLIP, 0, 540)}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+/** avion de madera ANIMADO: entra volando, la helice gira, el piloto celebra, el fondo pasa */
+const VuelaAnim: React.FC<{t: number; t0: number; boost: number}> = ({t, t0, boost}) => {
+  const lt = t - t0;
+  const enter = easeOut(ramp(t, t0, t0 + 1.4));
+  const sp = t > boost ? 1.8 : 1;
+  const bgx = -((lt * 140 * sp) % 400);
+  const px = -900 * (1 - enter) + Math.sin(lt * 1.3) * 25, py = 140 + 500 * (1 - enter) + Math.sin(lt * 2.4) * 30 - ramp(t, boost, boost + 2) * 160;
+  const rot = -8 * (1 - enter) + Math.sin(lt * 2.4 + 0.6) * 3;
+  const cheer = t > boost ? Math.abs(Math.sin(lt * 9)) * 26 : Math.abs(Math.sin(lt * 4)) * 8;
+  return (
+    <AbsoluteFill style={{overflow: 'hidden', background: '#000'}}>
+      <img src={A('fondo_prado.jpg')} style={{position: 'absolute', width: 1500, height: 2667, left: bgx, top: -500}} />
+      {Array.from({length: 8}).map((_, i) => { const xx = 1200 - ((lt * (500 + i * 90) * sp + rnd(i) * 1600) % 1700); return <div key={i} style={{position: 'absolute', left: xx, top: 200 + rnd(i + 4) * 700, width: 260, height: 70, borderRadius: 60, background: '#fff', opacity: 0.35, filter: 'blur(14px)'}} />; })}
+      <div style={{position: 'absolute', inset: 0, transform: `translate(${px}px, ${py}px) rotate(${rot}deg)`, transformOrigin: '540px 900px'}}>
+        <img src={A('piloto.png')} style={{position: 'absolute', width: 1080, height: 1920, transform: `translateY(${-cheer}px)`}} />
+        <img src={A('avion.png')} style={{position: 'absolute', width: 1080, height: 1920}} />
+        <svg width={1080} height={1920} style={{position: 'absolute'}}>
+          <g transform={`translate(832,912) rotate(${lt * 2900})`}>
+            <ellipse cx={0} cy={0} rx={180} ry={26} fill="#d9b48a" opacity={0.35} />
+            <ellipse cx={0} cy={0} rx={26} ry={180} fill="#d9b48a" opacity={0.2} />
+          </g>
+        </svg>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+export const AvionIAShort: React.FC<{dir?: string; anim?: boolean}> = ({dir = 'avion', anim = false}) => {
   DIR = dir;
   loadFonts();
   const t = useCurrentFrame() / FPS;
   let shot: React.ReactNode;
   if (t < I1) shot = <Shot src={IMG('carton')} t={t} t0={0} z0={1.5} z1={1.12} y0={-140} dur={1.6} shake={Math.max(0, 24 - t * 15)} />;
+  else if (t < I2 && anim) shot = <PlumasAnim t={t} t0={I1} flapAt={T('aleteas')} fall={FALL - 0.1} />;
   else if (t < I2) shot = <Shot src={IMG('plumas')} t={t} t0={I1} z0={1.05} z1={1.25} y0={60} y1={t > FALL ? 260 : -40} dur={t > FALL ? 6.5 : 5} bump={t > T('aleteas') && t < FALL ? 30 : 0} shake={t > FALL - 0.1 && t < FALL + 0.5 ? 20 : 0} />;
   else if (t < I3) shot = <Shot src={IMG('carton')} t={t} t0={I2} z0={1.3} z1={1.08} x0={50} dur={3.5} shake={t > T('todavía') && t < T('todavía') + 0.6 ? 18 : 0} />;
   else if (t < I4) shot = <Shot src={IMG('bici')} t={t} t0={I3} z0={1.05} z1={1.3} y1={-60} dur={4.5} shake={t > LAGO - 0.2 && t < LAGO + 0.6 ? 22 : 2} />;
+  else if (t < OJO && anim) shot = <VuelaAnim t={t} t0={I4} boost={VUELA - 0.2} />;
+  else if (t < Y875 && anim) shot = <div style={{position: 'absolute', inset: 0, filter: `saturate(${1 - ramp(t, OJO, OJO + 2.5) * 0.9})`}}><VuelaAnim t={t} t0={I4} boost={VUELA - 0.2} /></div>;
+  else if (t < MIL && anim) shot = <AbsoluteFill style={{filter: 'sepia(0.9) contrast(1.1) brightness(0.92)'}}><PlumasAnim t={t} t0={Y875} flapAt={T('saltó')} fall={ESP - 0.3} /><Grain t={t} /></AbsoluteFill>;
   else if (t < OJO) shot = <Shot src={IMG('vuela')} t={t} t0={I4} z0={1.1} z1={1.32} x0={-30} x1={40} dur={4.5} shake={t > VUELA ? 5 : 0} bump={t > VUELA ? 12 : 0} />;
   else if (t < Y875) shot = <div style={{position: 'absolute', inset: 0, filter: `saturate(${1 - ramp(t, OJO, OJO + 2.5) * 0.9})`}}><Shot src={IMG('vuela')} t={t} t0={OJO} z0={1.32} z1={1.0} dur={3} /></div>;
   else if (t < MIL) shot = <AbsoluteFill style={{filter: 'sepia(0.9) contrast(1.1) brightness(0.92)'}}><Shot src={IMG('plumas')} t={t} t0={Y875} z0={1.15} z1={1.35} y1={t > ESP ? 200 : -40} dur={t > ESP ? 7.5 : 6} shake={t > ESP - 0.2 && t < ESP + 0.6 ? 22 : 0} /><Grain t={t} /></AbsoluteFill>;
   else if (t < MENOS) shot = <Kitty t={t} t0={MIL} />;
   else if (t < SOLO) shot = <Compare t={t} t0={T('boeing')} />;
   else if (t < END) shot = <MoonScene t={t} t0={SOLO} />;
+  else if (anim) shot = <VuelaAnim t={t} t0={END - 1.4} boost={END + 0.5} />;
   else shot = <Shot src={IMG('vuela')} t={t} t0={END} z0={1.3} z1={1.12} y0={-60} dur={2} />;
 
   const meters = Math.round(36 * easeOut(ramp(t, MET - 0.3, MET + 0.8)));
@@ -184,3 +250,4 @@ export const AvionIAThumb: React.FC<{dir?: string}> = ({dir = 'avion'}) => {
 
 export const AvionEsqShort: React.FC = () => <AvionIAShort dir="avion_esq" />;
 export const AvionEsqThumb: React.FC = () => <AvionIAThumb dir="avion_esq" />;
+export const AvionMovShort: React.FC = () => <AvionIAShort dir="avion_esq" anim />;

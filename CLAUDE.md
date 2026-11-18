@@ -64,3 +64,4 @@ El espectador tiene que quedar enganchado desde el primer fotograma:
 - Al usuario le gustan los personajes ESQUELETO. Truco sin créditos de generación: subir la escena a Cloudinary y pedir
   `e_gen_replace:from_boy;to_funny cartoon skeleton ...;preserve-geometry_true` (la 1ª petición da 423 = procesando; reintentar ~45 s).
 - Canva generate-image da muy pocas imágenes; la exportación a tamaño real se hace con un diseño copiado + `insert_fill` + export → Cloudinary `upload-asset`.
+- El usuario NO quiere "fotos con zoom": quiere que se MUEVA. Método que funciona (sin créditos): en Cloudinary `e_extract:prompt_(personaje)/f_png` (recorte con transparencia) + `e_gen_remove:prompt_(personaje)` (fondo limpio), y animar las capas en Remotion (saltos, caídas, alas que aletean cortando la imagen con clip-path, hélices, fondo que pasa). Ejemplo: `PlumasAnim` y `VuelaAnim` en `src/videos/avion/IA.tsx`. La generación de vídeo de Cloudinary da "invalid scope" (no disponible).

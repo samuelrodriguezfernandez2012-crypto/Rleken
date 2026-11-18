@@ -14,7 +14,7 @@ const I1 = T('intento'), I2 = T('intento', 2), I3 = T('intento', 3), I4 = T('int
 const CRASH = T('bien') - 0.15;
 
 /** imagen 3D a pantalla completa con camara (zoom/paneo), sacudidas y desenfoque de movimiento */
-const Shot: React.FC<{src: string; t: number; t0: number; z0?: number; z1?: number; x0?: number; x1?: number; y0?: number; y1?: number; dur?: number; shake?: number; bump?: number; blur?: number; rot?: number}> = ({src, t, t0, z0 = 1.05, z1 = 1.2, x0 = 0, x1 = 0, y0 = 0, y1 = 0, dur = 4, shake = 0, bump = 0, blur = 0, rot = 0}) => {
+export const Shot: React.FC<{src: string; t: number; t0: number; z0?: number; z1?: number; x0?: number; x1?: number; y0?: number; y1?: number; dur?: number; shake?: number; bump?: number; blur?: number; rot?: number}> = ({src, t, t0, z0 = 1.05, z1 = 1.2, x0 = 0, x1 = 0, y0 = 0, y1 = 0, dur = 4, shake = 0, bump = 0, blur = 0, rot = 0}) => {
   const k = easeOut(ramp(t, t0, t0 + dur));
   const z = z0 + (z1 - z0) * k;
   const sx = shake ? Math.sin(t * 63) * shake : 0, sy = shake ? Math.cos(t * 51) * shake * 0.7 : 0;
@@ -25,17 +25,17 @@ const Shot: React.FC<{src: string; t: number; t0: number; z0?: number; z1?: numb
     </AbsoluteFill>
   );
 };
-const SpeedLines: React.FC<{t: number; k?: number}> = ({t, k = 1}) => (
+export const SpeedLines: React.FC<{t: number; k?: number}> = ({t, k = 1}) => (
   <AbsoluteFill style={{opacity: k, pointerEvents: 'none'}}>
     <svg width={1080} height={1920}>{Array.from({length: 26}).map((_, i) => { const y = rnd(i) * 1920, off = ((t * 3200 + rnd(i + 3) * 1500) % 1700) - 300; return <line key={i} x1={1080 - off} y1={y} x2={1080 - off + 260 + rnd(i + 1) * 300} y2={y} stroke="#fff" strokeWidth={4 + rnd(i + 2) * 6} opacity={0.55} strokeLinecap="round" />; })}</svg>
   </AbsoluteFill>
 );
-const Dust: React.FC<{t: number; at: number}> = ({t, at}) => {
+export const Dust: React.FC<{t: number; at: number}> = ({t, at}) => {
   if (t < at || t > at + 1.6) return null;
   const s = t - at;
   return <AbsoluteFill><svg width={1080} height={1920}>{Array.from({length: 30}).map((_, i) => { const a = rnd(i) * Math.PI * 2, v = 300 + rnd(i + 1) * 700; return <circle key={i} cx={540 + Math.cos(a) * v * s} cy={1250 + Math.sin(a) * v * s * 0.5 + 400 * s * s} r={12 + rnd(i + 2) * 24} fill={i % 3 ? '#c9b48a' : '#7a5c3a'} opacity={Math.max(0, 1 - s / 1.6)} />; })}</svg></AbsoluteFill>;
 };
-const Impact: React.FC<{t: number; at: number; text: string}> = ({t, at, text}) => {
+export const Impact: React.FC<{t: number; at: number; text: string}> = ({t, at, text}) => {
   if (t < at || t > at + 0.9) return null;
   const k = easeOut(ramp(t, at, at + 0.15));
   return <div style={{position: 'absolute', left: 0, right: 0, top: 980, textAlign: 'center', fontFamily: 'Montserrat', fontWeight: 900, fontSize: 180, color: '#FFD23F', WebkitTextStroke: '10px #111', paintOrder: 'stroke', transform: `scale(${0.5 + k * 0.7}) rotate(-8deg)`, opacity: 1 - ramp(t, at + 0.6, at + 0.9)}}>{text}</div>;

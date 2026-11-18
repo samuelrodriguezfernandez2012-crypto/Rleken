@@ -15,7 +15,8 @@ const I1 = T('intento'), I2 = T('intento', 2), I3 = T('intento', 3), I4 = T('int
 const OJO = T('pero'), Y875 = T('en'), MIL = T('1000'), SEG = T('12'), MET = T('36'), MENOS = T('menos'), SOLO = T('y', 4), END = T('qué');
 const FALL = T('piedra'), LAGO = T('lago'), ESP = T('espalda'), VUELA = T('vuelas');
 
-const IMG = (n: string) => `ia3d/avion/${n}.jpg`;
+let DIR = 'avion';
+const IMG = (n: string) => `ia3d/${DIR}/${n}.jpg`;
 
 /** grano de pelicula antigua */
 const Grain: React.FC<{t: number; k?: number}> = ({t, k = 1}) => {
@@ -120,7 +121,8 @@ const Arrow: React.FC<{t: number; at: number}> = ({t, at}) => {
   return <div style={{position: 'absolute', right: 80, top: 1500 + b, fontSize: 150, opacity: ramp(t, at, at + 0.3)}}>👇</div>;
 };
 
-export const AvionIAShort: React.FC = () => {
+export const AvionIAShort: React.FC<{dir?: string}> = ({dir = 'avion'}) => {
+  DIR = dir;
   loadFonts();
   const t = useCurrentFrame() / FPS;
   let shot: React.ReactNode;
@@ -169,7 +171,8 @@ export const AvionIAShort: React.FC = () => {
   );
 };
 
-export const AvionIAThumb: React.FC = () => {
+export const AvionIAThumb: React.FC<{dir?: string}> = ({dir = 'avion'}) => {
+  DIR = dir;
   loadFonts();
   return (
     <AbsoluteFill>
@@ -178,3 +181,6 @@ export const AvionIAThumb: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+export const AvionEsqShort: React.FC = () => <AvionIAShort dir="avion_esq" />;
+export const AvionEsqThumb: React.FC = () => <AvionIAThumb dir="avion_esq" />;

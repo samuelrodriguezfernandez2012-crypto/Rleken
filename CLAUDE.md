@@ -58,3 +58,9 @@ El espectador tiene que quedar enganchado desde el primer fotograma:
 - IMPORTANTE: subir algo TODOS los días (el usuario se queja si un día no hay vídeos). Acción hechos: corro x10, salto x10.
 - Alternar con shorts de ACCIÓN y poder (ej. «Cada día corro x10 más rápido»): protagonista poderoso + escalada + ciencia real + giro.
 - 15 nov 2026: Metricool devolvió "You have reached your Metricool account limit" (límite del plan). Antes de programar, comprobar con getScheduledPosts que los anteriores no están en ERROR; si hay límite, avisar al usuario y mandarle los MP4 para subir a mano.
+
+## Shorts 3D con IA (desde el 18 nov 2026)
+- Formato que gusta: escenas 3D cartoon generadas por IA y animadas en Remotion (`src/videos/rueda/IA.tsx`, `src/videos/avion/IA.tsx`).
+- Al usuario le gustan los personajes ESQUELETO. Truco sin créditos de generación: subir la escena a Cloudinary y pedir
+  `e_gen_replace:from_boy;to_funny cartoon skeleton ...;preserve-geometry_true` (la 1ª petición da 423 = procesando; reintentar ~45 s).
+- Canva generate-image da muy pocas imágenes; la exportación a tamaño real se hace con un diseño copiado + `insert_fill` + export → Cloudinary `upload-asset`.

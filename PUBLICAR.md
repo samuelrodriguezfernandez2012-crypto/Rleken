@@ -287,3 +287,10 @@ Ve hasta el final: el giro no te lo esperas 🤯
 #shorts #asiinventas #3d #animacion3d #humor #inventos #curiosidades
 - **Etiquetas:** así inventas, la rueda, animación 3d, humor, inventos, historia, curiosidades, shorts
 - **Comentario fijado:** ¿Qué invento hacemos en 3D el próximo? 👇 El más votado sale.
+
+## IA 3D · «Así inventas la rueda» — 18 nov 2026 (SUBIR A MANO) · NUEVO ESTILO: imágenes 3D IA (Cloudinary) animadas en Remotion
+- **Archivo:** `out/ruedaia/chiki_ruedaia_short.mp4` (35 s) · miniatura `out/ruedaia/miniatura.jpg`
+- **Título:** Así inventas la rueda 🛞🤕 #shorts
+- **Descripción:** Cuadrada, triangular, con pinchos… y la redonda funciona DEMASIADO bien 💥 Y la primera rueda ni siquiera era para moverse. ¿Qué inventamos ahora?
+#shorts #asiinventas #animacion3d #humor #inventos #curiosidades
+- **Comentario fijado:** ¿Qué invento hacemos el próximo? 👇 El más votado sale.

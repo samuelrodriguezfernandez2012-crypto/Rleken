@@ -38,6 +38,7 @@ import {Gta19Short, Gta19Thumb, DURATION_S as D_G19} from './videos/gta19/Main';
 import {InventaShort, InventaThumb, DURATION_S as D_INV} from './videos/inventa/Main';
 import {Test3D} from './videos/td/Test';
 import {RuedaShort, RuedaThumb, DURATION_S as D_RUE} from './videos/rueda/Main';
+import {RuedaIAShort, RuedaIAThumb, DURATION_S as D_RIA} from './videos/rueda/IA';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -110,6 +111,8 @@ export const RemotionRoot: React.FC = () => (
     <Still id="Test3D" component={Test3D} width={W} height={H} />
     <Composition id="RuedaShort" component={RuedaShort} durationInFrames={Math.round(D_RUE * FPS)} fps={FPS} width={W} height={H} />
     <Still id="RuedaThumb" component={RuedaThumb} width={W} height={H} />
+    <Composition id="RuedaIAShort" component={RuedaIAShort} durationInFrames={Math.round(D_RIA * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="RuedaIAThumb" component={RuedaIAThumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>

@@ -300,3 +300,9 @@ Ve hasta el final: el giro no te lo esperas 🤯
 - **Descripción:** Plumas, cartón, una bici con alas… y al final un motor. Pero esto pasó de verdad: en el año 875 Abbás ibn Firnás se lanzó con alas de plumas, y en 1903 los hermanos Wright volaron solo 12 segundos y 36 metros, menos que las alas de un Boeing 747. 66 años después pisamos la Luna. ¿Qué inventamos ahora? 👇 #avion #inventos #historia #curiosidades #3d #humor #shorts
 - **Etiquetas:** avión, inventos, hermanos wright, historia del avión, curiosidades, animación 3d, humor, shorts, chiki
 - **Comentario fijado:** ¿Qué invento hago ahora? El más votado sale en el próximo vídeo 👇
+
+## Te congelan y despiertas en el año 3000 🧊 — `out/congela/chiki_congela_short.mp4`
+- **Título:** Te congelan y despiertas en el año 3000… ¿o no? 🧊
+- **Descripción:** Hay unas 500 personas congeladas esperando despertar en el futuro. Pero para congelarte primero tienes que estar muerto, te bajan a -196 °C en nitrógeno líquido y el hielo puede romper tus células como cristal. James Bedford lleva congelado desde 1967… y en 1979, en California, 9 cuerpos se descongelaron sin que nadie se diera cuenta. ¿Cuántos han despertado? Cero. Pero hay una rana que lo consigue cada invierno. ¿Te congelarías tú? 👇 #criogenia #ciencia #curiosidades #futuro #shorts
+- **Etiquetas:** criogenia, congelado, año 3000, ciencia, curiosidades, futuro, nitrógeno líquido, james bedford, rana congelada, shorts, chiki
+- **Comentario fijado:** Te dan la opción GRATIS: ¿te congelarías sabiendo que nadie ha despertado todavía? 🧊 Sí o no 👇

@@ -65,3 +65,9 @@ El espectador tiene que quedar enganchado desde el primer fotograma:
   `e_gen_replace:from_boy;to_funny cartoon skeleton ...;preserve-geometry_true` (la 1ª petición da 423 = procesando; reintentar ~45 s).
 - Canva generate-image da muy pocas imágenes; la exportación a tamaño real se hace con un diseño copiado + `insert_fill` + export → Cloudinary `upload-asset`.
 - El usuario NO quiere "fotos con zoom": quiere que se MUEVA. Método que funciona (sin créditos): en Cloudinary `e_extract:prompt_(personaje)/f_png` (recorte con transparencia) + `e_gen_remove:prompt_(personaje)` (fondo limpio), y animar las capas en Remotion (saltos, caídas, alas que aletean cortando la imagen con clip-path, hélices, fondo que pasa). Ejemplo: `PlumasAnim` y `VuelaAnim` en `src/videos/avion/IA.tsx`. La generación de vídeo de Cloudinary da "invalid scope" (no disponible).
+
+## Publicar en YouTube con vidIQ (desde el 19 nov 2026)
+- Canal conectado a vidIQ (platformAccountId `UCEicgwfbawJbHNZM3nNw4Rw`). Publicar gratis: `vidiq_video_upload` (localFile → ejecutar el comando de subida, p. ej. con `scratchpad/vup.sh`) → `vidiq_social_post_draft_create` (YOUTUBE, categoryId 1 o 20, privacyStatus public) → `vidiq_social_post_publish`.
+- Si se programa con publishAt, debe ser futuro. Sustituye a Metricool (sin cupo).
+- Renders: `scripts/final_fast.sh` (escala 0.75 y reescalado, más rápido). Borrar `/tmp/*_raw.mp4` y `/tmp/remotion-webpack-bundle-*` para no llenar el disco. El worker se reinicia a menudo: comprobar la cola y relanzarla.
+- Ideas en inglés: mismo kit con voz Adrian y `intent.language: en`.

@@ -47,7 +47,7 @@ const Download: React.FC<{k: number; label?: string}> = ({k, label = '212 GB'}) 
   </g>
 );
 /** trofeo de récord */
-const Trophy: React.FC<{t: number; k: number}> = ({t, k}) => (
+export const Trophy: React.FC<{t: number; k: number}> = ({t, k}) => (
   <g transform={`translate(960 520) scale(${0.5 + 0.5 * k}) rotate(${Math.sin(t * 3) * 4})`}>
     <path d="M -150 -200 L 150 -200 L 120 20 Q 0 110 -120 20 Z" fill="#FFD23F" stroke="#111" strokeWidth={10} />
     <path d="M -150 -170 Q -260 -170 -220 -60 Q -190 0 -130 0" stroke="#FFD23F" strokeWidth={26} fill="none" />

@@ -172,3 +172,71 @@ export const Stamp: React.FC<{k: number; txt: string; y?: number}> = ({k, txt, y
   </g>
 );
 export {ramp, easeOut};
+
+/** panel de flechas de un truco (overlay vertical, fuera del marco V) */
+const DIRS: Record<string, string> = {abajo: '↓', arriba: '↑', izquierda: '←', derecha: '→', down: '↓', up: '↑', left: '←', right: '→'};
+export const ArrowPanel: React.FC<{t: number; words: {text: string; start_ms: number}[]; from: number; to: number; title?: string}> = ({t, words, from, to, title}) => {
+  if (t < from || t > to) return null;
+  const arr = words.filter((w) => w.start_ms / 1000 >= from && w.start_ms / 1000 < to).map((w) => ({d: DIRS[w.text.toLowerCase().replace(/[^a-záéíóú]/g, '')], at: w.start_ms / 1000})).filter((a) => a.d);
+  const k = Math.min(1, (t - from) / 0.2) * (1 - Math.max(0, (t - (to - 0.15)) / 0.15));
+  return (
+    <div style={{position: 'absolute', left: 40, right: 40, top: 640, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 18, opacity: k}}>
+      {title && <div style={{width: '100%', textAlign: 'center', fontFamily: F, fontWeight: 900, fontSize: 54, color: '#fff', textShadow: '0 4px 18px #000'}}>{title}</div>}
+      {arr.map((a, i) => { const on = t >= a.at; const p = Math.min(1, Math.max(0, (t - a.at) / 0.15)); return (
+        <div key={i} style={{width: 150, height: 150, borderRadius: 30, background: on ? PINK : 'rgba(20,8,38,0.85)', border: `6px solid ${on ? '#fff' : '#5a3a7a'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 110, fontWeight: 900, color: '#fff', fontFamily: F, transform: `scale(${on ? 1 + 0.25 * (1 - p) : 0.85})`, boxShadow: on ? `0 0 30px ${PINK}` : undefined}}>{on ? a.d : ''}</div>
+      ); })}
+    </div>
+  );
+};
+
+/** mando con botones que se iluminan */
+export const Pad: React.FC<{t: number; up?: boolean; l1?: boolean; r1?: boolean; labels?: [string, string]}> = ({t, up, l1, r1, labels = ['L1', 'R1']}) => (
+  <g transform="translate(960 560)" fontFamily={F} fontWeight={900}>
+    <rect x={-210} y={-200} width={150} height={60} rx={20} fill={l1 ? PINK : '#444'} stroke="#111" strokeWidth={6} />
+    <rect x={60} y={-200} width={150} height={60} rx={20} fill={r1 ? PINK : '#444'} stroke="#111" strokeWidth={6} />
+    <text x={-135} y={-158} textAnchor="middle" fontSize={34} fill="#fff">{labels[0]}</text>
+    <text x={135} y={-158} textAnchor="middle" fontSize={34} fill="#fff">{labels[1]}</text>
+    <path d="M -280 -120 Q 0 -170 280 -120 Q 330 60 260 170 Q 200 230 140 120 L -140 120 Q -200 230 -260 170 Q -330 60 -280 -120 Z" fill="#2b2b3a" stroke="#111" strokeWidth={8} />
+    <g transform="translate(-150 -20)"><rect x={-22} y={-70} width={44} height={140} rx={8} fill="#111" /><rect x={-70} y={-22} width={140} height={44} rx={8} fill="#111" /><rect x={-22} y={-70} width={44} height={60} rx={8} fill={up ? PINK : '#111'} style={{filter: up ? `drop-shadow(0 0 12px ${PINK})` : undefined}} /></g>
+    {[[150, -60, '#7BF59A'], [210, 0, '#FF4D6D'], [90, 0, '#4CC9F0'], [150, 60, '#FFD23F']].map(([x, y, c], i) => <circle key={i} cx={x as number} cy={-20 + (y as number)} r={26} fill={c as string} stroke="#111" strokeWidth={4} />)}
+  </g>
+);
+
+/** lluvia de billetes */
+export const Money: React.FC<{t: number; n?: number}> = ({t, n = 40}) => (
+  <g>{Array.from({length: n}).map((_, i) => { const p = (t * (0.3 + rnd(i) * 0.3) + rnd(i + 7)) % 1; const x = rnd(i + 1) * 1920, y = -80 + p * 1240; return <rect key={i} x={x} y={y} width={90} height={46} rx={6} fill="#7BC47F" stroke="#1E5631" strokeWidth={4} transform={`rotate(${Math.sin(t * 3 + i) * 40} ${x} ${y})`} />; })}</g>
+);
+
+/** candado */
+export const Lock: React.FC<{k: number; open?: boolean}> = ({k, open}) => (
+  <g transform={`translate(960 520) scale(${0.6 + 0.4 * k})`}>
+    <path d={open ? 'M -90 -40 L -90 -140 Q -90 -230 0 -230 Q 90 -230 90 -170' : 'M -90 -40 L -90 -140 Q -90 -230 0 -230 Q 90 -230 90 -140 L 90 -40'} stroke="#cfd8e3" strokeWidth={40} fill="none" />
+    <rect x={-150} y={-60} width={300} height={260} rx={40} fill={YEL} stroke="#111" strokeWidth={10} />
+    <circle cx={0} cy={50} r={30} fill="#111" /><rect x={-12} y={50} width={24} height={70} fill="#111" />
+  </g>
+);
+
+/** caja fuerte con numeros aleatorios */
+export const Safe: React.FC<{t: number; spin: boolean}> = ({t, spin}) => (
+  <g transform="translate(960 520)" fontFamily={F} fontWeight={900}>
+    <rect x={-260} y={-260} width={520} height={520} rx={30} fill="#6c757d" stroke="#111" strokeWidth={10} />
+    <rect x={-220} y={-220} width={440} height={440} rx={20} fill="#495057" />
+    <circle r={120} fill="#adb5bd" stroke="#111" strokeWidth={8} />
+    <g transform={`rotate(${spin ? t * 400 : 0})`}>{Array.from({length: 12}).map((_, i) => <line key={i} x1={0} y1={-100} x2={0} y2={-80} stroke="#111" strokeWidth={6} transform={`rotate(${i * 30})`} />)}</g>
+    <rect x={-170} y={150} width={340} height={80} rx={12} fill="#0B0620" />
+    <text y={210} textAnchor="middle" fontSize={64} fill="#7BF59A">{spin ? String(Math.floor(rnd(Math.floor(t * 12)) * 9000 + 1000)) : '????'}</text>
+  </g>
+);
+
+/** tarjetas de pistas que usa la policia */
+export const Clues: React.FC<{t: number; at: number[]; labels: string[]; ok?: number}> = ({t, at, labels, ok = 1e9}) => (
+  <g fontFamily={F} fontWeight={900}>
+    {labels.map((l, i) => { const k = easeOut(ramp(t, at[i], at[i] + 0.25)); const x = 790 + (i % 2) * 340, y = 380 + Math.floor(i / 2) * 230; const done = t > ok; return (
+      <g key={l} transform={`translate(${x} ${y}) scale(${k})`}>
+        <rect x={-150} y={-90} width={300} height={180} rx={24} fill={done ? '#2EC4B6' : '#E63946'} stroke="#111" strokeWidth={8} />
+        <text y={16} textAnchor="middle" fontSize={50} fill="#fff">{l}</text>
+        <text x={120} y={-50} textAnchor="middle" fontSize={44} fill="#fff">{done ? '✔' : '👁'}</text>
+      </g>
+    ); })}
+  </g>
+);

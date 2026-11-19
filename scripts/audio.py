@@ -1300,7 +1300,34 @@ def cfg_gtaleaken(m):
     return 50.0, ev
 
 
-CFG = {'gtaleaken': cfg_gtaleaken, 'gtahoyen': cfg_gtahoyen, 'gtaflorida': cfg_gtaflorida, 'gtaeggs': cfg_gtaeggs, 'gtaleak': cfg_gtaleak, 'gtahoy': cfg_gtahoy, 'congela': cfg_congela, 'avion': cfg_avion, 'rueda': cfg_rueda, 'inventa': cfg_inventa, 'gta19': cfg_gta19, 'anios': cfg_anios, 'volcan': cfg_volcan, 'marte': cfg_marte, 'salto': cfg_salto, 'mar': cfg_mar, 'rapido': cfg_rapido, 'limites': cfg_limites, 'agua': cfg_agua, 'espacio': cfg_espacio, 'tiempo': cfg_tiempo, 'insomnio': cfg_insomnio, 'presente': cfg_presente, 'oceanos': cfg_oceanos, 'nombre': cfg_nombre, 'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
+def cfg_gtatrucos(m):
+    m.epic(0.0, 4.6)
+    m.happy(4.6, 61.7, prog=(60, 57, 53, 55))
+    m.outro(61.7, 67.0)
+    ev = [('boom', 0.0, 0.9), ('screech', 0.0, 0.5), ('zap', 0.6, 0.5), ('coin', 1.2, 0.6), ('coin', 1.5, 0.5), ('pop', 1.8, 0.5),
+          ('pop', 4.6, 0.5), ('ding', 7.4, 0.4), ('ding', 8.8, 0.5), ('ding', 9.8, 0.5), ('ding', 11.6, 0.4), ('ding', 12.5, 0.4), ('pop', 14.3, 0.4),
+          ('pop', 16.7, 0.5)]
+    for a in [19.5, 20.4, 21.3, 22.2, 23.2, 24.1, 25.0, 26.0, 26.9, 30.6, 31.5, 32.5, 33.4, 34.3, 35.2, 36.1, 40.9, 41.7, 42.7, 43.5, 44.5, 45.3, 46.4, 47.2]:
+        ev.append(('tick', a, 0.45))
+    ev += [('screech', 24.1, 0.5), ('sparkle', 27.1, 0.6), ('pop', 28.0, 0.5), ('wind', 36.2, 0.6), ('pop', 37.2, 0.5), ('coin', 38.5, 0.6),
+           ('coin', 47.4, 0.7), ('impact', 48.3, 0.8), ('glitch', 52.0, 0.4), ('boom', 56.0, 0.6), ('scratch', 58.7, 0.6), ('pop', 61.7, 0.5)]
+    return 67.0, ev
+
+
+def cfg_gtatipsen(m):
+    m.epic(0.0, 5.5)
+    m.happy(5.5, 57.6, prog=(60, 57, 53, 55))
+    m.outro(57.6, 65.0)
+    ev = [('zap', 0.0, 0.8), ('impact', 0.0, 0.7), ('screech', 0.7, 0.5), ('tick', 1.4, 0.4), ('tick', 1.7, 0.4), ('pop', 2.5, 0.5),
+          ('pop', 5.5, 0.5), ('zap', 8.0, 0.6), ('ding', 10.6, 0.4), ('ding', 11.7, 0.4), ('coin', 13.0, 0.5), ('glitch', 14.2, 0.5),
+          ('pop', 16.8, 0.5), ('rumble', 17.9, 0.5), ('pop', 22.1, 0.4), ('pop', 23.2, 0.4), ('pop', 24.2, 0.4), ('pop', 25.1, 0.4),
+          ('sparkle', 26.4, 0.5), ('glass', 29.9, 0.7), ('pop', 32.3, 0.5), ('boom', 36.9, 0.9), ('ding', 39.3, 0.5), ('pop', 40.9, 0.5),
+          ('tick', 42.0, 0.3), ('tick', 42.5, 0.3), ('tick', 43.0, 0.3), ('sparkle', 46.2, 0.5), ('pop', 48.8, 0.5), ('whoosh', 52.2, 0.8),
+          ('chime', 53.9, 0.5), ('pop', 57.6, 0.5)]
+    return 65.0, ev
+
+
+CFG = {'gtatrucos': cfg_gtatrucos, 'gtatipsen': cfg_gtatipsen, 'gtaleaken': cfg_gtaleaken, 'gtahoyen': cfg_gtahoyen, 'gtaflorida': cfg_gtaflorida, 'gtaeggs': cfg_gtaeggs, 'gtaleak': cfg_gtaleak, 'gtahoy': cfg_gtahoy, 'congela': cfg_congela, 'avion': cfg_avion, 'rueda': cfg_rueda, 'inventa': cfg_inventa, 'gta19': cfg_gta19, 'anios': cfg_anios, 'volcan': cfg_volcan, 'marte': cfg_marte, 'salto': cfg_salto, 'mar': cfg_mar, 'rapido': cfg_rapido, 'limites': cfg_limites, 'agua': cfg_agua, 'espacio': cfg_espacio, 'tiempo': cfg_tiempo, 'insomnio': cfg_insomnio, 'presente': cfg_presente, 'oceanos': cfg_oceanos, 'nombre': cfg_nombre, 'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
 
 
 def read_wav(p):

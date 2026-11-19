@@ -47,6 +47,8 @@ import {GtaEggsShort, GtaEggsThumb, DURATION_S as D_GE} from './videos/gtaeggs/M
 import {GtaLeakShort, GtaLeakThumb, DURATION_S as D_GL} from './videos/gtaleak/Main';
 import {GtaHoyEnShort, GtaHoyEnThumb, DURATION_S as D_GHE} from './videos/gtahoyen/Main';
 import {GtaLeakEnShort, GtaLeakEnThumb, DURATION_S as D_GLE} from './videos/gtaleaken/Main';
+import {GtaTrucosShort, GtaTrucosThumb, DURATION_S as D_GTR} from './videos/gtatrucos/Main';
+import {GtaTipsEnShort, GtaTipsEnThumb, DURATION_S as D_GTE} from './videos/gtatipsen/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -140,6 +142,10 @@ export const RemotionRoot: React.FC = () => (
     <Still id="GtaHoyEnThumb" component={GtaHoyEnThumb} width={W} height={H} />
     <Composition id="GtaLeakEnShort" component={GtaLeakEnShort} durationInFrames={Math.round(D_GLE * FPS)} fps={FPS} width={W} height={H} />
     <Still id="GtaLeakEnThumb" component={GtaLeakEnThumb} width={W} height={H} />
+    <Composition id="GtaTrucosShort" component={GtaTrucosShort} durationInFrames={Math.round(D_GTR * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="GtaTrucosThumb" component={GtaTrucosThumb} width={W} height={H} />
+    <Composition id="GtaTipsEnShort" component={GtaTipsEnShort} durationInFrames={Math.round(D_GTE * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="GtaTipsEnThumb" component={GtaTipsEnThumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>

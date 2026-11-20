@@ -338,3 +338,6 @@ Ve hasta el final: el giro no te lo esperas 🤯
 - **Description:** GTA 6 unlocks at midnight on November 19 in your local time, after 13 years of waiting. It's 212 GB (preloading opened November 10), it's only on PS5 and Xbox Series (no PC for now) and it already broke the pre-order record on PlayStation and Xbox. Are you staying up until midnight? #gta6 #gtavi #vicecity #gta #shorts
 - **Tags:** gta 6, gta vi, gta 6 release time, gta 6 midnight, gta 6 212 gb, gta 6 preload, vice city, rockstar, gta 6 ps5, gta 6 xbox, shorts
 - **Pinned comment:** What time are you starting? 🌴 Midnight or tomorrow? 👇
+
+## #GTA6 en la VIDA REAL: ¿cuánto aguantarías? — `out/gtareal/chiki_gtareal_short.mp4` (publicado con vidIQ, 20 nov 2026)
+- Datos: saltar de un coche a 50 km/h ≈ caer 10 m (3er piso); chocar a 100 km/h ≈ caer 39 m (13 pisos); velocidad terminal ≈ 195 km/h en ~12 s; Vesna Vulović, 26 ene 1972, 10.160 m (Guinness); hueso: 6-8 semanas.

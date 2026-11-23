@@ -54,6 +54,9 @@ import {VenusShort, VenusThumb, DURATION_S as D_VEN} from './videos/venus/Main';
 import {GtaTrucos2Short, GtaTrucos2Thumb, DURATION_S as D_GT2} from './videos/gtatrucos2/Main';
 import {JupiterShort, JupiterThumb, DURATION_S as D_JUP} from './videos/jupiter/Main';
 import {AntartidaShort, AntartidaThumb, DURATION_S as D_ANT} from './videos/antartida/Main';
+import {GtaSecretosShort, GtaSecretosThumb, DURATION_S as D_GSEC} from './videos/gtasecretos/Main';
+import {GtaRicoShort, GtaRicoThumb, DURATION_S as D_GRIC} from './videos/gtarico/Main';
+import {GtaSecretosEnShort, GtaSecretosEnThumb, DURATION_S as D_GSEN} from './videos/gtasecretosen/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -161,6 +164,12 @@ export const RemotionRoot: React.FC = () => (
     <Still id="JupiterThumb" component={JupiterThumb} width={W} height={H} />
     <Composition id="AntartidaShort" component={AntartidaShort} durationInFrames={Math.round(D_ANT * FPS)} fps={FPS} width={W} height={H} />
     <Still id="AntartidaThumb" component={AntartidaThumb} width={W} height={H} />
+    <Composition id="GtaSecretosShort" component={GtaSecretosShort} durationInFrames={Math.round(D_GSEC * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="GtaSecretosThumb" component={GtaSecretosThumb} width={W} height={H} />
+    <Composition id="GtaRicoShort" component={GtaRicoShort} durationInFrames={Math.round(D_GRIC * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="GtaRicoThumb" component={GtaRicoThumb} width={W} height={H} />
+    <Composition id="GtaSecretosEnShort" component={GtaSecretosEnShort} durationInFrames={Math.round(D_GSEN * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="GtaSecretosEnThumb" component={GtaSecretosEnThumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>

@@ -1388,7 +1388,22 @@ def cfg_jupiter(m):
     return 66.0, ev
 
 
-CFG = {'jupiter': cfg_jupiter, 'gtatrucos2': cfg_gtatrucos2, 'venus': cfg_venus, 'gtareal': cfg_gtareal, 'gtatrucos': cfg_gtatrucos, 'gtatipsen': cfg_gtatipsen, 'gtaleaken': cfg_gtaleaken, 'gtahoyen': cfg_gtahoyen, 'gtaflorida': cfg_gtaflorida, 'gtaeggs': cfg_gtaeggs, 'gtaleak': cfg_gtaleak, 'gtahoy': cfg_gtahoy, 'congela': cfg_congela, 'avion': cfg_avion, 'rueda': cfg_rueda, 'inventa': cfg_inventa, 'gta19': cfg_gta19, 'anios': cfg_anios, 'volcan': cfg_volcan, 'marte': cfg_marte, 'salto': cfg_salto, 'mar': cfg_mar, 'rapido': cfg_rapido, 'limites': cfg_limites, 'agua': cfg_agua, 'espacio': cfg_espacio, 'tiempo': cfg_tiempo, 'insomnio': cfg_insomnio, 'presente': cfg_presente, 'oceanos': cfg_oceanos, 'nombre': cfg_nombre, 'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
+def cfg_antartida(m):
+    m.tense(0.0, 3.5)
+    m.calm(3.5, 26.0)
+    m.tense(26.0, 42.2, roots=(44, 44, 45, 43))
+    m.epic(42.2, 52.9)
+    m.outro(52.9, 63.0)
+    ev = [('wind', 0.0, 0.9), ('freeze', 0.0, 0.7), ('crack', 0.6, 0.7), ('whoosh', 1.2, 0.6), ('freeze', 1.6, 0.5), ('pop', 2.0, 0.5),
+          ('ding', 3.5, 0.4), ('freeze', 6.8, 0.8), ('chime', 8.9, 0.4), ('pop', 11.2, 0.5), ('whoosh', 12.8, 0.6), ('sparkle', 14.6, 0.7),
+          ('pop', 17.3, 0.5), ('wind', 18.6, 0.8), ('freeze', 19.9, 0.7), ('wind', 22.1, 1.0), ('whoosh', 23.7, 0.7), ('pop', 26.0, 0.5),
+          ('glitch', 29.4, 0.5), ('tick', 32.5, 0.3), ('tick', 33.0, 0.3), ('tick', 33.5, 0.3), ('pop', 34.4, 0.5), ('sparkle', 35.4, 0.5),
+          ('rumble', 38.4, 0.6), ('rise', 40.3, 0.7), ('pop', 42.2, 0.5), ('rumble', 44.6, 0.6), ('sparkle', 47.5, 0.7), ('chime', 48.6, 0.6),
+          ('tick', 51.0, 0.3), ('tick', 51.5, 0.3), ('heartbeat', 52.9, 0.6), ('heartbeat', 53.9, 0.6), ('whoosh', 54.9, 0.6), ('ding', 56.3, 0.5)]
+    return 63.0, ev
+
+
+CFG = {'antartida': cfg_antartida, 'jupiter': cfg_jupiter, 'gtatrucos2': cfg_gtatrucos2, 'venus': cfg_venus, 'gtareal': cfg_gtareal, 'gtatrucos': cfg_gtatrucos, 'gtatipsen': cfg_gtatipsen, 'gtaleaken': cfg_gtaleaken, 'gtahoyen': cfg_gtahoyen, 'gtaflorida': cfg_gtaflorida, 'gtaeggs': cfg_gtaeggs, 'gtaleak': cfg_gtaleak, 'gtahoy': cfg_gtahoy, 'congela': cfg_congela, 'avion': cfg_avion, 'rueda': cfg_rueda, 'inventa': cfg_inventa, 'gta19': cfg_gta19, 'anios': cfg_anios, 'volcan': cfg_volcan, 'marte': cfg_marte, 'salto': cfg_salto, 'mar': cfg_mar, 'rapido': cfg_rapido, 'limites': cfg_limites, 'agua': cfg_agua, 'espacio': cfg_espacio, 'tiempo': cfg_tiempo, 'insomnio': cfg_insomnio, 'presente': cfg_presente, 'oceanos': cfg_oceanos, 'nombre': cfg_nombre, 'nivel0largo': cfg_nivel0largo, 'doble': cfg_doble, 'luna': cfg_luna, 'fuerte': cfg_fuerte, 'nivel0': cfg_nivel0, 'futuro': cfg_futuro, 'gta6': cfg_gta6, 'agujero': cfg_agujero, 'parpadeo': cfg_parpadeo, 'sol': cfg_sol, 'duplicar': cfg_duplicar, 'largo1': cfg_largo1, 'mentiras': cfg_mentiras, 'reflejo': cfg_reflejo, 'mentes': cfg_mentes, 'tierra': cfg_tierra}
 
 
 def read_wav(p):

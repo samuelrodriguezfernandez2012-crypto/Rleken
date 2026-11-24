@@ -341,3 +341,7 @@ Ve hasta el final: el giro no te lo esperas 🤯
 
 ## #GTA6 en la VIDA REAL: ¿cuánto aguantarías? — `out/gtareal/chiki_gtareal_short.mp4` (publicado con vidIQ, 20 nov 2026)
 - Datos: saltar de un coche a 50 km/h ≈ caer 10 m (3er piso); chocar a 100 km/h ≈ caer 39 m (13 pisos); velocidad terminal ≈ 195 km/h en ~12 s; Vesna Vulović, 26 ene 1972, 10.160 m (Guinness); hueso: 6-8 semanas.
+
+## GTA 6 — 5 secretos (ES) — https://www.youtube.com/watch?v=S43Gyv0KjBo
+## GTA 6 — Así te haces rico (ES) — https://www.youtube.com/watch?v=35EYshMF0CQ
+## GTA 6 — 5 Secrets (EN) — publicado 24 nov

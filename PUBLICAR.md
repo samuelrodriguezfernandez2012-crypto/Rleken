@@ -345,3 +345,4 @@ Ve hasta el final: el giro no te lo esperas 🤯
 ## GTA 6 — 5 secretos (ES) — https://www.youtube.com/watch?v=S43Gyv0KjBo
 ## GTA 6 — Así te haces rico (ES) — https://www.youtube.com/watch?v=35EYshMF0CQ
 ## GTA 6 — 5 Secrets (EN) — https://www.youtube.com/watch?v=hPcZQRt1LgM
+## GTA 6 — Trucos #3 (ES) — https://www.youtube.com/watch?v=cKKg8JoV1Yw

@@ -58,6 +58,7 @@ import {GtaSecretosShort, GtaSecretosThumb, DURATION_S as D_GSEC} from './videos
 import {GtaRicoShort, GtaRicoThumb, DURATION_S as D_GRIC} from './videos/gtarico/Main';
 import {GtaSecretosEnShort, GtaSecretosEnThumb, DURATION_S as D_GSEN} from './videos/gtasecretosen/Main';
 import {GtaTrucos3Short, GtaTrucos3Thumb, DURATION_S as D_GTR3} from './videos/gtatrucos3/Main';
+import {HuracanShort, HuracanThumb, DURATION_S as D_HUR} from './videos/huracan/Main';
 import {FPS, W, H} from './fx';
 
 export const RemotionRoot: React.FC = () => (
@@ -173,6 +174,8 @@ export const RemotionRoot: React.FC = () => (
     <Still id="GtaSecretosEnThumb" component={GtaSecretosEnThumb} width={W} height={H} />
     <Composition id="GtaTrucos3Short" component={GtaTrucos3Short} durationInFrames={Math.round(D_GTR3 * FPS)} fps={FPS} width={W} height={H} />
     <Still id="GtaTrucos3Thumb" component={GtaTrucos3Thumb} width={W} height={H} />
+    <Composition id="HuracanShort" component={HuracanShort} durationInFrames={Math.round(D_HUR * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="HuracanThumb" component={HuracanThumb} width={W} height={H} />
     <Still id="CharacterTest" component={CharacterTest} width={W} height={H} />
     <Still id="CinematicTest" component={CinematicTest} width={1920} height={1080} />
   </>
